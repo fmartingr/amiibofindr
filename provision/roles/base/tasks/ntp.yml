@@ -1,0 +1,8 @@
+---
+- name: ensure ntpd is at the latest version
+  apt: pkg={{ item }} state=latest
+  sudo: true
+  with_items:
+    - ntp
+  notify:
+  - restart ntp

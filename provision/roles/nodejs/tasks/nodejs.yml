@@ -1,0 +1,11 @@
+---
+- name: Ensure nodejs is installed
+  apt: pkg={{ item }} state=latest
+  sudo: true
+  with_items:
+    - nodejs
+    - npm
+- name: Ensure symlink node to nodejs
+  file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
+  sudo: true
+

@@ -1,0 +1,6 @@
+---
+- name: Ensure debug tools are installed
+  pip: name={{ item }}
+  sudo: true
+  with_items:
+    - ipdb

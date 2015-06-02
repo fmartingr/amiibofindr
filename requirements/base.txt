@@ -1,0 +1,18 @@
+# Base Django
+Django==1.8.2
+
+# Tasks
+celery==3.1.18
+django-celery==3.1.16
+
+# Utils
+django-extensions==1.5.5
+
+# Model versioning
+django-reversion==1.8.7
+
+# Admin
+django-suit==0.2.13
+
+# NoSQL
+redis==2.10.3

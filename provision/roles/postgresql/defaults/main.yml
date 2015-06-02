@@ -1,0 +1,3 @@
+postgresql_database_name: amiibofindr
+postgresql_database_user: amiibofindr
+postgresql_database_port: 5432

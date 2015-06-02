@@ -1,0 +1,22 @@
+---
+# Check if virtualenv is created
+- shell: if [ -e .virtualenv ]; then echo yes; else echo no; fi;
+  register: virtualenv_exists
+  always_run: True
+  sudo: true
+  sudo_user: vagrant
+# Create virtualenv
+- name: Ensure virtualenv is created
+  when: virtualenv_exists.stdout == 'no'
+  command: 'virtualenv .virtualenv'
+  sudo: true
+  sudo_user: vagrant
+# Auto activate on ssh
+- name: Ensure vagrant user have a .bash_profile
+  file: path=~/.bash_profile state=touch
+  sudo: true
+  sudo_user: vagrant
+- name: Ensure virtualenv is enabled on login
+  lineinfile: dest=~/.bash_profile state=present line='. ~/.virtualenv/bin/activate'
+  sudo: true
+  sudo_user: vagrant

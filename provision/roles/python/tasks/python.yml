@@ -1,0 +1,9 @@
+---
+- name: Install python
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - python
+    - python-dev
+    - python-pip
+    - python-virtualenv
+  sudo: true

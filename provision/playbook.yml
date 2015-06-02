@@ -1,0 +1,19 @@
+---
+- name: Common Tasks
+  hosts: all
+  roles:
+    - system
+    - base
+    - python
+    - nodejs
+    - postgresql
+
+- name: LocalDev Tasks
+  hosts: localdev
+  roles:
+    - app_localdev
+
+- name: Production Tasks
+  hosts: production
+  roles:
+    - app_production

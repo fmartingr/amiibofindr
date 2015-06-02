@@ -1,0 +1,7 @@
+---
+- name: Ensure nodejs tools are installed
+  npm: name={{ item }} global=yes
+  sudo: true
+  with_items:
+    - grunt-cli
+    - bower

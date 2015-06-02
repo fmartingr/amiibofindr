@@ -1,0 +1,6 @@
+- name: Install PostgreSQL libraries
+  apt: pkg=libpq-dev state=latest
+  sudo: true
+- name: Install python psycopg2 library
+  apt: pkg=python-psycopg2 state=latest
+  sudo: true

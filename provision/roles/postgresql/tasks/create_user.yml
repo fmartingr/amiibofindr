@@ -1,0 +1,9 @@
+---
+- name: Ensure the database user is present
+  postgresql_user: db={{ postgresql_database_name }} name={{ postgresql_database_user }} password=NULL priv=ALL state=present
+  sudo_user: postgres
+  sudo: true
+- name: Ensure user dont have unnecesary privileges
+  postgresql_user: name={{ postgresql_database_user }} role_attr_flags=NOSUPERUSER,CREATEDB
+  sudo_user: postgres
+  sudo: true

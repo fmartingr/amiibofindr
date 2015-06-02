@@ -1,0 +1,10 @@
+---
+- name: Install PostgreSQL
+  apt: pkg={{ item }} state=latest
+  sudo: true
+  with_items:
+    - postgresql
+    - postgresql-client
+    - postgresql-contrib
+  notify:
+    - start postgresql

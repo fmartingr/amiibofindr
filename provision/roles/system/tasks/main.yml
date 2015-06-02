@@ -1,0 +1,6 @@
+---
+- name: Update and Upgrade
+  apt: update_cache=yes upgrade=dist
+  sudo: true
+
+- include: tools.yml

@@ -1,0 +1,7 @@
+---
+- name: Ensure scrapping libraries are installed
+  apt: pkg={{ item }} state=latest
+  sudo: true
+  with_items:
+    - libxml2-dev
+    - libxslt1-dev

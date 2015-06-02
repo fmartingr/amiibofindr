@@ -1,0 +1,5 @@
+---
+- name: Ensure locale is en_US.UTF-8
+  lineinfile: dest=/etc/environment line=LANG=en_US.utf-8
+  lineinfile: dest=/etc/environment line=LC_ALL=en_US.utf-8
+  sudo: true
