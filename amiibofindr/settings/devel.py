@@ -1,5 +1,9 @@
 # coding: utf-8
 
+#
+# Development settings prepared for vagrant
+#
+
 from .base import *
 
 
@@ -8,7 +12,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'amiibofindr',
         'USER': 'vagrant',
-        'PASS': 'vagrant',
+        'PASSWORD': 'vagrant',
         'HOST': '127.0.0.1',
     }
 }
+
+# Media root
+MEDIA_ROOT = '/vagrant/media'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass

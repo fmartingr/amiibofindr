@@ -5,3 +5,4 @@
 - include: deploy.yml
 - name: Ensure directory is changed on login
   lineinfile: dest=~/.bash_profile state=present line='cd /vagrant'
+  lineinfile: dest=~/.bash_profile state=present line='export DJANGO_SETTINGS_MODULE="amiibofindr.settings.devel"'

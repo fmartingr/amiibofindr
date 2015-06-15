@@ -1,2 +1,2 @@
 postgresql_user: djangoapp
-postgresql_database_name: djangoapp
+postgresql_database_name: amiibofindr
