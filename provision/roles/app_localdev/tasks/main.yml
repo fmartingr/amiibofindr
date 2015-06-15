@@ -1,5 +1,7 @@
 ---
+- include_vars: ../../postgresql/defaults/main.yml
 - include: python.yml
 - include: postgresql.yml
 - include: deploy.yml
-- include: aliases.yml
+- name: Ensure directory is changed on login
+  lineinfile: dest=~/.bash_profile state=present line='cd /vagrant'

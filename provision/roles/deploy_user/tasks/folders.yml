@@ -1,0 +1,29 @@
+---
+- name: Ensure folder - static
+  file: path={{ app_static_folder }} state=directory
+  sudo: true
+  sudo_user: "{{ app_user }}"
+- name: Ensure folder - media
+  file: path={{ app_media_folder }} state=directory
+  sudo: true
+  sudo_user: "{{ app_user }}"
+- name: Ensure folder - conf
+  file: path={{ app_conf_folder }} state=directory
+  sudo: true
+  sudo_user: "{{ app_user }}"
+- name: Ensure builds folder
+  file: path={{ app_builds_folder }} state=directory
+  sudo: true
+  sudo_user: "{{ app_user }}"
+- name: Ensure logs folder
+  file: path={{ app_logs_folder }} state=directory
+  sudo: true
+  sudo_user: "{{ app_user }}"
+- name: Ensure git repo folder
+  file: path={{ app_git_folder }} state=directory
+  sudo: true
+  sudo_user: "{{ app_user }}"
+- name: Ensure scripts folder
+  file: path={{ app_scripts_folder }} state=directory
+  sudo: true
+  sudo_user: "{{ app_user }}"

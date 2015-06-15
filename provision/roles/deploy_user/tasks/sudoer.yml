@@ -1,0 +1,8 @@
+---
+- action: shell which supervisorctl
+  register: supervisorctl_path
+
+- name: Add sudoer file to allow supervisor without password
+  template: src=roles/deploy_user/files/sudoerfile
+            dest=/etc/sudoers.d/{{ app_user }}
+  sudo: true

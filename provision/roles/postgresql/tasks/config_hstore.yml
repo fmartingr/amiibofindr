@@ -1,0 +1,5 @@
+---
+- name: Config HSTORE into template1
+  sudo: true
+  sudo_user: postgres
+  script: hstore.sh

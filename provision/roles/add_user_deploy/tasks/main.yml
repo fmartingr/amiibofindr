@@ -1,0 +1,7 @@
+---
+- name: Ensure deployers group is present
+  group: name=deployers state=present
+  sudo: true
+- name: Ensure user is present and member of the deployers group
+  user: name={{ app_user }} generate_ssh_key=yes ssh_key_bits={{ app_user_key_bits }} ssh_key_file=.ssh/id_rsa group={{ app_deploy_group }}
+  sudo: true

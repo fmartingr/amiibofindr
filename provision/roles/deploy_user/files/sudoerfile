@@ -1,0 +1,1 @@
+{{ app_user }} ALL=NOPASSWD: {{ supervisorctl_path.stdout }}

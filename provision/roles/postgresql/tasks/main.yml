@@ -1,5 +1,7 @@
 ---
+- include_vars: ../../deploy_user/defaults/main.yml
 - include: libs.yml
 - include: postgresql.yml
+- include: config_hstore.yml
 - include: create_db.yml
 - include: create_user.yml

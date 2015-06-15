@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.define "globalwishlist-backend" do |web|
+  config.vm.define "amiibofindr-web" do |web|
     web.vm.box = "ubuntu/trusty64"
 
     #web.vm.network "private_network", type: "dhcp"

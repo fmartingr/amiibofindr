@@ -1,0 +1,14 @@
+---
+- include_vars: ../../deploy_user/defaults/main.yml
+- name: Ensure supervisor installed
+  apt: pkg=supervisor state=latest
+  sudo: true
+
+- name: Ensure our config file is enabled
+  template: src=roles/supervisor/files/config.ini dest=/etc/supervisor/conf.d/{{ app_user }}.conf
+  sudo: true
+
+- name: Restart supervisor
+  command: service supervisor restart
+  sudo: true
+  ignore_errors: true

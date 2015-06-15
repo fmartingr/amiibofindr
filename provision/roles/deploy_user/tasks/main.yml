@@ -1,0 +1,13 @@
+---
+- name: Create user and generate shh-key file
+  user: name={{ app_user }} generate_ssh_key=yes ssh_key_bits={{ app_user_key_bits }} ssh_key_file=.ssh/id_rsa shell=/bin/bash
+  sudo: true
+- include: folders.yml
+- include: sudoer.yml
+
+- name: Add initial_syncdb.sh script
+  template: src=roles/deploy_user/files/initial_syncdb.sh
+            dest={{ app_scripts_folder }}/initial_syncdb.sh
+            mode=0644
+  sudo: true
+  sudo_user: "{{ app_user }}"

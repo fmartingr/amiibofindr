@@ -1,0 +1,7 @@
+# Nginx
+site_hostname: amiibofindr.com
+
+site_media_hostname: media.amiibofindr.com
+site_static_hostname: static.amiibofindr.com
+
+enable_ssl: false

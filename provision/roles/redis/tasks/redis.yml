@@ -1,0 +1,8 @@
+---
+- name: Install redis
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - redis-server
+  sudo: true
+  notify:
+    - start redis

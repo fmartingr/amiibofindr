@@ -1,0 +1,5 @@
+deploy_backend: true
+
+deploy_migrate: true
+
+deploy_collecstatic: true

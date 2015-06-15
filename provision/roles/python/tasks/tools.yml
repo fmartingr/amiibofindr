@@ -1,6 +1,10 @@
 ---
-- name: Ensure debug tools are installed
+- name: Ensure pip tools
   pip: name={{ item }}
   sudo: true
   with_items:
     - ipdb
+
+- name: Upgrade pip to last version
+  pip: name=pip state=latest
+  sudo: true

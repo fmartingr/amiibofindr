@@ -1,0 +1,3 @@
+app_worker_num: 1
+
+celery_worker_num: 1

@@ -1,4 +1,0 @@
----
-postgresql_version: 9.3
-postgresql_database_name: amiibofindr
-postgresql_database_user: amiibofindr

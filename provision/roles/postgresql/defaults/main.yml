@@ -1,3 +1,2 @@
-postgresql_database_name: amiibofindr
-postgresql_database_user: amiibofindr
-postgresql_database_port: 5432
+postgresql_user: djangoapp
+postgresql_database_name: djangoapp

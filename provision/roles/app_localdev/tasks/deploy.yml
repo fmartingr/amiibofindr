@@ -1,15 +1,13 @@
 ---
 - name: Install requirements
-  pip: requirements=/vagrant/requirements/local.txt virtualenv=~/.virtualenv
+  pip: requirements=/vagrant/requirements/devel.txt virtualenv=/vagrant/.virtualenv
   sudo: yes
   sudo_user: vagrant
-# - name: Install nodejs requirements
-#   npm: path=/vagrant
-#   sudo: yes
-#   sudo_user: vagrant
 - name: Ensure vagrant user have a .bash_profile
   file: path=~/.bash_profile state=touch
 - name: Ensure directory is changed on login
   lineinfile: dest=~/.bash_profile state=present line='cd /vagrant'
-- name: Ensure DJANGO_SETTINGS_MODULE environment variable
-  lineinfile: dest=~/.bash_profile state=present line='export DJANGO_SETTINGS_MODULE="local_settings"'
+- name: Performs manage.py migrate
+  django_manage: command=migrate
+                 virtualenv=/vagrant/.virtualenv
+                 app_path=/vagrant

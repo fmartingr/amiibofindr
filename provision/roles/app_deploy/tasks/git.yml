@@ -1,0 +1,14 @@
+---
+- name: Clone git repository
+  git: repo={{ git_repository }}
+       dest={{ app_git_folder }}
+       version={{ git_branch }}
+       accept_hostkey=true
+
+- name: Create build git directory
+  file: path={{ deploy_path.stdout }}/git state=directory
+  sudo: true
+  sudo_user: "{{ app_user }}"
+
+- name: Copy repository to build folder
+  command: cp -r {{ app_git_folder }} {{ deploy_path.stdout }}

@@ -2,18 +2,42 @@
 - name: Common Tasks
   hosts: all
   roles:
-    - system
-    - base
-    - python
-    - nodejs
-    - postgresql
+    - role: system
+      tags: ["provision", "system"]
+    - role: base
+      tags: ["provision", "base"]
+    - role: python
+      tags: ["provision", "python"]
+    - role: nodejs
+      tags: ["provision", "nodejs"]
+    - role: redis
+      tags: ["provision", "redis"]
+    - role: postgresql
+      tags: ["provision", "postgresql"]
+    - role: nginx
+      tags: ["provision", "nginx"]
+    - role: supervisor
+      tags: ["provision", "supervisor"]
+    - role: deploy_user
+      tags: ["provision", "deploy_user"]
 
 - name: LocalDev Tasks
   hosts: localdev
   roles:
-    - app_localdev
+    - role: app_localdev
+      tags: ["app_localdev"]
 
-- name: Production Tasks
-  hosts: production
+- name: Deploy Tasks
+  hosts:
+    - deploy
+  vars:
+    - ansible_ssh_user: "{{ app_user }}"
   roles:
-    - app_production
+    - role: app_deploy
+      tags: ["deploy"]
+
+- name: Automation tasks
+  hosts: all
+  roles:
+    - role: add_user_deploy
+      tags: ["add_user_deploy"]

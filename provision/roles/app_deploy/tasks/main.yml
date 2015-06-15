@@ -1,0 +1,58 @@
+---
+- include_vars: ../../deploy_user/defaults/main.yml
+
+# Register date as variable to use it in deploy steps
+- action: shell date '+%Y%m%d_%H%M%S'
+  register: deploy_date
+  remote_user: "{{ app_user }}"
+
+- stat: path=/home/{{ app_user }}/.initial_syncdb
+  register: initial_syncdb
+  ignore_errors: true
+
+- include: folder.yml
+  remote_user: "{{ app_user }}"
+
+- include: git.yml
+  remote_user: "{{ app_user }}"
+
+- include: virtualenv.yml
+  remote_user: "{{ app_user }}"
+
+#- include: node.yml
+#  remote_user: "{{ app_user }}"
+
+- include: config.yml
+  remote_user: "{{ app_user }}"
+
+- include: django_initial.yml
+  remote_user: "{{ app_user }}"
+  when: initial_syncdb.stat.exists == False
+
+- include: django.yml
+  remote_user: "{{ app_user }}"
+  when: initial_syncdb.stat.exists
+
+- name: Mark as finished
+  file: path=/home/{{ app_user }}/builds/{{ deploy_date.stdout }}/.finished
+        state=touch
+  remote_user: "{{ app_user }}"
+
+- name: Remove old current symlink
+  file: path=/home/{{ app_user }}/current
+        state=absent
+  remote_user: "{{ app_user }}"
+
+- name: Symlink new release
+  file: src={{ deploy_path.stdout }}/git/src
+        dest=/home/{{ app_user }}/current
+        state=link
+        force=true
+  remote_user: "{{ app_user }}"
+
+- name: Restart supervisor
+  sudo: true
+  command: supervisorctl restart {{ item }}
+  with_items:
+    - django
+    - celery

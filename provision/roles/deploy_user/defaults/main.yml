@@ -1,0 +1,13 @@
+app_user: amiibofindr
+app_user_key_bits: 2048
+
+app_deploy_group: deployers
+
+app_static_folder: /home/{{ app_user }}/files/static
+app_media_folder: /home/{{ app_user }}/files/media
+app_conf_folder: /home/{{ app_user }}/conf
+app_builds_folder: /home/{{ app_user }}/builds
+app_logs_folder: /home/{{ app_user }}/logs
+app_public_files_folder: /home/{{ app_user }}/public_files
+app_git_folder: /home/{{ app_user }}/git
+app_scripts_folder: /home/{{ app_user }}/scripts

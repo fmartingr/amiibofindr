@@ -1,0 +1,9 @@
+---
+- name: Ensure virtualenv requirements installed
+  pip: requirements={{ deploy_path.stdout }}/git/src/backend/requirements-prod.txt
+       virtualenv={{ deploy_path.stdout }}/.virtualenv
+
+- name: Symlink virtualenv to git src folder
+  file: src={{ deploy_path.stdout }}/.virtualenv
+        dest=/home/{{ app_user }}/git/src/.virtualenv
+        state=link

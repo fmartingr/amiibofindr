@@ -1,0 +1,4 @@
+---
+- name: Create user and generate shh-key file
+  user: name={{ app_user }} generate_ssh_key=yes ssh_key_bits={{ app_user_key_bits }} ssh_key_file=.ssh/id_rsa
+  sudo: true

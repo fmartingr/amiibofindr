@@ -1,9 +1,0 @@
----
-- name: Ensure (runserver) alias
-  lineinfile: dest=~/.bash_profile state=present line='alias runserver="python /vagrant/manage.py runserver 0.0.0.0:8000"'
-- name: Ensure (runserver_plus) alias
-  lineinfile: dest=~/.bash_profile state=present line='alias runserver_plus="python /vagrant/manage.py runserver_plus 0.0.0.0:8000"'
-- name: Ensure (shell) alias
-  lineinfile: dest=~/.bash_profile state=present line='alias shell="python /vagrant/manage.py shell"'
-- name: Ensure (shell_plus) alias
-  lineinfile: dest=~/.bash_profile state=present line='alias shell_plus="python /vagrant/manage.py shell_plus"'

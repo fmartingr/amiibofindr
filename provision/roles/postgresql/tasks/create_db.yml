@@ -3,5 +3,5 @@
   postgresql_db: name={{ postgresql_database_name }}
                  encoding='UTF-8'
                  state=present
-  sudo_user: postgres
   sudo: true
+  sudo_user: postgres

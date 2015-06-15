@@ -1,0 +1,5 @@
+---
+- name: Performs initial syncdb
+  shell: "{{ app_scripts_folder }}/initial_syncdb.sh"
+  args:
+    chdir: /home/{{ app_user }}/builds/{{ deploy_date.stdout }}

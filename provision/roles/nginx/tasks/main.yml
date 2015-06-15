@@ -1,0 +1,21 @@
+---
+- include_vars: ../../deploy_user/defaults/main.yml
+- name: Ensure nginx installed
+  apt: pkg=nginx state=latest
+  sudo: true
+
+- name: Ensure default hostfile is deleted
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  sudo: true
+
+- name: Ensure our hostfile is into sites-available
+  template: src=roles/nginx/files/host.conf dest=/etc/nginx/sites-available/{{ app_user }}
+  sudo: true
+
+- name: Ensure hostfile is linked into sites-enabled
+  file: src=/etc/nginx/sites-available/{{ app_user }} dest=/etc/nginx/sites-enabled/{{ app_user }} state=link
+  sudo: true
+
+- name: Restart nginx
+  service: name=nginx state=restarted
+  sudo: true
