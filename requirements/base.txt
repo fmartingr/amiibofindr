@@ -17,3 +17,6 @@ django-suit==0.2.13
 
 # NoSQL
 redis==2.10.3
+
+# Images
+Pillow==2.8.2

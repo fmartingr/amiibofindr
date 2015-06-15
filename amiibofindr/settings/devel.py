@@ -17,7 +17,8 @@ DATABASES = {
     }
 }
 
-# Media root
+# Media
+MEDIA_URL = '/media/'
 MEDIA_ROOT = '/vagrant/media'
 
 try:

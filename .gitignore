@@ -65,3 +65,4 @@ target/
 # Local development
 local_settings.py
 
+media/
