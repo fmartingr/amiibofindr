@@ -44,7 +44,7 @@
   remote_user: "{{ app_user }}"
 
 - name: Symlink new release
-  file: src={{ deploy_path.stdout }}/git/src
+  file: src={{ deploy_path.stdout }}/git
         dest=/home/{{ app_user }}/current
         state=link
         force=true
