@@ -5,5 +5,5 @@
 
 - name: Symlink virtualenv to git src folder
   file: src={{ deploy_path.stdout }}/.virtualenv
-        dest=/home/{{ app_user }}/git/src/.virtualenv
+        dest=/home/{{ app_user }}/git/.virtualenv
         state=link
