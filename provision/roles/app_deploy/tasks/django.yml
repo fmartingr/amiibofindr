@@ -1,14 +1,7 @@
 ---
-- name: Performs manage.py syncdb
-  when: deploy_migrate
-  django_manage: >
-      command=syncdb
-      app_path={{ deploy_path.stdout }}/git/src/backend
-      virtualenv={{ deploy_path.stdout }}/.virtualenv
-
 - name: Performs manage.py migrate
   when: deploy_migrate
   django_manage: >
       command=migrate
-      app_path={{ deploy_path.stdout }}/git/src/backend
+      app_path={{ deploy_path.stdout }}/git
       virtualenv={{ deploy_path.stdout }}/.virtualenv
