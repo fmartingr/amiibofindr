@@ -7,8 +7,6 @@
 
 - name: Create build git directory
   file: path={{ deploy_path.stdout }}/git state=directory
-  sudo: true
-  sudo_user: "{{ app_user }}"
 
 - name: Copy repository to build folder
   command: cp -r {{ app_git_folder }} {{ deploy_path.stdout }}

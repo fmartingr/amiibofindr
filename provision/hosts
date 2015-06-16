@@ -1,8 +1,13 @@
 default ansible_ssh_host=127.0.0.1 ansible_ssh_user=vagrant ansible_ssh_port=2222
+web-1 ansible_ssh_host=46.101.172.158 ansible_ssh_user=root ansible_ssh_port=22
 
 [localdev]
 default
 
 [development]
 
+[production]
+web-1
+
 [deploy]
+web-1

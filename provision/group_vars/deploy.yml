@@ -2,5 +2,5 @@
 app_user: amiibofindr
 
 # Git repository
-git_repository: git@github.org:fmartingr/amiibofindr.git
+git_repository: git@github.com:fmartingr/amiibofindr.git
 git_branch: master
