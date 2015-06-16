@@ -24,32 +24,54 @@ def image_box_upload(self, filename):
 # Models
 class Collection(models.Model):
     slug = models.SlugField(max_length=128)
-    name = models.CharField(max_length=128)
+    name_eu = models.CharField(max_length=128)
+    name_jp = models.CharField(max_length=128, blank=True, null=True)
+    name_us = models.CharField(max_length=128, blank=True, null=True)
 
     @property
     def amiibos(self):
         return self.amiibos_qs.all()
 
     def __unicode__(self):
-        return self.name
+        return unicode(self.name_eu) or u''
 
 
 class Amiibo(models.Model):
     collection = models.ForeignKey(Collection, related_name='amiibos_qs')
+    collection_number = models.IntegerField(blank=True, null=True)
 
-    original_name = models.CharField(max_length=64)
+    model_number = models.CharField(max_length=20, blank=True, null=True)
+
     slug = models.SlugField(max_length=64)
 
-    statue = models.ImageField(upload_to=image_statue_upload)
-    box = models.ImageField(upload_to=image_box_upload, blank=True, null=True)
+    name_eu = models.CharField(max_length=64, blank=True, null=True)
+    name_jp = models.CharField(max_length=64, blank=True, null=True)
+    name_us = models.CharField(max_length=64, blank=True, null=True)
 
-    name_es = models.CharField(max_length=64)
+    # Links
+    link_eu = models.CharField(max_length=255, blank=True, null=True)
+    link_jp = models.CharField(max_length=255, blank=True, null=True)
+    link_us = models.CharField(max_length=255, blank=True, null=True)
 
     release_date = models.DateField(null=True, blank=True)
 
+    visible = models.BooleanField(default=True)
+
+    @property
+    def image_box(self):
+        return '/static/images/amiibo/{}/{}-box.jpg'.format(
+            self.collection.slug, self.slug
+        )
+
+    @property
+    def image_statue(self):
+        return '/static/images/amiibo/{}/{}.png'.format(
+            self.collection.slug, self.slug
+        )
+
     def __unicode__(self):
-        return self.name
+        return unicode(self.name_eu) or u''
 
     @property
     def name(self):
-        return self.original_name
+        return self.name_eu

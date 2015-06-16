@@ -11,7 +11,7 @@ from .models import Collection, Amiibo
 
 
 class CollectionAdmin(reversion.VersionAdmin):
-    list_display = ('name', 'amiibo_number', )
+    list_display = ('name_eu', 'amiibo_number', )
 
     def amiibo_number(self, obj):
         return obj.amiibos.count()
@@ -19,12 +19,17 @@ class CollectionAdmin(reversion.VersionAdmin):
 
 
 class AmiiboAdmin(reversion.VersionAdmin):
-    list_display_links = ('name', )
-    list_display = ('statue_image', 'name', 'collection',)
+    list_display_links = ('name_eu', )
+    list_display = ('statue_image', 'box_image', 'name_eu', 'collection',)
+    search_fields = ('collection__name_eu', 'name_eu', 'name_us', )
 
     def statue_image(self, obj):
-        return '<img src="{}" width="80" />'.format(obj.statue.url)
+        return '<img src="{}" width="80" />'.format(obj.image_statue)
     statue_image.allow_tags = True
+
+    def box_image(self, obj):
+        return '<img src="{}" width="80" />'.format(obj.image_box)
+    box_image.allow_tags = True
 
 
 admin.site.register(Collection, CollectionAdmin)
