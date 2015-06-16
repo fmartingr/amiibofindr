@@ -1,6 +1,6 @@
 ---
 - name: Ensure config is symlinked
   file: src=/home/{{ app_user }}/conf/local.py
-        dest={{ deploy_path.stdout }}/git/src/backend/settings/local.py
+        dest={{ deploy_path.stdout }}/git/amiibofindr/settings/local.py
         state=link
         force=true
