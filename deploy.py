@@ -6,7 +6,7 @@ from fabric.api import local
 
 
 @click.command()
-@click.option('--branch', '-b', default='stable',
+@click.option('--branch', '-b', default='master',
               help='Branch to git clone from')
 @click.option('--inventory', '-i', default='hosts',
               help='Inventory file for ansible to use')
