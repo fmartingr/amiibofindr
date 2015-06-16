@@ -1,0 +1,22 @@
+{% extends "_layout.html" %}
+
+{% block main_content %}
+<ul class="uk-subnav uk-subnav-pill">
+    {% for collection in collections %}
+    <li {% if selected_collection.slug == collection.slug %}class="uk-active"{% endif %}>
+        <a href="{{ collection.get_absolute_url }}">{{ collection.name_eu }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<div class="uk-grid">
+    {% for amiibo in amiibo_list %}
+    <div class="uk-width-medium-1-5">
+        <a class="uk-panel uk-panel-box uk-panel-box-hover" href="{{ amiibo.get_absolute_url }}">
+            <h3 class="uk-panel-title uk-text-center">{{ amiibo.name_eu }}</h3>
+            <img src="{{ amiibo.image_statue }}" />
+        </a>
+    </div>
+    {% if forloop.counter|divisibleby:5 %}</div><div class="uk-grid">{% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

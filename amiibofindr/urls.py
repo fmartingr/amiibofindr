@@ -23,8 +23,9 @@ from django.conf.urls.static import static
 
 urlpatterns = patterns(
     '',
-    url(r'^', include('amiibofindr.apps.home.urls')),
     url(r'^amiibofindr-admin/', include(admin.site.urls)),
+    url(r'^', include('amiibofindr.apps.amiibo.urls', namespace='amiibo')),
+    url(r'^', include('amiibofindr.apps.home.urls', namespace='home')),
 )
 
 if settings.DEBUG:

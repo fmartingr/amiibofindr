@@ -1,0 +1,13 @@
+{% extends "_layout.html" %}
+
+{% block main_content %}
+<ul class="uk-subnav uk-subnav-pill">
+    {% for collection in collections %}
+    <li {% if selected_collection.slug == collection.slug %}class="uk-active"{% endif %}>
+        <a href="{{ collection.get_absolute_url }}">{{ collection.name_eu }}</a>
+    </li>
+    {% endfor %}
+</ul>
+    {{ amiibo }}
+    <img src="{{ amiibo.image_statue }}" />
+{% endblock %}

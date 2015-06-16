@@ -32,6 +32,10 @@ class Collection(models.Model):
     def amiibos(self):
         return self.amiibos_qs.all()
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('amiibo:collection', [self.slug])
+
     def __unicode__(self):
         return unicode(self.name_eu) or u''
 
@@ -56,6 +60,10 @@ class Amiibo(models.Model):
     release_date = models.DateField(null=True, blank=True)
 
     visible = models.BooleanField(default=True)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('amiibo:amiibo', [self.collection.slug, self.slug])
 
     @property
     def image_box(self):
