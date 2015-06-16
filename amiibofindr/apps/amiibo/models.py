@@ -36,6 +36,10 @@ class Collection(models.Model):
     def get_absolute_url(self):
         return ('amiibo:collection', [self.slug])
 
+    @property
+    def name(self):
+        return self.name_eu
+
     def __unicode__(self):
         return unicode(self.name_eu) or u''
 

@@ -1,4 +1,4 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,7 +9,24 @@
     <body>
         <nav class="uk-navbar">
             <a href="/" class="uk-navbar-brand">AmiiboFindr</a>
+            <ul class="uk-navbar-nav">
+                <li class="uk-parent" data-uk-dropdown=""
+                                      aria-haspopup="true"
+                                      aria-expanded="false">
+                    <a href="#">Amiibo</a>
+                    <div class="uk-dropdown uk-dropdown-navbar">
+                        <ul class="uk-nav uk-nav-navbar">
+                            <li><a href="#all">{% trans "All" %}</a></li>
+                            <li class="uk-nav-divider"></li>
+                            {% for col in collections %}
+                            <li><a href="{{ col.get_absolute_url }}">{{ col.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </li>
+            </ul>
         </nav>
         {% block main_content %}{% endblock %}
+        <script type="text/javascript" src={% static "dist/app.js" %}></script>
     </body>
 </html>

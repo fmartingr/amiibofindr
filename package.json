@@ -13,5 +13,8 @@
     "gulp-less": "^3.0.3",
     "gulp-livereload": "^3.8.0",
     "gulp-watch": "^4.2.4"
+  },
+  "dependencies": {
+    "gulp-concat": "~2.5.2"
   }
 }
