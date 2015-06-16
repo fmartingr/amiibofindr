@@ -20,3 +20,10 @@ redis==2.10.3
 
 # Images
 Pillow==2.8.2
+
+# HTTP
+requests==2.7.0
+
+# Import / Export
+openpyxl==2.2.3
+django-import-export==0.2.7

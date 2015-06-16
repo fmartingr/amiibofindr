@@ -4,13 +4,28 @@
 from django.contrib import admin
 
 # third party
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 import reversion
+
 
 # amiibo
 from .models import Collection, Amiibo
 
 
-class CollectionAdmin(reversion.VersionAdmin):
+class ColectionResource(resources.ModelResource):
+    class Meta:
+        model = Collection
+
+
+class AmiiboResource(resources.ModelResource):
+    class Meta:
+        model = Amiibo
+
+
+class CollectionAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
+    resource_class = ColectionResource
+
     list_display = ('name_eu', 'amiibo_number', )
 
     def amiibo_number(self, obj):
@@ -18,7 +33,9 @@ class CollectionAdmin(reversion.VersionAdmin):
     amiibo_number.short_description = 'Amiibos'
 
 
-class AmiiboAdmin(reversion.VersionAdmin):
+class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
+    resource_class = AmiiboResource
+
     list_display_links = ('name_eu', )
     list_display = ('statue_image', 'box_image', 'name_eu', 'collection',)
     search_fields = ('collection__name_eu', 'name_eu', 'name_us', )
