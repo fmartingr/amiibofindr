@@ -1,0 +1,3 @@
+---
+- name: Install bower requirements
+  bower: path={{ deploy_path.stdout }}/git

@@ -1,0 +1,9 @@
+---
+- name: Execute gulp scripts
+  command: gulp scripts
+  args:
+    chdir: "{{ deploy_path.stdout }}/git"
+- name: Execute gulp less
+  command: gulp less
+  args:
+    chdir: "{{ deploy_path.stdout }}/git"

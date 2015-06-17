@@ -4,3 +4,4 @@
   sudo: true
   with_items:
     - gulp
+    - bower

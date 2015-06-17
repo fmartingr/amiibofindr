@@ -1,3 +1,3 @@
-#---
-#- name: Install node requirements
-#  npm: path={{ deploy_path.stdout }}/git/src/backend
+---
+- name: Install node requirements
+  npm: path={{ deploy_path.stdout }}/git

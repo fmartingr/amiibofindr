@@ -19,8 +19,8 @@
 - include: virtualenv.yml
   remote_user: "{{ app_user }}"
 
-#- include: node.yml
-#  remote_user: "{{ app_user }}"
+- include: node.yml
+  remote_user: "{{ app_user }}"
 
 - include: config.yml
   remote_user: "{{ app_user }}"
@@ -28,6 +28,12 @@
 - include: django_initial.yml
   remote_user: "{{ app_user }}"
   when: initial_syncdb.stat.exists == False
+
+- include: bower.yml
+  remote_user: "{{ app_user }}"
+
+- include: gulp.yml
+  remote_user: "{{ app_user }}"
 
 - include: django.yml
   remote_user: "{{ app_user }}"
