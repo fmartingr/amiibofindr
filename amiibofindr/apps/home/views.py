@@ -1,17 +1,11 @@
 # coding: utf-8
 
 # django
-from django.shortcuts import render
 from django.views.generic.base import View
-
-# amiibo
-from amiibofindr.apps.amiibo.models import Amiibo
+from django.shortcuts import redirect
+from django.core.urlresolvers import reverse
 
 
 class HomeView(View):
-    template = 'home/home.html'
-
     def get(self, request):
-        return render(request, self.template, {
-            'amiibo_list': Amiibo.objects.all()
-        })
+        return redirect(reverse('amiibo:collection', args=['all']))
