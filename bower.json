@@ -11,6 +11,7 @@
     "tests"
   ],
   "dependencies": {
-    "uikit": "~2.21.0"
+    "semantic-ui": "~1.12.3",
+    "jquery": "~2.1.4"
   }
 }

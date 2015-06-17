@@ -11,12 +11,17 @@ from amiibofindr.apps.amiibo.models import Collection, Amiibo
 class CollectionView(View):
     template = 'amiibo/collection.html'
 
-    def get(self, request, collection=None):
-        collection = Collection.objects.get(slug=collection)
+    def get(self, request, collection='all'):
+        if collection != 'all':
+            collection = Collection.objects.get(slug=collection)
+            amiibo_list = collection.amiibos
+        else:
+            collection = None
+            amiibo_list = Amiibo.objects.all()
 
         return render(request, self.template, {
             'selected_collection': collection,
-            'amiibo_list': collection.amiibos,
+            'amiibo_list': amiibo_list,
         })
 
 

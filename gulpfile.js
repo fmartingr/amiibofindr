@@ -7,7 +7,8 @@ var gulp = require('gulp'),
 gulp.task('scripts', function() {
   return gulp.src([
       'bower_components/jquery/dist/jquery.js',
-      'bower_components/uikit/js/uikit.js'
+      'amiibofindr/static/semantic/semantic.js',
+      'amiibofindr/static/app/global.js'
     ])
     .pipe(concat('app.js'))
     .pipe(gulp.dest('amiibofindr/static/dist'));
@@ -23,4 +24,5 @@ gulp.task('less', function() {
 gulp.task('watch', function() {
   livereload.listen({ start: true });
   gulp.watch('amiibofindr/**/less/**/*.less', ['less']);
+  gulp.watch('amiibofindr/**/app/**/*.js', ['scripts']);
 });

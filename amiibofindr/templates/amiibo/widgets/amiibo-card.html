@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<div class="special card">
+	<div class="dimmable image">
+    <div class="ui dimmer">
+      <div class="content">
+        <div class="center">
+          <a class="ui inverted button" href="{{ amiibo.get_absolute_url }}">{{ amiibo.name }}</a>
+        </div>
+      </div>
+    </div>
+		<img src="{% static amiibo.image_statue %}">
+  </div>
+  <div class="content">
+    <a class="header">{{ amiibo.name }}</a>
+  </div>
+</div>

@@ -1,16 +1,24 @@
 {% extends "_layout.html" %}
-{% load staticfiles %}
+{% load i18n staticfiles %}
+
+{% block page_title %}{% blocktrans with collection=selected_collection.name %}{{ collection }} amiibos in {% endblocktrans %}{{ block.super }}{% endblock %}
+
+{% block breadcrumb %}
+{{ block.super }}
+<i class="right chevron icon divider"></i>
+{% if selected_collection %}
+<span class="active section">{{ selected_collection.name }}</span>
+{% else %}
+<span class="active section">{% trans "All amiibo" %}</span>
+{% endif %}
+{% endblock %}
 
 {% block main_content %}
-<div class="uk-grid">
+<h1>{{ selected_collection.name }}</h1>
+<div class="ui six doubling cards">
     {% for amiibo in amiibo_list %}
-    <div class="uk-width-medium-1-5">
-        <a class="uk-panel uk-panel-box uk-panel-box-hover" href="{{ amiibo.get_absolute_url }}">
-            <h3 class="uk-panel-title uk-text-center">{{ amiibo.name_eu }}</h3>
-            <img src="{% static amiibo.image_statue %}" />
-        </a>
-    </div>
-    {% if forloop.counter|divisibleby:5 %}</div><div class="uk-grid">{% endif %}
+      {% include "amiibo/widgets/amiibo-card.html" with amiibo=amiibo only %}
     {% endfor %}
 </div>
+    {#{% if forloop.counter|divisibleby:5 %}</div><div class="uk-grid">{% endif %}#}
 {% endblock %}

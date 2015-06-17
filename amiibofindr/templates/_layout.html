@@ -1,32 +1,40 @@
 {% load static i18n %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="{% static "css/style.css" %}" charset="utf-8">
-        <title>{% block page_title %}{% endblock %}</title>
-    </head>
-    <body>
-        <nav class="uk-navbar">
-            <a href="/" class="uk-navbar-brand">AmiiboFindr</a>
-            <ul class="uk-navbar-nav">
-                <li class="uk-parent" data-uk-dropdown=""
-                                      aria-haspopup="true"
-                                      aria-expanded="false">
-                    <a href="#">Amiibo</a>
-                    <div class="uk-dropdown uk-dropdown-navbar">
-                        <ul class="uk-nav uk-nav-navbar">
-                            <li><a href="#all">{% trans "All" %}</a></li>
-                            <li class="uk-nav-divider"></li>
-                            {% for col in collections %}
-                            <li><a href="{{ col.get_absolute_url }}">{{ col.name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        {% block main_content %}{% endblock %}
-        <script type="text/javascript" src={% static "dist/app.js" %}></script>
-    </body>
+
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="{% static "css/style.css" %}" charset="utf-8">
+	<title>{% block page_title %}AmiiboFindr{% endblock %}</title>
+</head>
+
+<body>
+	<div class="ui page grid">
+		<br />
+		<div class="sixteen wide column">
+			<div class="ui large menu">
+				<a class="item" href="/">
+					<i class="home icon"></i> AmiiboFindr
+				</a>
+				<div class="ui dropdown item">
+					{% trans "Collections" %}
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<a class="item" href="#">{% trans "All" %}</a> {% for col in collections %}
+						<a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a> {% endfor %}
+					</div>
+				</div>
+				<div class="right menu"></div>
+			</div>
+        <div class="ui breadcrumb">
+          {% block breadcrumb %}
+  				<a class="section">Home</a>
+          {% endblock %}
+  			</div>
+		</div>
+		{% block main_content %}{% endblock %}
+	</div>
+	<script type="text/javascript" src={% static "dist/app.js" %}></script>
+</body>
+
 </html>
