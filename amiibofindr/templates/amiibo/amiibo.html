@@ -1,4 +1,5 @@
 {% extends "_layout.html" %}
+{% load staticfiles %}
 
 {% block main_content %}
 <ul class="uk-subnav uk-subnav-pill">
@@ -9,5 +10,5 @@
     {% endfor %}
 </ul>
     {{ amiibo }}
-    <img src="{{ amiibo.image_statue }}" />
+    <img src="{% static amiibo.image_statue %}" />
 {% endblock %}

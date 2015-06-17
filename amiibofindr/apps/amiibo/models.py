@@ -71,13 +71,13 @@ class Amiibo(models.Model):
 
     @property
     def image_box(self):
-        return '/static/images/amiibo/{}/{}-box.jpg'.format(
+        return 'images/amiibo/{}/{}-box.jpg'.format(
             self.collection.slug, self.slug
         )
 
     @property
     def image_statue(self):
-        return '/static/images/amiibo/{}/{}.png'.format(
+        return 'images/amiibo/{}/{}.png'.format(
             self.collection.slug, self.slug
         )
 

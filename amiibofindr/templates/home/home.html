@@ -1,4 +1,5 @@
 {% extends "_layout.html" %}
+{% load staticfiles %}
 
 {% block main_content %}
 <div class="uk-grid">
@@ -6,7 +7,7 @@
     <div class="uk-width-medium-1-5">
         <a class="uk-panel uk-panel-box uk-panel-box-hover">
             <h3 class="uk-panel-title uk-text-center">{{ amiibo.name_eu }}</h3>
-            <img src="{{ amiibo.image_statue }}" />
+            <img src="{% static amiibo.image_statue %}" />
         </a>
     </div>
     {% if forloop.counter|divisibleby:5 %}</div><div class="uk-grid">{% endif %}
