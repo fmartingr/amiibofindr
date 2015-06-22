@@ -27,6 +27,11 @@ class AmiiboResource(resources.ModelResource):
         model = Amiibo
 
 
+class AmiiboShopResource(resources.ModelResource):
+    class Meta:
+        model = AmiiboShop
+
+
 class CollectionAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = ColectionResource
 
@@ -54,12 +59,13 @@ class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     box_image.allow_tags = True
 
 
-class AmiiboShopAdmin(reversion.VersionAdmin):
-    pass
+class AmiiboShopAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
+    resource_class = AmiiboShopResource
 
 
 class AmiiboPriceAdmin(reversion.VersionAdmin):
     pass
+
 
 class AmiiboPriceHistoryAdmin(admin.ModelAdmin):
     pass
