@@ -10,7 +10,7 @@ import reversion
 
 
 # amiibo
-from .models import Collection, Amiibo
+from .models import Collection, Amiibo, AmiiboPrice, AmiiboPriceHistory
 
 
 class ColectionResource(resources.ModelResource):
@@ -49,5 +49,14 @@ class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     box_image.allow_tags = True
 
 
+class AmiiboPriceAdmin(reversion.VersionAdmin):
+    pass
+
+class AmiiboPriceHistoryAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Amiibo, AmiiboAdmin)
+admin.site.register(AmiiboPrice, AmiiboPriceAdmin)
+admin.site.register(AmiiboPriceHistory, AmiiboPriceHistoryAdmin)

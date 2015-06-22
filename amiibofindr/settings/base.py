@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     # own apps
     'amiibofindr.apps.core',
     'amiibofindr.apps.amiibo',
+    'amiibofindr.apps.shop',
     'amiibofindr.apps.home',
 )
 

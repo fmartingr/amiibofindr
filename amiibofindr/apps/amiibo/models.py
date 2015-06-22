@@ -87,3 +87,50 @@ class Amiibo(models.Model):
     @property
     def name(self):
         return self.name_eu
+
+
+class AmiiboPrice(models.Model):
+    amiibo = models.ForeignKey(Amiibo)
+    shop = models.ForeignKey('shop.Shop')
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    currency = models.CharField(default='EUR', max_length=3)
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __init__(self, *args, **kwargs):
+        super(AmiiboPrice, self).__init__(*args, **kwargs)
+        self.old_price = self.price
+
+    def __unicode__(self):
+        return u'{} price for {}: {}{}'.format(
+            self.amiibo.name,
+            self.shop.name,
+            self.price, self.currency
+        )
+
+    def save_history(self, old_price, new_price):
+        history = AmiiboPriceHistory(
+            amiibo=self.amiibo,
+            shop_id=self.shop_id,
+            price=self.price,
+            currency=self.currency,
+            diff=new_price-old_price
+        )
+        return history.save()
+
+
+class AmiiboPriceHistory(models.Model):
+    amiibo = models.ForeignKey(Amiibo)
+    shop = models.ForeignKey('shop.Shop')
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    currency = models.CharField(default='EUR', max_length=3)
+    date = models.DateTimeField(auto_now_add=True)
+    diff = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __unicode__(self):
+        return u'{} price for {}: {}{} [{}{}] ({})'.format(
+            self.amiibo.name,
+            self.shop.name,
+            self.price, self.currency,
+            self.diff, self.currency,
+            self.date
+        )
