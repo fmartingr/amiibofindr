@@ -47,6 +47,7 @@
       <thead>
         <tr>
           <th>{% trans "Shop" %}</th>
+          <th class="center aligned" width="10">{% trans "Country" %}</th>
           <th class="center aligned">{% trans "Stock" %}</th>
           <th class="center aligned">{% trans "Price" %}</th>
         </tr>
@@ -55,9 +56,10 @@
         {% for relation in amiibo.shops_set.all %}
         <tr>
           <td><a href="{{ relation.url }}">{{ relation.shop.name }}</a></td>
-          <td class="center aligned {{ relation.stock|yesno:'positive,negative'}}">
+          <td class="center aligned">{% if relation.shop.flag_code %}<i class="{{ relation.shop.flag_code }} flag"></i>{% endif %}</td>
+          <td class="center aligned {{ relation.stock|yesno:'positive,negative' }}">
             <i class="icon {{ relation.stock|yesno:'checkmark,close' }}"></i>
-            {{ relation.stock|yesno }}
+            {{ relation.stock|yesno|capfirst }}
           </td>
           <td class="center aligned">{{ relation.last_price.price }}</td>
         </tr>
