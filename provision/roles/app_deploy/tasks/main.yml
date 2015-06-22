@@ -57,8 +57,7 @@
   remote_user: "{{ app_user }}"
 
 - name: Restart supervisor
-  sudo: true
-  command: supervisorctl restart {{ item }}
+  command: sudo supervisorctl restart {{ item }}
   with_items:
     - django
     - celery
