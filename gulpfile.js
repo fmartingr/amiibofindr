@@ -25,4 +25,5 @@ gulp.task('watch', function() {
   livereload.listen({ start: true });
   gulp.watch('amiibofindr/**/less/**/*.less', ['less']);
   gulp.watch('amiibofindr/**/app/**/*.js', ['scripts']);
+  gulp.watch('amiibofindr/**/*.html', []);
 });
