@@ -92,18 +92,22 @@ class Amiibo(models.Model):
 class AmiiboShop(models.Model):
     amiibo = models.ForeignKey(Amiibo, related_name='shops_set')
     shop = models.ForeignKey('shop.Shop', related_name='amiibos_set')
-    url = models.CharField(max_length=255)
+    url = models.TextField()
     item_id = models.CharField(max_length=64)
 
     class Meta:
         ordering = ('shop__name', )
+
+    @property
+    def last_price(self):
+        return self.price_set.first()
 
     def __unicode__(self):
         return u'{} in {}'.format(self.amiibo.name, self.shop.name)
 
 
 class AmiiboPrice(models.Model):
-    amiibo_shop = models.ForeignKey(AmiiboShop)
+    amiibo_shop = models.ForeignKey(AmiiboShop, related_name='price_set')
     price = models.DecimalField(max_digits=6, decimal_places=2)
     currency = models.CharField(default='EUR', max_length=3)
     date = models.DateTimeField(auto_now_add=True)
@@ -131,11 +135,15 @@ class AmiiboPrice(models.Model):
 
 
 class AmiiboPriceHistory(models.Model):
-    amiibo_shop = models.ForeignKey(AmiiboShop)
+    amiibo_shop = models.ForeignKey(AmiiboShop,
+                                    related_name='price_history_set')
     price = models.DecimalField(max_digits=6, decimal_places=2)
     currency = models.CharField(default='EUR', max_length=3)
     date = models.DateTimeField(auto_now_add=True)
     diff = models.DecimalField(max_digits=6, decimal_places=2)
+
+    class Meta:
+        ordering = ('-date', )
 
     def __unicode__(self):
         return u'{} price for {}: {}{} [{}{}] ({})'.format(

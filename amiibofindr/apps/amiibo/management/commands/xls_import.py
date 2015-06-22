@@ -34,12 +34,6 @@ class AmiiboSheet(object):
     SERIES_STRING_EU = 'Collection'
     SERIES_STRING_JP = 'シリーズ'
 
-    # Relations from links from shops with out slugs
-    SHOP_HEADS = {
-        # Amazon Spain
-        'ES ASIN': 'amazon-es',
-    }
-
     LINK_REGEX = r'\=HYPERLINK\(\"(.*)\",\"(.*)\"\)'
 
     SHEETS = {
@@ -123,17 +117,13 @@ class AmiiboSheet(object):
                                 matches = re.match(
                                     self.LINK_REGEX, cell.internal_value)
                                 if matches:
-                                    shop_id = None
                                     cell_name = 'id'
                                     if cell_head == 'amiibo':
                                         cell_name = 'name'
-                                    elif cell_head in self.SHOP_HEADS:
-                                        shop_id = self.SHOP_HEADS[cell_head]
 
                                     amiibo[cell_head] = {
                                         'link': matches.group(1),
                                         cell_name: matches.group(2),
-                                        'shop': shop_id
                                     }
                             else:
                                 amiibo[cell_head] = unicode(

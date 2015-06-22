@@ -23,6 +23,9 @@
         <!-- <i class="right floated like icon"></i> -->
         <!-- <i class="right floated star icon"></i> -->
         <div class="header">{{ amiibo.name }}</div>
+        <div class="meta">
+          <a href="{{ amiibo.collection.get_absolute_url }}">{{ amiibo.collection.name }}</a>
+        </div>
         <!-- <div class="description">
           <p>asd</p>
         </div> -->
