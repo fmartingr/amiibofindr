@@ -29,7 +29,8 @@ class AmiiboView(View):
     template = 'amiibo/amiibo.html'
 
     def get(self, request, collection=None, amiibo=None):
-        amiibo_obj = Amiibo.objects.get(slug=amiibo)
+        amiibo_obj = Amiibo.objects.get(slug=amiibo,
+                                        collection__slug=collection)
 
         return render(request, self.template, {
             'selected_collection': amiibo_obj.collection,
