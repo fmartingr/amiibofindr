@@ -90,18 +90,20 @@ class Amiibo(models.Model):
 
 
 class AmiiboShop(models.Model):
-    amiibo = models.ForeignKey(Amiibo)
-    shop = models.ForeignKey('shop.Shop')
+    amiibo = models.ForeignKey(Amiibo, related_name='shops_set')
+    shop = models.ForeignKey('shop.Shop', related_name='amiibos_set')
     url = models.CharField(max_length=255)
     item_id = models.CharField(max_length=64)
+
+    class Meta:
+        ordering = ('shop__name', )
 
     def __unicode__(self):
         return u'{} in {}'.format(self.amiibo.name, self.shop.name)
 
 
 class AmiiboPrice(models.Model):
-    amiibo = models.ForeignKey(Amiibo)
-    shop = models.ForeignKey('shop.Shop')
+    amiibo_shop = models.ForeignKey(AmiiboShop)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     currency = models.CharField(default='EUR', max_length=3)
     date = models.DateTimeField(auto_now_add=True)
@@ -129,8 +131,7 @@ class AmiiboPrice(models.Model):
 
 
 class AmiiboPriceHistory(models.Model):
-    amiibo = models.ForeignKey(Amiibo)
-    shop = models.ForeignKey('shop.Shop')
+    amiibo_shop = models.ForeignKey(AmiiboShop)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     currency = models.CharField(default='EUR', max_length=3)
     date = models.DateTimeField(auto_now_add=True)
