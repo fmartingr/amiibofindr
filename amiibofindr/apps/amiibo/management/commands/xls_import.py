@@ -4,8 +4,9 @@
 from __future__ import unicode_literals
 
 # python
-import uuid
+from pprint import pprint
 import re
+import uuid
 
 # third party
 from openpyxl import load_workbook
@@ -17,7 +18,8 @@ from django.utils import translation
 from django.utils.text import slugify
 
 # amiibofindr
-from amiibofindr.apps.amiibo.models import Amiibo, Collection
+from amiibofindr.apps.amiibo.models import Amiibo, Collection, AmiiboShop
+from amiibofindr.apps.shop.models import Shop
 
 
 class AmiiboSheet(object):
@@ -32,20 +34,39 @@ class AmiiboSheet(object):
     SERIES_STRING_EU = 'Collection'
     SERIES_STRING_JP = 'シリーズ'
 
+    # Relations from links from shops with out slugs
+    SHOP_HEADS = {
+        # Amazon Spain
+        'ES ASIN': 'amazon-es',
+    }
+
     LINK_REGEX = r'\=HYPERLINK\(\"(.*)\",\"(.*)\"\)'
 
     SHEETS = {
         SHEET_NA_US: {
             'SERIES_STRING': SERIES_STRING_US,
+            'SHOP_HEADS': {
+                u'Amazon ASIN': u'amazon-us',
+            },
         },
         # SHEET_NA_CA: {
         #     'SERIES_STRING': SERIES_STRING,
         # },
         SHEET_EU: {
             'SERIES_STRING': SERIES_STRING_EU,
+            'SHOP_HEADS': {
+                u'UK ASIN': u'amazon-uk',
+                u'FR ASIN': u'amazon-fr',
+                u'ES ASIN': u'amazon-es',
+                u'DE ASIN': u'amazon-de',
+                u'IT ASIN': u'amazon-it',
+            },
         },
         SHEET_JP: {
             'SERIES_STRING': SERIES_STRING_JP,
+            'SHOP_HEADS': {
+                u'Amazon ASIN': u'amazon-jp',
+            },
         },
     }
 
@@ -102,13 +123,17 @@ class AmiiboSheet(object):
                                 matches = re.match(
                                     self.LINK_REGEX, cell.internal_value)
                                 if matches:
+                                    shop_id = None
+                                    cell_name = 'id'
                                     if cell_head == 'amiibo':
                                         cell_name = 'name'
-                                    else:
-                                        cell_name = 'id'
+                                    elif cell_head in self.SHOP_HEADS:
+                                        shop_id = self.SHOP_HEADS[cell_head]
+
                                     amiibo[cell_head] = {
                                         'link': matches.group(1),
                                         cell_name: matches.group(2),
+                                        'shop': shop_id
                                     }
                             else:
                                 amiibo[cell_head] = unicode(
@@ -127,9 +152,11 @@ class Command(BaseCommand):
 
     def parse_data(self, data):
         for sheet in self.xls_parser.SHEETS:
+            sheet_obj = self.xls_parser.SHEETS[sheet]
             print('==> SHEET: {}'.format(sheet))
             for amiibo in data[sheet]:
-                print(amiibo)
+                pprint(amiibo)
+
                 if 'Model No.' in amiibo:
                     try:
                         amiibo_obj = Amiibo.objects.get(
@@ -146,31 +173,32 @@ class Command(BaseCommand):
 
                         amiibo_obj.collection = collection_obj
 
-                    if isinstance(amiibo['amiibo'], unicode):
-                        amiibo_name = amiibo['amiibo']
-                        amiibo_link = ''
-                    else:
-                        amiibo_name = amiibo['amiibo']['name']
-                        amiibo_link = amiibo['amiibo']['link']
+                    if 'amiibo' in amiibo:
+                        if isinstance(amiibo['amiibo'], unicode):
+                            amiibo_name = amiibo['amiibo']
+                            amiibo_link = ''
+                        else:
+                            amiibo_name = amiibo['amiibo']['name']
+                            amiibo_link = amiibo['amiibo']['link']
 
-                    if sheet == self.xls_parser.SHEET_NA_US:
-                        amiibo_obj.name_us = amiibo_name
-                        amiibo_obj.link_us = amiibo_link
-                        amiibo_obj.collection.name_us = amiibo['collection']
-                        amiibo_obj.collection.save()
+                        if sheet == self.xls_parser.SHEET_NA_US:
+                            amiibo_obj.name_us = amiibo_name
+                            amiibo_obj.link_us = amiibo_link
+                            amiibo_obj.collection.name_us = amiibo['collection']
+                            amiibo_obj.collection.save()
 
-                    if sheet == self.xls_parser.SHEET_EU:
-                        amiibo_obj.name_eu = amiibo_name
-                        amiibo_obj.link_eu = amiibo_link
+                        if sheet == self.xls_parser.SHEET_EU:
+                            amiibo_obj.name_eu = amiibo_name
+                            amiibo_obj.link_eu = amiibo_link
 
-                    if sheet == self.xls_parser.SHEET_JP:
-                        amiibo_obj.name_jp = amiibo_name
-                        amiibo_obj.link_jp = amiibo_link
-                        amiibo_obj.collection.name_jp = amiibo['collection']
-                        amiibo_obj.collection.save()
+                        if sheet == self.xls_parser.SHEET_JP:
+                            amiibo_obj.name_jp = amiibo_name
+                            amiibo_obj.link_jp = amiibo_link
+                            amiibo_obj.collection.name_jp = amiibo['collection']
+                            amiibo_obj.collection.save()
 
-                    if amiibo_obj.name_eu:
-                        amiibo_obj.slug = slugify(amiibo_obj.name_eu)
+                        if amiibo_obj.name_eu:
+                            amiibo_obj.slug = slugify(amiibo_obj.name_eu)
 
                     try:
                         amiibo_obj.collection_number = int(amiibo['#'])
@@ -178,3 +206,16 @@ class Command(BaseCommand):
                         amiibo_obj.collection_number = None
 
                     amiibo_obj.save()
+
+                    for shop_head, shop_slug in sheet_obj['SHOP_HEADS'].iteritems():
+                        if shop_head in amiibo:
+                            try:
+                                shop = Shop.objects.get(slug=shop_slug)
+                                amiibo_shop, created = AmiiboShop.objects.get_or_create(
+                                    amiibo_id=amiibo_obj.pk,
+                                    shop_id=shop.pk
+                                )
+                                amiibo_shop.url = amiibo[shop_head]['link']
+                                amiibo_shop.save()
+                            except Shop.DoesNotExist:
+                                pass

@@ -89,6 +89,16 @@ class Amiibo(models.Model):
         return self.name_eu
 
 
+class AmiiboShop(models.Model):
+    amiibo = models.ForeignKey(Amiibo)
+    shop = models.ForeignKey('shop.Shop')
+    url = models.CharField(max_length=255)
+    item_id = models.CharField(max_length=64)
+
+    def __unicode__(self):
+        return u'{} in {}'.format(self.amiibo.name, self.shop.name)
+
+
 class AmiiboPrice(models.Model):
     amiibo = models.ForeignKey(Amiibo)
     shop = models.ForeignKey('shop.Shop')

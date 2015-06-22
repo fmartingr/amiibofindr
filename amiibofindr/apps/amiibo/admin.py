@@ -10,7 +10,11 @@ import reversion
 
 
 # amiibo
-from .models import Collection, Amiibo, AmiiboPrice, AmiiboPriceHistory
+from .models import (
+    Collection, Amiibo,
+    AmiiboShop,
+    AmiiboPrice, AmiiboPriceHistory
+)
 
 
 class ColectionResource(resources.ModelResource):
@@ -38,7 +42,8 @@ class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
 
     list_display_links = ('name_eu', )
     list_display = ('statue_image', 'box_image', 'name_eu', 'collection',)
-    search_fields = ('collection__name_eu', 'name_eu', 'name_us', )
+    search_fields = ('collection__name_eu', 'name_eu', 'name_us',
+                     'model_number')
 
     def statue_image(self, obj):
         return '<img src="{}" width="80" />'.format(obj.image_statue)
@@ -47,6 +52,10 @@ class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     def box_image(self, obj):
         return '<img src="{}" width="80" />'.format(obj.image_box)
     box_image.allow_tags = True
+
+
+class AmiiboShopAdmin(reversion.VersionAdmin):
+    pass
 
 
 class AmiiboPriceAdmin(reversion.VersionAdmin):
@@ -58,5 +67,6 @@ class AmiiboPriceHistoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(Amiibo, AmiiboAdmin)
+admin.site.register(AmiiboShop, AmiiboShopAdmin)
 admin.site.register(AmiiboPrice, AmiiboPriceAdmin)
 admin.site.register(AmiiboPriceHistory, AmiiboPriceHistoryAdmin)
