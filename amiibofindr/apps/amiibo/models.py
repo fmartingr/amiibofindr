@@ -109,6 +109,7 @@ class AmiiboShop(models.Model):
 class AmiiboPrice(models.Model):
     amiibo_shop = models.ForeignKey(AmiiboShop, related_name='price_set')
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    stock = models.BooleanField(default=False)
     currency = models.CharField(default='EUR', max_length=3)
     date = models.DateTimeField(auto_now_add=True)
 
@@ -137,6 +138,7 @@ class AmiiboPrice(models.Model):
 class AmiiboPriceHistory(models.Model):
     amiibo_shop = models.ForeignKey(AmiiboShop,
                                     related_name='price_history_set')
+    stock = models.BooleanField(default=False)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     currency = models.CharField(default='EUR', max_length=3)
     date = models.DateTimeField(auto_now_add=True)
