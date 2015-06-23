@@ -43,6 +43,7 @@
     </div>
   </div>
   <div class="eleven wide column">
+    {% if amiibo.shops_set.exists %}
     <table class="ui celled table">
       <thead>
         <tr>
@@ -66,6 +67,7 @@
         {% endfor %}
       </tbody>
     </table>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
