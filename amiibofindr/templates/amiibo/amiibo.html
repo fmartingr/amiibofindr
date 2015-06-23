@@ -56,13 +56,21 @@
       <tbody>
         {% for relation in amiibo.shops_set.all %}
         <tr>
-          <td><a href="{{ relation.url }}">{{ relation.shop.name }}</a></td>
-          <td class="center aligned">{% if relation.shop.flag_code %}<i class="{{ relation.shop.flag_code }} flag"></i>{% endif %}</td>
-          <td class="center aligned {{ relation.stock|yesno:'positive,negative' }}">
-            <i class="icon {{ relation.stock|yesno:'checkmark,close' }}"></i>
-            {{ relation.stock|yesno|capfirst }}
+          {% with price=relation.last_price.price %}
+          <td><a href="{{ relation.get_url }}">{{ relation.shop.name }}</a> <i class="info icon" title="{{ relation.last_price.date }}"></i></td>
+          <td class="center aligned">{% if relation.shop.flag_code %}<i class="{% if relation.shop.flag_code == 'uk' %}gb{% else %}{{ relation.shop.flag_code }}{% endif %} flag"></i>{% endif %}</td>
+          <td class="center aligned {{ price|yesno:'positive,negative' }}">
+            <i class="icon {{ price|yesno:'checkmark,close' }}"></i>
+            {{ price|yesno|capfirst }}
           </td>
-          <td class="center aligned">{{ relation.last_price.price }}</td>
+          <td class="center aligned">
+            {% if price %}
+              {{ price }} {{ relation.last_price.currency }}
+            {% else %}
+              --
+            {% endif %}
+          </td>
+          {% endwith %}
         </tr>
         {% endfor %}
       </tbody>

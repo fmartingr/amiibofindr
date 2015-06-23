@@ -4,7 +4,11 @@
 import os
 
 # django
+from django.conf import settings
 from django.db import models
+
+# 3rd party
+from amazonify import amazonify
 
 # project
 from amiibofindr.apps.shop.crawlers import Crawler
@@ -101,6 +105,21 @@ class AmiiboShop(models.Model):
     class Meta:
         ordering = ('shop__name', )
 
+    def get_url(self):
+        return amazonify(self.url, settings.AMAZON_ASSOC_TAG)
+
+    def update_price(self, price, currency):
+        price_obj, is_new = AmiiboPrice.objects.get_or_create(
+            amiibo_shop_id=self.pk)
+
+        price_obj.price = price
+        price_obj.stock = price is not None
+
+        if is_new and currency:
+            price_obj.currency = currency
+
+        price_obj.save()
+
     @property
     def last_price(self):
         return self.price_set.first()
@@ -111,10 +130,10 @@ class AmiiboShop(models.Model):
 
 class AmiiboPrice(models.Model):
     amiibo_shop = models.ForeignKey(AmiiboShop, related_name='price_set')
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
     stock = models.BooleanField(default=False)
     currency = models.CharField(default='EUR', max_length=3)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now=True)
 
     def __init__(self, *args, **kwargs):
         super(AmiiboPrice, self).__init__(*args, **kwargs)
@@ -133,12 +152,16 @@ class AmiiboPrice(models.Model):
         return price
 
     def save_history(self, old_price, new_price):
+        if new_price is None or old_price is None:
+            diff = 0
+        else:
+            diff = new_price-old_price
+
         history = AmiiboPriceHistory(
-            amiibo=self.amiibo,
-            shop_id=self.shop_id,
+            amiibo_shop_id=self.amiibo_shop_id,
             price=self.price,
             currency=self.currency,
-            diff=new_price-old_price
+            diff=diff
         )
         return history.save()
 
@@ -147,7 +170,7 @@ class AmiiboPriceHistory(models.Model):
     amiibo_shop = models.ForeignKey(AmiiboShop,
                                     related_name='price_history_set')
     stock = models.BooleanField(default=False)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
     currency = models.CharField(default='EUR', max_length=3)
     date = models.DateTimeField(auto_now_add=True)
     diff = models.DecimalField(max_digits=6, decimal_places=2)

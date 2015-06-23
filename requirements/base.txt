@@ -29,4 +29,5 @@ openpyxl==2.2.3
 django-import-export==0.2.7
 
 # Amazon
+amazonify==0.1 # Links with aff tag
 python-amazon-simple-product-api==1.5.0
