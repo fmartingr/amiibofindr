@@ -187,7 +187,7 @@ class Command(BaseCommand):
                             amiibo_obj.collection.name_jp = amiibo['collection']
                             amiibo_obj.collection.save()
 
-                        if amiibo_obj.name_eu:
+                        if amiibo_obj.name_eu and not amiibo_obj.slug:
                             amiibo_obj.slug = slugify(amiibo_obj.name_eu)
 
                     try:
