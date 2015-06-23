@@ -205,7 +205,11 @@ class Command(BaseCommand):
                                     amiibo_id=amiibo_obj.pk,
                                     shop_id=shop.pk
                                 )
-                                amiibo_shop.url = amiibo[shop_head]['link']
+                                if isinstance(amiibo[shop_head], unicode):
+                                    amiibo_shop.item_id = amiibo[shop_head]
+                                else:
+                                    amiibo_shop.url = amiibo[shop_head]['link']
+                                    amiibo_shop.item_id = amiibo[shop_head]['id'].strip()
                                 amiibo_shop.save()
                             except Shop.DoesNotExist:
                                 pass

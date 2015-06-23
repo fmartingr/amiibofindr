@@ -3,7 +3,7 @@
 # py3
 from __future__ import unicode_literals
 
-from .amazon import (
+from ._amazon import (
     AmazonUSCrawler,
     AmazonESCrawler,
     AmazonUKCrawler,
