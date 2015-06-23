@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     web.vm.network "forwarded_port", guest: 8000, host: 8080
 
     web.vm.provider "virtualbox" do |vb|
-      vb.customize ["modifyvm", :id, "--memory", "512"]
+      vb.customize ["modifyvm", :id, "--memory", "1024"]
     end
 
     web.vm.provision "ansible" do |ansible|

@@ -6,6 +6,9 @@ import os
 # django
 from django.db import models
 
+# project
+from amiibofindr.apps.shop.crawlers import Crawler
+
 
 #
 # Upload_to helpers
@@ -123,6 +126,11 @@ class AmiiboPrice(models.Model):
             self.shop.name,
             self.price, self.currency
         )
+
+    def fetch(self):
+        crawler = Crawler(self.amiibo_shop.shop.slug)
+        price = crawler.fetch_from_id(self.amiibo_shop.item_id)
+        return price
 
     def save_history(self, old_price, new_price):
         history = AmiiboPriceHistory(
