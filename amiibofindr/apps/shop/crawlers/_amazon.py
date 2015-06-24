@@ -34,7 +34,7 @@ class AmazonBaseCrawler(object):
                 price_and_currency = product.price_and_currency
                 result.append({
                     'shop_product_id': product.asin,
-                    'price': price_and_currency[0],
+                    'price': price_and_currency[0].replace(',', ''),
                     'currency': price_and_currency[1],
                 })
             sleep(1)
@@ -46,7 +46,7 @@ class AmazonBaseCrawler(object):
         price_and_currency = product.price_and_currency
         amiibo_price = {
             'shop_product_id': product_id,
-            'price': price_and_currency[0],
+            'price': price_and_currency[0].replace(',', ''),
             'currency': price_and_currency[1],
         }
 
