@@ -32,10 +32,19 @@ class AmazonBaseCrawler(object):
             products = self.amazon.lookup(ItemId=','.join(chunk_product_ids))
             for product in products:
                 price_and_currency = product.price_and_currency
+
+                price = price_and_currency[0]
+                currency = price_and_currency[1]
+
+                if currency == 'JPY':
+                    price = float(price)*100
+
+                print(self.region, product.asin, price, currency)
+
                 result.append({
                     'shop_product_id': product.asin,
-                    'price': price_and_currency[0].replace(',', ''),
-                    'currency': price_and_currency[1],
+                    'price': price,
+                    'currency': currency,
                 })
             sleep(1)
 
