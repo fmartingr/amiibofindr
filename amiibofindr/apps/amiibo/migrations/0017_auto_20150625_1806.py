@@ -13,7 +13,7 @@ import amiibofindr.apps.amiibo.models
 def update_images(apps, schema_editor):
     # We can't import the Person model directly as it may be a newer
     # version than this migration expects. We use the historical version.
-    Person = apps.get_model("amiibo", "Amiibo")
+    Amiibo = apps.get_model("amiibo", "Amiibo")
     for amiibo in Amiibo.objects.all():
         amiibo.statue = File(open(os.path.join(settings.MEDIA_ROOT, 'amiibos', amiibo.collection.slug, '{}.png'.format(amiibo.slug))))
         amiibo.save()
