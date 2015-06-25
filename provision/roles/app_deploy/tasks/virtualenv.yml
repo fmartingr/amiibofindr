@@ -2,6 +2,7 @@
 - name: Ensure virtualenv requirements installed
   pip: requirements={{ deploy_path.stdout }}/git/requirements/production.txt
        virtualenv={{ deploy_path.stdout }}/.virtualenv
+       virtualenv_site_packages=yes
 
 - name: Symlink virtualenv to git src folder
   file: src={{ deploy_path.stdout }}/.virtualenv
