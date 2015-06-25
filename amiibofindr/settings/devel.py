@@ -21,8 +21,6 @@ DATABASES = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/vagrant/media'
 
-OPENEXCHANGERATES_KEY = 'aa703ed87a7749afab77b2966559c9df'
-
 try:
     from local_settings import *
 except ImportError:
