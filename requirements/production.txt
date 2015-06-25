@@ -1,3 +1,4 @@
 -r base.txt
 
 gunicorn==19.3.0
+opbeat==2.1.1
