@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     # third party
     'reversion',
     'import_export',
+    'easy_thumbnails',
 
     # own apps
     'amiibofindr.apps.core',

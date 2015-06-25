@@ -18,7 +18,7 @@ from amiibofindr.apps.shop.crawlers import Crawler
 # Upload_to helpers
 def image_statue_upload(self, filename):
     name, extension = os.path.splitext(filename)
-    return 'amiibos/{}/{}-statue{}'.format(
+    return 'amiibos/{}/{}{}'.format(
         self.collection.slug, self.slug, extension)
 
 def image_box_upload(self, filename):
@@ -58,6 +58,9 @@ class Amiibo(models.Model):
     model_number = models.CharField(max_length=20, blank=True, null=True)
 
     slug = models.SlugField(max_length=64)
+
+    statue = models.ImageField(upload_to=image_statue_upload)
+    box = models.ImageField(upload_to=image_box_upload, blank=True, null=True)
 
     name_eu = models.CharField(max_length=64, blank=True, null=True)
     name_jp = models.CharField(max_length=64, blank=True, null=True)
