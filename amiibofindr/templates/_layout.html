@@ -4,8 +4,23 @@
 
 <head>
 	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="{% static "css/style.css" %}" charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="{% static "css/style.css" %}" charset="utf-8">
+	<!-- SEO -->
+	<meta name=”description” content=”{% block meta_description %}Amiibofindr{% endblock %}”>
+	<!-- Twitter -->
+	<meta content="{% block meta_twitter_card %}summary{% endblock %}" name="twitter:card" />
+	<meta content="{% block meta_twitter_title %}{% endblock %}" name="twitter:title" />
+	<meta content="{% block meta_twitter_description %}{% endblock %}" name="twitter:description" />
+	<meta content="{% block meta_twitter_image %}{% endblock %}" name="twitter:image:src" />
+	<meta content="{% block meta_twitter_url %}{% endblock %}" property="twitter:url" />
+	<!-- Facebook -->
+	<meta content="{% block meta_og_title %}{% endblock %}" property="og:title" />
+	<meta content="{% block meta_og_type %}object{% endblock %}" property="og:type" />
+	<meta content="{% block meta_og_image %}{% endblock %}" property="og:image" />
+	<meta content="{% block meta_og_title %}{% endblock %}" property="og:title" />
+	<meta content="{% block meta_og_url %}{% endblock %}" property="og:url" />
+	<meta content="{% block meta_og_description %}{% endblock %}" property="og:description" />
 	<title>{% block page_title %}AmiiboFindr{% endblock %}</title>
 </head>
 

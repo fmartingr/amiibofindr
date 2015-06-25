@@ -3,6 +3,12 @@
 
 {% block page_title %}{% blocktrans with collection=selected_collection.name %}{{ collection }} amiibos in {% endblocktrans %}{{ block.super }}{% endblock %}
 
+{% block meta_twitter_title %}{% blocktrans with collection=selected_collection.name %}{{ collection }} amiibos in {% endblocktrans %}{{ block.super }}{% endblock %}
+{% block meta_og_title %}{% blocktrans with collection=selected_collection.name %}{{ collection }} amiibos in {% endblocktrans %}{{ block.super }}{% endblock %}
+
+{% block meta_twitter_url %}{{ amiibo.get_absolute_url }}{% endblock %}
+{% block meta_og_url %}{{ amiibo.get_absolute_url }}{% endblock %}
+
 {% block breadcrumb %}
 {{ block.super }}
 <i class="right chevron icon divider"></i>
