@@ -1,10 +1,17 @@
 # coding: utf-8
 
 # amiibo
-from .models import Collection
+from .models import Collection, AmiiboPrice
 
 
 def collections(request):
     return {
-        'collections': Collection.objects.all().order_by('name_eu')
+        'COLLECTIONS': Collection.objects.all().order_by('name_eu')
+    }
+
+
+def currencies(request):
+    return {
+        'CURRENCIES': AmiiboPrice.objects.all().distinct('currency')\
+            .values_list('currency', flat=True)
     }

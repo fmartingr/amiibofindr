@@ -9,7 +9,7 @@
 	<title>{% block page_title %}AmiiboFindr{% endblock %}</title>
 </head>
 
-<body>
+<body data-views="{% block js_views %}{% endblock %}">
 	<div class="ui page grid">
 		<br />
 		<div class="sixteen wide column">
@@ -21,25 +21,30 @@
 					{% trans "Collections" %}
 					<i class="dropdown icon"></i>
 					<div class="menu">
-						<a class="item" href="#">{% trans "All" %}</a> {% for col in collections %}
-						<a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a> {% endfor %}
+						<a class="item" href="#">{% trans "All" %}</a>
+						{% for col in COLLECTIONS %}
+						<a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a>
+						{% endfor %}
 					</div>
 				</div>
 				<div class="right menu"></div>
 			</div>
-        <div class="ui breadcrumb">
-          {% block breadcrumb %}
-  				<a class="section" href="{% url 'amiibo:collection' 'all' %}">Home</a>
-          {% endblock %}
-  			</div>
+      <div class="ui breadcrumb">
+        {% block breadcrumb %}
+				<a class="section" href="{% url 'amiibo:collection' 'all' %}">Home</a>
+        {% endblock %}
+			</div>
 		</div>
 	</div>
 	{% block main_content %}{% endblock %}
-	<div class="ui page grid right aligned">
-		<div class="sixteen wide column">
+	<div class="ui page grid">
 			<hr >
+		<div class="eight wide column">
+			<small>{% trans "CHANGE CURRENCY" %} {% for currency in CURRENCIES %}<a href="#" data-currency-change="{{ currency }}">{{ currency }}</a> {% endfor %}</small>
+		</div>
+		<div class="eight wide column right aligned">
 			<div class="">
-				AmiiboFindr &copy; 2015 | <a href="https://twitter.com/amiibofindr" target="_blank"><i class="ui icon twitter"></i>Twitter</a>
+			AmiiboFindr &copy; 2015 | <a href="https://twitter.com/amiibofindr" target="_blank"><i class="ui icon twitter"></i>Twitter</a>
 			</div>
 		</div>
 	</div>
@@ -53,6 +58,11 @@
   ga('send', 'pageview');
 	</script>
 	{% endif %}
+	<script type="text/javascript">
+		var DEBUG = {{ DEBUG|yesno:"true,false" }};
+		var MEDIA_URL = '{{ MEDIA_URL }}';
+		var CURRENCIES = ['{{ CURRENCIES|join:"', '" }}'];
+	</script>
 	<script type="text/javascript" src={% static "dist/app.js" %}></script>
 </body>
 

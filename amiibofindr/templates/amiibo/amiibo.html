@@ -3,6 +3,7 @@
 
 {% block page_title %}{% blocktrans with collection=selected_collection.name amiibo=amiibo.name %}{{ amiibo }} amiibo from {{ collection }} in {% endblocktrans %}{{ block.super }}{% endblock %}
 
+{% block js_views %}money{% endblock %}
 
 {% block breadcrumb %}
 {{ block.super }}
@@ -55,14 +56,14 @@
       <tbody>
         {% for relation in amiibo.shops_set.all %}
         <tr>
-          {% with price=relation.last_price.price stock=relation.last_price.stock %}
+          {% with price=relation.last_price.price stock=relation.last_price.stock currency=relation.last_price.currency %}
           <td><a href="{{ relation.get_url }}" target="_blank"><i class="{% if relation.shop.flag_code == 'uk' %}gb{% else %}{{ relation.shop.flag_code }}{% endif %} flag"></i> {{ relation.shop.name }}</a></td>
           <td class="center aligned {{ stock|yesno:'positive,negative' }}" {% if not price %}colspan="2"{% endif %}>
             <i class="icon {{ stock|yesno:'checkmark,close' }}"></i>
             {{ stock|yesno|capfirst }}
           </td>
           {% if price %}
-          <td class="center aligned">
+          <td class="center aligned" data-price="{{ price }}" data-currency="{{ currency }}" data-money>
             {{ price }} {{ relation.last_price.currency }}
           </td>
           {% endif %}

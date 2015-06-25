@@ -7,8 +7,11 @@ var gulp = require('gulp'),
 gulp.task('scripts', function() {
   return gulp.src([
       'bower_components/jquery/dist/jquery.js',
+      'bower_components/money/money.js',
       'amiibofindr/static/semantic/semantic.js',
-      'amiibofindr/static/app/global.js'
+      'amiibofindr/static/app/simpleViews.js',
+      'amiibofindr/static/app/global.js',
+      'amiibofindr/static/app/money.js'
     ])
     .pipe(concat('app.js'))
     .pipe(gulp.dest('amiibofindr/static/dist'));
