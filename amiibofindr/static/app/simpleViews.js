@@ -16,6 +16,7 @@
   };
 
   SimpleViews.prototype.loadView = function(identifier) {
+    if (!identifier) return;
     if (typeof(this.views[identifier]) === 'function') {
       console.log('[SimpleViews] loaded view: ' + identifier);
       this.views[identifier] = new this.views[identifier](window);
