@@ -17,7 +17,7 @@ class CollectionView(View):
             amiibo_list = collection.amiibos
         else:
             collection = None
-            amiibo_list = Amiibo.objects.all()
+            amiibo_list = Amiibo.objects.all().order_by('name_eu')
 
         return render(request, self.template, {
             'selected_collection': collection,
