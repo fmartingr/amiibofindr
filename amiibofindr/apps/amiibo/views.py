@@ -1,7 +1,7 @@
 # coding: utf-8
 
 # django
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import View
 
 # amiibo
@@ -13,7 +13,7 @@ class CollectionView(View):
 
     def get(self, request, collection='all'):
         if collection != 'all':
-            collection = Collection.objects.get(slug=collection)
+            collection = get_object_or_404(Collection, slug=collection)
             amiibo_list = collection.amiibos
         else:
             collection = None
@@ -29,8 +29,9 @@ class AmiiboView(View):
     template = 'amiibo/amiibo.html'
 
     def get(self, request, collection=None, amiibo=None):
-        amiibo_obj = Amiibo.objects.get(slug=amiibo,
-                                        collection__slug=collection)
+        amiibo_obj = get_object_or_404(Amiibo,
+                                       slug=amiibo,
+                                       collection__slug=collection)
 
         return render(request, self.template, {
             'selected_collection': amiibo_obj.collection,
