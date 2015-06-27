@@ -1,0 +1,18 @@
+{% extends "_layout.html" %}
+{% load i18n %}
+
+{% block page_title %}AmiiboFindr{% endblock %}
+
+{% block main_content %}
+{% url 'home' as url_home %}
+<div class="ui page grid">
+	<div class="sixteen wide column">
+		<h1>{% trans "Not found!" %}</h1>
+		<p class="ui segment">
+			{% blocktrans with url_home=url_home %}
+				Ooooopsie. We didn't find what you're looking for. <a href="{{ url_home }}">Go back to the home page</a>.
+			{% endblocktrans %}
+		</p>
+	</div>
+</div>
+{% endblock %}
