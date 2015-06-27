@@ -4,12 +4,12 @@
   django_manage: >
       command=migrate
       app_path={{ deploy_path.stdout }}/git
-      virtualenv={{ deploy_path.stdout }}/.virtualenv
+      virtualenv=/home/{{ app_user }}/virtualenv
       settings=amiibofindr.settings.local
 
 - name: Performs manage.py collectstatic
   django_manage: >
       command=collectstatic
       app_path={{ deploy_path.stdout }}/git
-      virtualenv={{ deploy_path.stdout }}/.virtualenv
+      virtualenv=/home/{{ app_user }}/virtualenv
       settings=amiibofindr.settings.local
