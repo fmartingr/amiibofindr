@@ -141,12 +141,14 @@ class AmiiboPrice(models.Model):
     def __init__(self, *args, **kwargs):
         super(AmiiboPrice, self).__init__(*args, **kwargs)
         self.old_price = self.price
+        self.old_stock = self.stock
 
     def __unicode__(self):
         return u'{} price for {}: {}{}'.format(
-            self.amiibo.name,
-            self.shop.name,
-            self.price, self.currency
+            self.amiibo_shop.amiibo.name,
+            self.amiibo_shop.shop.name,
+            self.price,
+            self.currency
         )
 
     def fetch(self):

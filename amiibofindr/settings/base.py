@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'amiibofindr.apps.amiibo',
     'amiibofindr.apps.shop',
     'amiibofindr.apps.home',
+    'amiibofindr.apps.notifications',
 )
 
 MIDDLEWARE_CLASSES = (
