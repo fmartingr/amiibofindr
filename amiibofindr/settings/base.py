@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'reversion',
     'import_export',
     'easy_thumbnails',
+    'django_extensions',
 
     # own apps
     'amiibofindr.apps.core',
