@@ -8,8 +8,8 @@
   };
 
   MoneyComponent.prototype.initialize = function() {
-    // Load user currency
-    this.refreshRates();
+    this.loadRatesFromBrowser();
+    if (!this.ratesSet) this.refreshRates();
     this.handlers();
     var userCurrency = window.localStorage.getItem('currency');
     if (userCurrency && this.currencies.indexOf(userCurrency) !== -1) {
@@ -21,6 +21,19 @@
   /*
    * Rates
    */
+  MoneyComponent.prototype.loadRatesFromBrowser = function() {
+    // Try to load and set the stored rates if the object is not older than 7 days
+    try {
+      var rates = JSON.parse(window.localStorage.getItem('rates'));
+      var storedDate = new Date(rates.time).getTime();
+      var weekDate = new Date().getTime() - (1000*60*60*24*7);
+      if (storedDate >= weekDate) this.setRates(rates);
+      if (this.DEBUG) console.log('[money] Using localStorage rates');
+    } catch(err) {
+      console.error(err)
+    }
+  };
+
   MoneyComponent.prototype.setRates = function(data) {
     if (!this.ratesSet) {
       if (typeof fx !== "undefined" && fx.rates) {
@@ -33,6 +46,7 @@
 
   MoneyComponent.prototype.refreshRates = function() {
     var self = this;
+    if (this.DEBUG) console.log('[money] Refreshing rates from server');
     $.getJSON(
       MEDIA_URL + '/rates.json',
       function(data) {
