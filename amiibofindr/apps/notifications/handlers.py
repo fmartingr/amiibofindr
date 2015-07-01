@@ -33,15 +33,11 @@ def launch_notifications(sender, instance, amiibo, old_price, new_price, **kwarg
                 notify = False
 
             # Check if we already posted a notification in the given interval
-            print(notification.__dict__)
-            print(timezone.now()-timedelta(seconds=notification.interval))
             if (
                 notification.last_notification
                 and notification.last_notification > timezone.now() - timedelta(seconds=notification.interval)
             ):
                 notify = False
-
-            print(notify)
 
             if notify:
                 message = "{} {} {}{} - {}".format(
