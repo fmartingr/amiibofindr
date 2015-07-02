@@ -46,16 +46,16 @@ class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = AmiiboResource
 
     list_display_links = ('name_eu', )
-    list_display = ('statue_image', 'box_image', 'name_eu', 'collection',)
+    list_display = ('statue_image', 'name_eu', 'collection',)
     search_fields = ('collection__name_eu', 'name_eu', 'name_us',
                      'model_number')
 
     def statue_image(self, obj):
-        return '<img src="{}" width="80" />'.format(obj.image_statue)
+        return '<img src="{}" width="80" />'.format(obj.statue.url)
     statue_image.allow_tags = True
 
     def box_image(self, obj):
-        return '<img src="{}" width="80" />'.format(obj.image_box)
+        return '<img src="{}" width="80" />'.format(obj.box.url)
     box_image.allow_tags = True
 
 
