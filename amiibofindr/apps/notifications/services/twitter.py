@@ -17,4 +17,7 @@ class TwitterService(object):
         self.api = tweepy.API(self.auth)
 
     def send(self, message):
-        self.api.update_status(status=message)
+        try:
+            self.api.update_status(status=message)
+        except tweepy.error.TweepError:
+            pass
