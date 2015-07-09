@@ -14,10 +14,15 @@ from amiibofindr.apps.shop.crawlers import Crawler
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        regions = Shop.objects.all().order_by('flag_code').distinct('flag_code').values_list('flag_code', 'slug')
+        regions = Shop.objects.all()\
+            .order_by('flag_code')\
+            .distinct('flag_code')\
+            .values_list('flag_code', 'slug')
 
         for region in regions:
-            item_codes = AmiiboShop.objects.filter(shop__flag_code=region[0]).values_list('item_id', flat=True)
+            item_codes = AmiiboShop.objects.filter(
+                shop__flag_code=region[0],
+                check_price=True).values_list('item_id', flat=True)
             amazon = Crawler(region[1])
             products = amazon.fetch_batch(item_codes)
             for product in products:

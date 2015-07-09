@@ -104,6 +104,7 @@ class AmiiboShop(models.Model):
     shop = models.ForeignKey('shop.Shop', related_name='amiibos_set')
     url = models.TextField()
     item_id = models.CharField(max_length=64)
+    check_price = models.BooleanField(default=True)
 
     class Meta:
         ordering = ('shop__name', )
