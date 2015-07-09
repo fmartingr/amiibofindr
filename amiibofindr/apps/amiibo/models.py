@@ -109,7 +109,9 @@ class AmiiboShop(models.Model):
         ordering = ('shop__name', )
 
     def get_url(self):
-        return amazonify(self.url, settings.AMAZON_ASSOC_TAG)
+        if self.shop.referer_id:
+            return amazonify(self.url, self.shop.referer_id)
+        return self.url
 
     def update_price(self, price, currency):
         price_obj, is_new = AmiiboPrice.objects.get_or_create(

@@ -13,6 +13,7 @@ class Shop(models.Model):
     url = models.CharField(max_length=64)
     flag_code = models.CharField(max_length=2, blank=True, null=True)
     referer_id = models.CharField(max_length=64, blank=True, null=True)
+    visible = models.BooleanField(default=True)
 
     class Meta:
         ordering = ('name', )
