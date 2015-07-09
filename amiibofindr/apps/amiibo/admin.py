@@ -61,6 +61,7 @@ class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
 
 class AmiiboShopAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = AmiiboShopResource
+    search_fields = ('shop__name_eu', 'shop__flag_code', 'amiibo__name_eu')
 
 
 class AmiiboPriceAdmin(reversion.VersionAdmin):
