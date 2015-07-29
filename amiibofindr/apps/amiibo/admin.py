@@ -51,7 +51,10 @@ class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
                      'model_number')
 
     def statue_image(self, obj):
-        return '<img src="{}" width="80" />'.format(obj.statue.url)
+        if obj.statue:
+            return '<img src="{}" width="80" />'.format(obj.statue.url)
+        else:
+            return ''
     statue_image.allow_tags = True
 
     def box_image(self, obj):
