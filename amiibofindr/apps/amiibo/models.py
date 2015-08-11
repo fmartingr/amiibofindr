@@ -26,6 +26,11 @@ def image_box_upload(self, filename):
     return 'amiibos/{}/{}-box{}'.format(
         self.collection.slug, self.slug, extension)
 
+def image_card_upload(self, filename):
+    name, extension = os.path.splitext(filename)
+    return 'amiibos/{}/card-{}-{}{}'.format(
+        self.collection.slug, self.number, self.slug, extension)
+
 
 #
 # Models
@@ -53,7 +58,7 @@ class Collection(models.Model):
 
 class Amiibo(models.Model):
     collection = models.ForeignKey(Collection, related_name='amiibos_qs')
-    collection_number = models.IntegerField(blank=True, null=True)
+    Collection_number = models.IntegerField(blank=True, null=True)
 
     model_number = models.CharField(max_length=20, blank=True, null=True)
 
@@ -97,6 +102,31 @@ class Amiibo(models.Model):
     @property
     def name(self):
         return self.name_eu
+
+
+class AmiiboCard(models.Model):
+    ROCK = 1
+    PAPER = 2
+    SCISSORS = 3
+    RPS_CHOICES = (
+        (ROCK, 'Rock'),
+        (PAPER, 'Paper'),
+        (SCISSORS, 'Scissors'),
+    )
+
+    collection = models.ForeignKey(Collection, related_name='amiibos_qs')
+    number = models.IntegerField(default=1)
+    name = models.CharField(max_length=60)
+    slug = models.SlugField(max_length=60)
+    image = models.ImageField(upload_to=image_card_upload)
+    dice = models.IntegerField(default=1)
+    rps = models.CharField(choices=RPS_CHOICES, default=ROCK)
+
+    class Meta:
+        ordering = ('collection', 'number', 'name', )
+
+    def __unicode__(self):
+        return u"{} {}".format(self.number, self.name)
 
 
 class AmiiboShop(models.Model):
