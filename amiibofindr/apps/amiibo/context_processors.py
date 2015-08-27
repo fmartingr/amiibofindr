@@ -6,7 +6,8 @@ from .models import Collection, AmiiboPrice
 
 def collections(request):
     return {
-        'COLLECTIONS': Collection.objects.all().order_by('name_eu')
+        'COLLECTIONS_FIGURES': Collection.objects.all().order_by('name_eu'),
+        'COLLECTIONS_CARDS': Collection.objects.filter(have_cards=True).order_by('name_eu'),
     }
 
 
