@@ -150,8 +150,17 @@ class AmiiboCard(models.Model):
 
 
 class AmiiboShop(models.Model):
+    FIGURE = '1'
+    PACK = '2'
+
+    ITEM_TYPES = (
+        (FIGURE, 'Figure'),
+        (PACK, 'Pack'),
+    )
+
     amiibo = models.ForeignKey(Amiibo, related_name='shops_set')
     shop = models.ForeignKey('shop.Shop', related_name='amiibos_set')
+    type = models.CharField(choices=ITEM_TYPES, default=FIGURE, max_length=1)
     url = models.TextField()
     item_id = models.CharField(max_length=64)
     check_price = models.BooleanField(default=True)
@@ -179,6 +188,10 @@ class AmiiboShop(models.Model):
     @property
     def last_price(self):
         return self.price_set.first()
+
+    @property
+    def is_pack(self):
+        return self.type == self.PACK
 
     def __unicode__(self):
         return u'{} in {}'.format(self.amiibo.name, self.shop.name)

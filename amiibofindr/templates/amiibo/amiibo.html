@@ -58,7 +58,6 @@
           <thead>
             <tr>
               <th>{% trans "Shop" %}</th>
-              <th class="center aligned">{% trans "Stock" %}</th>
               <th class="center aligned">{% trans "Price" %}</th>
             </tr>
           </thead>
@@ -71,18 +70,29 @@
                       <a href="{{ relation.get_url }}" target="_blank">
                         <i class="{% if relation.shop.flag_code == 'uk' %}gb{% else %}{{ relation.shop.flag_code }}{% endif %} flag"></i> {{ relation.shop.name }}
                       </a>
-                      {% if relation.last_price.date %}<em class="float-right">{% trans "Updated " %} <span data-relative="{{ relation.last_price.date.isoformat }}"></span></em>{% endif %}
+                    {% if relation.last_price.date %}
+                      <i class="ui icon info circle float-right" data-component="silbingPopup"></i>
+                      <div class="ui special popup">
+                        <em>{% trans "Updated " %} <span data-relative="{{ relation.last_price.date.isoformat }}"></span></em>
+                      </div>
+                    {% endif %}
+                      {% if relation.is_pack %}
+                        <i class="icon cube float-right" data-component="silbingPopup"></i>
+                        <div class="ui special popup">
+                          {% trans "This is a pack of various items" %}
+                        </div>
+                      {% endif %}
                     </td>
                   {% endspaceless %}
-                  <td class="center aligned {{ stock|yesno:'positive,negative' }}" {% if not price %}colspan="2"{% endif %}>
-                    <i class="icon {{ stock|yesno:'checkmark,close' }}"></i>
-                    {{ stock|yesno|capfirst }}
+                  <td class="center aligned {{ stock|yesno:'positive,negative' }}">
+                    {% if stock and price %}
+                      <span data-price="{{ price }}" data-currency="{{ currency }}" data-money>
+                        {{ price }} {{ relation.last_price.currency }}
+                      </span>
+                    {% else %}
+                      {% trans "No stock" %}
+                    {% endif %}
                   </td>
-                  {% if price %}
-                    <td class="center aligned" data-price="{{ price }}" data-currency="{{ currency }}" data-money>
-                      {{ price }} {{ relation.last_price.currency }}
-                    </td>
-                  {% endif %}
                 {% endwith %}
               </tr>
             {% endfor %}
