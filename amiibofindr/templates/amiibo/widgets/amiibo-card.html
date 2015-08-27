@@ -1,5 +1,5 @@
 {% load staticfiles thumbnail %}
-<div class="special card" data-amiibo-name="{{ amiibo.get_all_names }}">
+<div class="special card" data-amiibo-names="{{ amiibo.get_all_names|lower }}">
   <div class="dimmable image">
     <div class="ui dimmer">
       <div class="content">

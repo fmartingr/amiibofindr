@@ -19,17 +19,19 @@
   {% endif %}
 {% endblock %}
 
+{% block js_views %}collection-search{% endblock %}
+
 {% block main_content %}
   <div class="ui page grid">
     <div class="sixteen wide column">
       {% if selected_collection.name %}<h1>{{ selected_collection.name }}</h1>{% endif %}
       <div class="ui icon big fluid input">
-        <input type="text" placeholder="Search...">
+        <input type="text" placeholder="Search..." data-component="collectionSearchInput">
         <i class="inverted circular search link icon"></i>
       </div>
     </div>
     <div class="sixteen wide column">
-      <div class="ui six doubling cards" data-amiibo-list>
+      <div class="ui six doubling cards" data-component="collectionList">
         {% for amiibo in amiibo_list %}
           {% include "amiibo/widgets/amiibo-card.html" with amiibo=amiibo only %}
         {% endfor %}

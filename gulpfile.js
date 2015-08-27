@@ -13,6 +13,7 @@ gulp.task('scripts', function() {
       'amiibofindr/static/app/simpleViews.js',
       'amiibofindr/static/app/global.js',
       'amiibofindr/static/app/money.js',
+      'amiibofindr/static/app/collectionSearch.js',
       'amiibofindr/static/app/time.js'
     ])
     .pipe(concat('app.js'))
