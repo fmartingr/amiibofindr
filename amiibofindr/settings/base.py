@@ -42,12 +42,14 @@ INSTALLED_APPS = (
     'reversion',
     'import_export',
     'easy_thumbnails',
+    'django_extensions',
 
     # own apps
     'amiibofindr.apps.core',
     'amiibofindr.apps.amiibo',
     'amiibofindr.apps.shop',
     'amiibofindr.apps.home',
+    'amiibofindr.apps.notifications',
 )
 
 MIDDLEWARE_CLASSES = (

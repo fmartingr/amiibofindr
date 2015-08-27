@@ -1,5 +1,7 @@
-// Adds hover to cards for amiibos
-$('.special.card .image').dimmer({on: 'hover'});
+// Handle data-href
+$('[data-href]').on('click', function(event) {
+    location.href = $(this).attr('data-href');
+});
 
 // Enable dropdowns
 $('.dropdown').dropdown({transition: 'drop', on: 'hover'});

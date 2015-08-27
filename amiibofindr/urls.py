@@ -21,6 +21,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
+handler404 = 'amiibofindr.apps.core.views.error404'
+handler500 = 'amiibofindr.apps.core.views.error500'
+
+
 urlpatterns = patterns(
     '',
     url(r'^amiibofindr-admin/', include(admin.site.urls)),

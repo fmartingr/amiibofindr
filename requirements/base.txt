@@ -35,3 +35,6 @@ python-amazon-simple-product-api==1.5.0
 
 # Performance
 django-htmlmin==0.7.0
+
+# External services
+tweepy==3.3.0

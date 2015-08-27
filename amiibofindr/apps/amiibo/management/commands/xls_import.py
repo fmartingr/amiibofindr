@@ -37,12 +37,12 @@ class AmiiboSheet(object):
     LINK_REGEX = r'\=HYPERLINK\(\"(.*)\",\"(.*)\"\)'
 
     SHEETS = {
-        SHEET_NA_US: {
-            'SERIES_STRING': SERIES_STRING_US,
-            'SHOP_HEADS': {
-                u'Amazon ASIN': u'amazon-us',
-            },
-        },
+        # SHEET_NA_US: {
+        #     'SERIES_STRING': SERIES_STRING_US,
+        #     'SHOP_HEADS': {
+        #         u'Amazon ASIN': u'amazon-us',
+        #     },
+        # },
         # SHEET_NA_CA: {
         #     'SERIES_STRING': SERIES_STRING,
         # },

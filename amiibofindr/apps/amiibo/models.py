@@ -26,6 +26,11 @@ def image_box_upload(self, filename):
     return 'amiibos/{}/{}-box{}'.format(
         self.collection.slug, self.slug, extension)
 
+def image_card_upload(self, filename):
+    name, extension = os.path.splitext(filename)
+    return 'amiibos/{}/card-{}-{}{}'.format(
+        self.collection.slug, self.number, self.slug, extension)
+
 
 #
 # Models
@@ -34,6 +39,7 @@ class Collection(models.Model):
     name_eu = models.CharField(max_length=128)
     name_jp = models.CharField(max_length=128, blank=True, null=True)
     name_us = models.CharField(max_length=128, blank=True, null=True)
+    have_cards = models.BooleanField(default=False)
 
     @property
     def amiibos(self):
@@ -75,6 +81,14 @@ class Amiibo(models.Model):
 
     visible = models.BooleanField(default=True)
 
+    def get_all_names(self):
+        result = u''
+        for key, value in self.__dict__.items():
+            if u'name_' in key and self.__dict__[key]:
+                result += u' {}'.format(self.__dict__[key])
+
+        return result
+
     @models.permalink
     def get_absolute_url(self):
         return ('amiibo:amiibo', [self.collection.slug, self.slug])
@@ -99,17 +113,56 @@ class Amiibo(models.Model):
         return self.name_eu
 
 
+class AmiiboCard(models.Model):
+    ROCK = 1
+    PAPER = 2
+    SCISSORS = 3
+    RPS_CHOICES = (
+        (ROCK, 'Rock'),
+        (PAPER, 'Paper'),
+        (SCISSORS, 'Scissors'),
+    )
+
+    collection = models.ForeignKey(Collection, related_name='cards_qs')
+    number = models.IntegerField(default=1)
+    name = models.CharField(max_length=60)
+
+    name_en = models.CharField(max_length=64, blank=True, null=True)
+    name_es = models.CharField(max_length=64, blank=True, null=True)
+    name_fr = models.CharField(max_length=64, blank=True, null=True)
+    name_it = models.CharField(max_length=64, blank=True, null=True)
+    name_de = models.CharField(max_length=64, blank=True, null=True)
+
+    name_eu = models.CharField(max_length=64, blank=True, null=True)
+    name_jp = models.CharField(max_length=64, blank=True, null=True)
+    name_us = models.CharField(max_length=64, blank=True, null=True)
+
+    slug = models.SlugField(max_length=60)
+    image = models.ImageField(upload_to=image_card_upload)
+    dice = models.IntegerField(default=1)
+    rps = models.CharField(choices=RPS_CHOICES, default=ROCK, max_length=1)
+
+    class Meta:
+        ordering = ('collection', 'number', 'name', )
+
+    def __unicode__(self):
+        return u"{} {}".format(self.number, self.name)
+
+
 class AmiiboShop(models.Model):
     amiibo = models.ForeignKey(Amiibo, related_name='shops_set')
     shop = models.ForeignKey('shop.Shop', related_name='amiibos_set')
     url = models.TextField()
     item_id = models.CharField(max_length=64)
+    check_price = models.BooleanField(default=True)
 
     class Meta:
         ordering = ('shop__name', )
 
     def get_url(self):
-        return amazonify(self.url, settings.AMAZON_ASSOC_TAG)
+        if self.shop.referer_id:
+            return amazonify(self.url, self.shop.referer_id)
+        return self.url
 
     def update_price(self, price, currency):
         price_obj, is_new = AmiiboPrice.objects.get_or_create(
@@ -141,12 +194,14 @@ class AmiiboPrice(models.Model):
     def __init__(self, *args, **kwargs):
         super(AmiiboPrice, self).__init__(*args, **kwargs)
         self.old_price = self.price
+        self.old_stock = self.stock
 
     def __unicode__(self):
         return u'{} price for {}: {}{}'.format(
-            self.amiibo.name,
-            self.shop.name,
-            self.price, self.currency
+            self.amiibo_shop.amiibo.name,
+            self.amiibo_shop.shop.name,
+            self.price,
+            self.currency
         )
 
     def fetch(self):

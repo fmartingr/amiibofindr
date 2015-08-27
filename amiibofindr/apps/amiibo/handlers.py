@@ -21,16 +21,16 @@ def save_historical_price(sender, instance, **kwargs):
     instance.save_history(old_price, new_price)
 
 
-def pre_check_price_change(sender, instance, **kwargs):
-    instance.old_price = copy.deepcopy(instance.price)
-
-
 def post_check_price_change(sender, instance, created, **kwargs):
-    if instance.price != instance.old_price:
+    if (
+        instance.price != instance.old_price
+        or instance.stock != instance.old_stock
+    ):
         amiibo_price_changed.send(
             sender=instance.__class__,
             instance=instance,
             amiibo=instance.amiibo_shop.amiibo,
+            old_stock=instance.old_stock,
             old_price=instance.old_price,
             new_price=instance.price
         )

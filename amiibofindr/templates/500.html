@@ -1,0 +1,18 @@
+{% extends "_layout.html" %}
+{% load i18n %}
+
+{% block page_title %}AmiiboFindr{% endblock %}
+
+{% block main_content %}
+<div class="ui page grid">
+	<div class="sixteen wide column">
+		<h1>{% trans "Server error" %}</h1>
+		<p class="ui segment">
+			{% url 'home' as url_home %}
+			{% blocktrans with url_home=url_home %}
+				There was a server issue. Our developers have been informed of this. Please try refreshing the page or <a href="{{ url_home }}">go back to the home page</a>.
+			{% endblocktrans %}
+		</p>
+	</div>
+</div>
+{% endblock %}

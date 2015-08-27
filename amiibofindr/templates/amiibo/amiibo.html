@@ -12,76 +12,83 @@
 {% block meta_twitter_url %}{{ amiibo.get_absolute_url }}{% endblock %}
 {% block meta_og_url %}{{ amiibo.get_absolute_url }}{% endblock %}
 
-{% block js_views %}money{% endblock %}
+{% block js_views %}money,time{% endblock %}
 
 {% block breadcrumb %}
-{{ block.super }}
-<i class="right chevron icon divider"></i>
-<a class="section" href="{{ selected_collection.get_absolute_url }}">{{ selected_collection.name }}</a>
-<i class="right chevron icon divider"></i>
-<span class="active section">{{ amiibo.name }}</span>
+  {{ block.super }}
+  <i class="right chevron icon divider"></i>
+  <a class="section" href="{{ selected_collection.get_absolute_url }}">{{ selected_collection.name }}</a>
+  <i class="right chevron icon divider"></i>
+  <span class="active section">{{ amiibo.name }}</span>
 {% endblock %}
 
 {% block main_content %}
-<div class="ui page grid">
-  <div class="five wide column">
-    <div class="ui card">
-      <a class="image">
-        <img src="{% static amiibo.image_statue %}" />
-      </a>
-      <div class="content">
-        <!-- <i class="right floated like icon"></i> -->
-        <!-- <i class="right floated star icon"></i> -->
-        <div class="header">{{ amiibo.name }}</div>
-        <div class="meta">
-          <a href="{{ amiibo.collection.get_absolute_url }}">{{ amiibo.collection.name }}</a>
-        </div>
-        <!-- <div class="description">
+  <div class="ui page grid">
+    <div class="five wide column">
+      <div class="ui card">
+        <a class="image">
+          <img src="{{ amiibo.statue.url }}" />
+        </a>
+        <div class="content">
+          <!-- <i class="right floated like icon"></i> -->
+          <!-- <i class="right floated star icon"></i> -->
+          <div class="header">{{ amiibo.name }}</div>
+          <div class="meta">
+            <a href="{{ amiibo.collection.get_absolute_url }}">{{ amiibo.collection.name }}</a>
+          </div>
+          <!-- <div class="description">
           <p>asd</p>
-        </div> -->
-      </div>
-      <!-- <div class="extra content">
+          </div> -->
+        </div>
+        <!-- <div class="extra content">
         <span class="left floated like">
-          <i class="like icon"></i>
-          Like
+        <i class="like icon"></i>
+        Like
         </span>
         <span class="right floated star">
-          <i class="star icon"></i>
-          Favorite
+        <i class="star icon"></i>
+        Favorite
         </span>
-      </div> -->
+        </div> -->
+      </div>
+    </div>
+    <div class="eleven wide column">
+      {% if amiibo.shops_set.exists %}
+        <table class="ui celled table">
+          <thead>
+            <tr>
+              <th>{% trans "Shop" %}</th>
+              <th class="center aligned">{% trans "Stock" %}</th>
+              <th class="center aligned">{% trans "Price" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for relation in amiibo.shops_set.all %}
+              <tr>
+                {% with price=relation.last_price.price stock=relation.last_price.stock currency=relation.last_price.currency %}
+                  {% spaceless %}
+                    <td>
+                      <a href="{{ relation.get_url }}" target="_blank">
+                        <i class="{% if relation.shop.flag_code == 'uk' %}gb{% else %}{{ relation.shop.flag_code }}{% endif %} flag"></i> {{ relation.shop.name }}
+                      </a>
+                      {% if relation.last_price.date %}<em class="float-right">{% trans "Updated " %} <span data-relative="{{ relation.last_price.date.isoformat }}"></span></em>{% endif %}
+                    </td>
+                  {% endspaceless %}
+                  <td class="center aligned {{ stock|yesno:'positive,negative' }}" {% if not price %}colspan="2"{% endif %}>
+                    <i class="icon {{ stock|yesno:'checkmark,close' }}"></i>
+                    {{ stock|yesno|capfirst }}
+                  </td>
+                  {% if price %}
+                    <td class="center aligned" data-price="{{ price }}" data-currency="{{ currency }}" data-money>
+                      {{ price }} {{ relation.last_price.currency }}
+                    </td>
+                  {% endif %}
+                {% endwith %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
     </div>
   </div>
-  <div class="eleven wide column">
-    {% if amiibo.shops_set.exists %}
-    <table class="ui celled table">
-      <thead>
-        <tr>
-          <th>{% trans "Shop" %}</th>
-          <th class="center aligned">{% trans "Stock" %}</th>
-          <th class="center aligned">{% trans "Price" %}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for relation in amiibo.shops_set.all %}
-        <tr>
-          {% with price=relation.last_price.price stock=relation.last_price.stock currency=relation.last_price.currency %}
-          <td><a href="{{ relation.get_url }}" target="_blank"><i class="{% if relation.shop.flag_code == 'uk' %}gb{% else %}{{ relation.shop.flag_code }}{% endif %} flag"></i> {{ relation.shop.name }}</a></td>
-          <td class="center aligned {{ stock|yesno:'positive,negative' }}" {% if not price %}colspan="2"{% endif %}>
-            <i class="icon {{ stock|yesno:'checkmark,close' }}"></i>
-            {{ stock|yesno|capfirst }}
-          </td>
-          {% if price %}
-          <td class="center aligned" data-price="{{ price }}" data-currency="{{ currency }}" data-money>
-            {{ price }} {{ relation.last_price.currency }}
-          </td>
-          {% endif %}
-          {% endwith %}
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    {% endif %}
-  </div>
-</div>
 {% endblock %}

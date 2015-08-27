@@ -35,7 +35,7 @@ class AmiiboShopResource(resources.ModelResource):
 class CollectionAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = ColectionResource
 
-    list_display = ('name_eu', 'amiibo_number', )
+    list_display = ('name_eu', 'amiibo_number', 'have_cards', )
 
     def amiibo_number(self, obj):
         return obj.amiibos.count()
@@ -46,21 +46,43 @@ class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = AmiiboResource
 
     list_display_links = ('name_eu', )
-    list_display = ('statue_image', 'box_image', 'name_eu', 'collection',)
+    list_display = ('statue_image', 'name_eu', 'collection',)
     search_fields = ('collection__name_eu', 'name_eu', 'name_us',
                      'model_number')
 
     def statue_image(self, obj):
-        return '<img src="{}" width="80" />'.format(obj.image_statue)
+        if obj.statue:
+            return '<img src="{}" width="80" />'.format(obj.statue.url)
+        else:
+            return ''
     statue_image.allow_tags = True
 
     def box_image(self, obj):
-        return '<img src="{}" width="80" />'.format(obj.image_box)
+        return '<img src="{}" width="80" />'.format(obj.box.url)
     box_image.allow_tags = True
+
+
+class AmiiboCardAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
+    resource_class = AmiiboResource
+
+    list_display_links = ('name_eu', )
+    list_display = ('image_image', 'name_eu', 'collection', 'dice', 'rps', )
+    search_fields = ('collection__name_eu', 'name_eu', 'name_us',)
+
+    def image_image(self, obj):
+        if obj.image:
+            return '<img src="{}" width="80" />'.format(obj.image.url)
+        else:
+            return ''
+    image_image.allow_tags = True
 
 
 class AmiiboShopAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = AmiiboShopResource
+    list_display = ('amiibo', 'shop', 'check_price')
+    list_filter = ('amiibo', 'shop', )
+    list_editable = ('check_price', )
+
 
 
 class AmiiboPriceAdmin(reversion.VersionAdmin):

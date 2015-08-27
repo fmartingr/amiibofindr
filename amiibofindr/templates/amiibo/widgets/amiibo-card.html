@@ -1,6 +1,6 @@
 {% load staticfiles thumbnail %}
-<div class="special card">
-	<div class="dimmable image">
+<div class="ui link card" data-amiibo-names="{{ amiibo.get_all_names|lower }}" data-href="{{ amiibo.get_absolute_url }}">
+  <div class="image">
     <div class="ui dimmer">
       <div class="content">
         <div class="center">
@@ -8,9 +8,25 @@
         </div>
       </div>
     </div>
-		<img src="{% thumbnail amiibo.statue 340x340 %}">
+    <img src="{% thumbnail amiibo.statue 340x340 crop %}">
   </div>
   <div class="content">
-    <a class="header">{{ amiibo.name }}</a>
+    <div class="header">{{ amiibo.name }}</div>
   </div>
+  {% comment %}
+  <div class="extra content">
+    <span class="left floated">
+      <a href="#">
+        <i class="check circle icon"></i>
+        Have it
+      </a>
+    </span>
+    <span class="right floated">
+      <a href="#">
+        <i class="star circle icon"></i>
+        Want it
+      </a>
+    </span>
+  </div>
+  {% endcomment %}
 </div>
