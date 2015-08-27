@@ -97,6 +97,6 @@
      var MEDIA_URL = '{{ MEDIA_URL }}';
      var CURRENCIES = ['{{ CURRENCIES|join:"', '" }}'];
     </script>
-    <script type="text/javascript" src={% static "dist/app.js" %}></script>
+    <script type="text/javascript" src="{% static "dist/app.js" %}" async defer></script>
   </body>
 </html>
