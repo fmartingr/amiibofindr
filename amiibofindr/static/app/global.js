@@ -5,3 +5,10 @@ $('[data-href]').on('click', function(event) {
 
 // Enable dropdowns
 $('.dropdown').dropdown({transition: 'drop', on: 'hover'});
+
+$(function(){
+    $('[data-component="silbingPopup"]').popup({
+        inline: true,
+        position: 'left center'
+    });
+});

@@ -150,8 +150,8 @@ class AmiiboCard(models.Model):
 
 
 class AmiiboShop(models.Model):
-    FIGURE = 1
-    PACK = 2
+    FIGURE = '1'
+    PACK = '2'
 
     ITEM_TYPES = (
         (FIGURE, 'Figure'),
@@ -188,6 +188,10 @@ class AmiiboShop(models.Model):
     @property
     def last_price(self):
         return self.price_set.first()
+
+    @property
+    def is_pack(self):
+        return self.type == self.PACK
 
     def __unicode__(self):
         return u'{} in {}'.format(self.amiibo.name, self.shop.name)

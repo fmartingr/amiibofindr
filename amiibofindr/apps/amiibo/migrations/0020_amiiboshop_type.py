@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='amiiboshop',
             name='type',
-            field=models.CharField(default=1, max_length=1, choices=[(1, b'Figure'), (2, b'Pack')]),
+            field=models.CharField(default=b'1', max_length=1, choices=[(b'1', b'Figure'), (b'2', b'Pack')]),
         ),
     ]
