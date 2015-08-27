@@ -19,7 +19,7 @@
   {% endif %}
 {% endblock %}
 
-{% block js_views %}collection-search{% endblock %}
+{% block js_views %}{{ block.super }},collection-search{% endblock %}
 
 {% block main_content %}
   <div class="ui page grid">

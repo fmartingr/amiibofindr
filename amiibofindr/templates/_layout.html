@@ -23,7 +23,7 @@
     <title>{% block page_title %}AmiiboFindr{% endblock %}</title>
   </head>
 
-  <body data-views="{% block js_views %}{% endblock %}">
+  <body data-views="{% block js_views %}money{% endblock %}">
     <div class="ui page grid">
       <br />
       <div class="sixteen wide column">
@@ -53,12 +53,20 @@
     {% block main_content %}{% endblock %}
     <div class="ui page grid">
       <hr >
-      <div class="eight wide column">
-        <small>{% trans "CHANGE CURRENCY" %} {% for currency in CURRENCIES %}<a href="#" data-currency-change="{{ currency }}">{{ currency }}</a> {% endfor %}</small>
+      <div class="four wide column">
+        <h4>{% trans "Select desired currency" %}</h4>
+        <div class="ui link list">
+          {% for currency in CURRENCIES %}
+            <a class="item" href="#" data-currency-change="{{ currency }}">{{ currency }}</a>
+          {% endfor %}
+        </div>
       </div>
-      <div class="eight wide column right aligned">
-        <div class="">
-          AmiiboFindr &copy; 2015 | <a href="https://twitter.com/amiibofindr" target="_blank"><i class="ui icon twitter"></i>Twitter</a>
+      <div class="four wide column left aligned"></div>
+      <div class="four wide column left aligned"></div>
+      <div class="four wide column right aligned">
+        <h4>AmiiboFindr</h4>
+        <div class="ui link list">
+          <a href="https://twitter.com/amiibofindr" target="_blank"><i class="ui icon twitter"></i>Twitter</a>
         </div>
       </div>
     </div>
@@ -79,5 +87,4 @@
     </script>
     <script type="text/javascript" src={% static "dist/app.js" %}></script>
   </body>
-
 </html>
