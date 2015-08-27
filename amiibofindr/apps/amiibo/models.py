@@ -39,6 +39,7 @@ class Collection(models.Model):
     name_eu = models.CharField(max_length=128)
     name_jp = models.CharField(max_length=128, blank=True, null=True)
     name_us = models.CharField(max_length=128, blank=True, null=True)
+    have_cards = models.BooleanField(default=False)
 
     @property
     def amiibos(self):
@@ -58,7 +59,7 @@ class Collection(models.Model):
 
 class Amiibo(models.Model):
     collection = models.ForeignKey(Collection, related_name='amiibos_qs')
-    Collection_number = models.IntegerField(blank=True, null=True)
+    collection_number = models.IntegerField(blank=True, null=True)
 
     model_number = models.CharField(max_length=20, blank=True, null=True)
 
@@ -114,13 +115,24 @@ class AmiiboCard(models.Model):
         (SCISSORS, 'Scissors'),
     )
 
-    collection = models.ForeignKey(Collection, related_name='amiibos_qs')
+    collection = models.ForeignKey(Collection, related_name='cards_qs')
     number = models.IntegerField(default=1)
     name = models.CharField(max_length=60)
+
+    name_en = models.CharField(max_length=64, blank=True, null=True)
+    name_es = models.CharField(max_length=64, blank=True, null=True)
+    name_fr = models.CharField(max_length=64, blank=True, null=True)
+    name_it = models.CharField(max_length=64, blank=True, null=True)
+    name_de = models.CharField(max_length=64, blank=True, null=True)
+
+    name_eu = models.CharField(max_length=64, blank=True, null=True)
+    name_jp = models.CharField(max_length=64, blank=True, null=True)
+    name_us = models.CharField(max_length=64, blank=True, null=True)
+
     slug = models.SlugField(max_length=60)
     image = models.ImageField(upload_to=image_card_upload)
     dice = models.IntegerField(default=1)
-    rps = models.CharField(choices=RPS_CHOICES, default=ROCK)
+    rps = models.CharField(choices=RPS_CHOICES, default=ROCK, max_length=1)
 
     class Meta:
         ordering = ('collection', 'number', 'name', )
