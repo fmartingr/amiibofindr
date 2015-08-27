@@ -81,6 +81,14 @@ class Amiibo(models.Model):
 
     visible = models.BooleanField(default=True)
 
+    def get_all_names(self):
+        result = u''
+        for key, value in self.__dict__.items():
+            if u'name_' in key and self.__dict__[key]:
+                result += u' {}'.format(self.__dict__[key])
+
+        return result
+
     @models.permalink
     def get_absolute_url(self):
         return ('amiibo:amiibo', [self.collection.slug, self.slug])

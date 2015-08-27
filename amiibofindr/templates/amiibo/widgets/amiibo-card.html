@@ -1,6 +1,6 @@
 {% load staticfiles thumbnail %}
-<div class="special card">
-	<div class="dimmable image">
+<div class="special card" data-amiibo-name="{{ amiibo.get_all_names }}">
+  <div class="dimmable image">
     <div class="ui dimmer">
       <div class="content">
         <div class="center">
@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-		<img src="{% thumbnail amiibo.statue 340x340 %}">
+    <img src="{% thumbnail amiibo.statue 340x340 %}">
   </div>
   <div class="content">
     <a class="header">{{ amiibo.name }}</a>

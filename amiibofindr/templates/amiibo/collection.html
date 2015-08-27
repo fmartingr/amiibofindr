@@ -10,22 +10,30 @@
 {% block meta_og_url %}{{ amiibo.get_absolute_url }}{% endblock %}
 
 {% block breadcrumb %}
-{{ block.super }}
-<i class="right chevron icon divider"></i>
-{% if selected_collection %}
-<span class="active section">{{ selected_collection.name }}</span>
-{% else %}
-<span class="active section">{% trans "All amiibo" %}</span>
-{% endif %}
+  {{ block.super }}
+  <i class="right chevron icon divider"></i>
+  {% if selected_collection %}
+    <span class="active section">{{ selected_collection.name }}</span>
+  {% else %}
+    <span class="active section">{% trans "All amiibo" %}</span>
+  {% endif %}
 {% endblock %}
 
 {% block main_content %}
-<div class="ui page grid">
-	<h1>{{ selected_collection.name }}</h1>
-	<div class="ui six doubling cards">
-		{% for amiibo in amiibo_list %}
-      {% include "amiibo/widgets/amiibo-card.html" with amiibo=amiibo only %}
-    {% endfor %}
-	</div>
-</div>
+  <div class="ui page grid">
+    <div class="sixteen wide column">
+      {% if selected_collection.name %}<h1>{{ selected_collection.name }}</h1>{% endif %}
+      <div class="ui icon big fluid input">
+        <input type="text" placeholder="Search...">
+        <i class="inverted circular search link icon"></i>
+      </div>
+    </div>
+    <div class="sixteen wide column">
+      <div class="ui six doubling cards" data-amiibo-list>
+        {% for amiibo in amiibo_list %}
+          {% include "amiibo/widgets/amiibo-card.html" with amiibo=amiibo only %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 {% endblock %}
