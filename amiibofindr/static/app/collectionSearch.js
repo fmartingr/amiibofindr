@@ -8,11 +8,16 @@
 
         // Required DOM
         this.$searchInput = document.querySelector('[data-component="collectionSearchInput"]');
+        this.$resetButton = document.querySelector('[data-component="collectionSearchReset"]');
         this.$collectionList = document.querySelector('[data-component="collectionList"]').children;
 
         // Add event handlers
         this.$searchInput.addEventListener('keyup', function(event) {
             self.search(self.$searchInput.value);
+        });
+
+        this.$resetButton.addEventListener('click', function(event) {
+            self.reset();
         });
 
         // Focus search input
@@ -28,6 +33,8 @@
     };
 
     CollectionSearchComponent.prototype.reset = function() {
+        this.$searchInput.value = '';
+
         for (var index = 0; index < this.$collectionList.length; index++) {
             var item = this.$collectionList[index];
             this.showItem(item);
