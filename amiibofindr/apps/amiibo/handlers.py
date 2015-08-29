@@ -18,7 +18,9 @@ def save_historical_price(sender, instance, **kwargs):
     new_price = kwargs.get('new_price')
     if new_price:
         new_price = Decimal(new_price)
-    instance.save_history(old_price, new_price)
+
+    if old_price != new_price:
+        instance.save_history(old_price, new_price)
 
 
 def post_check_price_change(sender, instance, created, **kwargs):
