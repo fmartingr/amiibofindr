@@ -25,45 +25,80 @@
 
   <body data-views="{% block js_views %}money{% endblock %}">
     <div class="ui page grid">
-      <br />
-      <div class="sixteen wide column">
-        <div class="ui fluid large menu">
-          <a class="item" href="/">
-            <i class="home icon"></i> AmiiboFindr
-          </a>
+      <div class="computer tablet only row">
+        <div class="ui large menu navbar">
+          <a href="/" class="brand item">Amiibofindr</a>
           <div class="ui dropdown item">
             {% trans "Figures" %}
             <i class="dropdown icon"></i>
             <div class="menu">
-              <a class="item" href="#">{% trans "All" %}</a>
+              <a class="item" href="/">{% trans "All" %}</a>
+              <div class="ui divider"></div>
               {% for col in COLLECTIONS_FIGURES %}
                 <a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a>
               {% endfor %}
             </div>
-          </div>
-          {% comment %}
-          <div class="ui dropdown item">
+            {% comment %}
+            <div class="ui dropdown item">
             {% trans "Cards" %}
             <i class="dropdown icon"></i>
             <div class="menu">
-              <a class="item" href="#">{% trans "All" %}</a>
-              {% for col in COLLECTIONS_CARDS %}
+            <a class="item" href="#">{% trans "All" %}</a>
+            {% for col in COLLECTIONS_CARDS %}
+            <a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a>
+            {% endfor %}
+            </div>
+            </div>
+            <div class="right menu"></div>
+            {% endcomment %}
+          </div>
+          <div class="right menu"></div>
+        </div>
+      </div>
+      <div class="mobile only narrow row">
+        <div class="ui large navbar menu">
+          <a href="" class="brand item">Amiibofindr</a>
+          <div class="right menu">
+            <a href="#" class="item toggle-menu">
+              <i class="sidebar icon"></i>
+            </a>
+          </div>
+        </div>
+        <div class="ui vertical menu responsive-menu">
+          <div class="ui item">
+            <div class="text">{% trans 'Figures' %}</div>
+            <div class="menu">
+              <a class="item" href="/">{% trans "All" %}</a>
+              <div class="ui divider"></div>
+              {% for col in COLLECTIONS_FIGURES %}
                 <a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a>
               {% endfor %}
             </div>
+            {% comment %}
+            <div class="ui dropdown item">
+            {% trans "Cards" %}
+            <i class="dropdown icon"></i>
+            <div class="menu">
+            <a class="item" href="#">{% trans "All" %}</a>
+            {% for col in COLLECTIONS_CARDS %}
+            <a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a>
+            {% endfor %}
+            </div>
+            </div>
+            <div class="right menu"></div>
+            {% endcomment %}
           </div>
-          <div class="right menu"></div>
-          {% endcomment %}
-        </div>
-        <div class="ui breadcrumb">
-          {% block breadcrumb %}
-            <a class="section" href="{% url 'amiibo:collection' 'all' %}">Home</a>
-          {% endblock %}
         </div>
       </div>
+      <div class="ui breadcrumb">
+        {% block breadcrumb %}
+          <a class="section" href="{% url 'amiibo:collection' 'all' %}">Home</a>
+        {% endblock %}
+      </div>
+    </div>
     </div>
     {% block main_content %}{% endblock %}
-    <div class="ui page grid">
+    <div class="ui stackable page grid">
       <hr >
       <div class="four wide column">
         <h4>{% trans "Select desired currency" %}</h4>
@@ -75,7 +110,7 @@
       </div>
       <div class="four wide column left aligned"></div>
       <div class="four wide column left aligned"></div>
-      <div class="four wide column right aligned">
+      <div class="four wide column left aligned">
         <h4>AmiiboFindr</h4>
         <div class="ui link list">
           <a href="https://twitter.com/amiibofindr" target="_blank"><i class="ui icon twitter"></i>Twitter</a>
