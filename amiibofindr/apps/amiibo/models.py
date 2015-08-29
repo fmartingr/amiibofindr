@@ -251,8 +251,8 @@ class AmiiboPriceHistory(models.Model):
 
     def __unicode__(self):
         return u'{} price for {}: {}{} [{}{}] ({})'.format(
-            self.amiibo.name,
-            self.shop.name,
+            self.amiibo_shop.amiibo.name,
+            self.amiibo_shop.shop.name,
             self.price, self.currency,
             self.diff, self.currency,
             self.date
