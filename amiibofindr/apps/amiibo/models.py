@@ -228,12 +228,13 @@ class AmiiboPrice(models.Model):
         else:
             diff = new_price-old_price
 
-        history = AmiiboPriceHistory(
-            amiibo_shop_id=self.amiibo_shop_id,
-            price=self.price,
-            currency=self.currency,
-            diff=diff
-        )
+        if diff > 0:
+            history = AmiiboPriceHistory(
+                amiibo_shop_id=self.amiibo_shop_id,
+                price=self.price,
+                currency=self.currency,
+                diff=diff
+            )
         return history.save()
 
 
