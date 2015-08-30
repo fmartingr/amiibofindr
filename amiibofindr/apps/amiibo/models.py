@@ -235,7 +235,7 @@ class AmiiboPrice(models.Model):
                 currency=self.currency,
                 diff=diff
             )
-        return history.save()
+            return history.save()
 
 
 class AmiiboPriceHistory(models.Model):
