@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'suit',
     'django.contrib.admin',
+    'django.contrib.sites', # For allauth
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -44,6 +45,12 @@ INSTALLED_APPS = (
     'import_export',
     'easy_thumbnails',
     'django_extensions',
+
+    # Auth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.twitter',
 
     # own apps
     'amiibofindr.apps.core',
@@ -127,3 +134,15 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_URL = '/media/'
+
+
+# Auth
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
+# Sites and social auth
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/account/profile/'

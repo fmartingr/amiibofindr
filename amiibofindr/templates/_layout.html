@@ -1,7 +1,8 @@
-{% load static i18n %}
+{% load static i18n account %}
+{% user_display user as user_display %}
+
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -52,7 +53,24 @@
             <div class="right menu"></div>
             {% endcomment %}
           </div>
-          <div class="right menu"></div>
+          <div class="right menu">
+            {% if user.is_authenticated %}
+              <div class="ui dropdown item">
+                <i class="icon user"></i> {{ user_display }}
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                  <a class="item" href="{% url 'account_change_password' %}">{% trans "Change password" %}</a>
+                  <a class="item" href="{% url 'account_email' %}">{% trans "Emails" %}</a>
+                  <div class="ui divider"></div>
+                  <a class="item" href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
+                </div>
+              </div>
+            {% else %}
+              <div class="ui dropdown item">
+                No logged
+              </div>
+            {% endif %}
+          </div>
         </div>
       </div>
       <div class="mobile only narrow row">

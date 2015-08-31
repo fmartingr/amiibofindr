@@ -38,3 +38,6 @@ django-htmlmin==0.7.0
 
 # External services
 tweepy==3.3.0
+
+# auth
+django-allauth==0.23.0

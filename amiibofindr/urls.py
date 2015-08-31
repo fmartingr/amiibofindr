@@ -28,6 +28,7 @@ handler500 = 'amiibofindr.apps.core.views.error500'
 urlpatterns = patterns(
     '',
     url(r'^amiibofindr-admin/', include(admin.site.urls)),
+    url(r'^account/', include('allauth.urls')),
     url(r'^', include('amiibofindr.apps.amiibo.urls', namespace='amiibo')),
     url(r'^', include('amiibofindr.apps.home.urls', namespace='home')),
 )

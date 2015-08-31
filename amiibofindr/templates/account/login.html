@@ -1,0 +1,66 @@
+{% extends '_layout.html' %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block page_title %}{% trans "Sign In" %} {{ block.super }}{% endblock %}
+
+{% block main_content %}
+  {% get_providers as socialaccount_providers %}
+
+  <div class="ui two column centered grid">
+    <div class="ui column">
+      <h1>{% trans "Sign In" %}</h1>
+
+      {% if socialaccount_providers %}
+        <div class="ui tall stacked segment">
+          <p>{% blocktrans with site.name as site_name %}Please sign in with one
+            of your existing social accounts. Or, <a href="{{ signup_url }}">sign up</a>
+            for a {{ site_name }} account and sign in below.{% endblocktrans %}</p>
+
+          <div class="socialaccount_ballot">
+
+            <div class="socialaccount_providers text-center">
+              {% for provider in socialaccount_providers %}
+                {% if provider.id == "openid" %}
+                  {% for brand in provider.get_brands %}
+                    <div class="item">
+                      <a title="{{ brand.name }}"
+                         class="socialaccount_provider {{ provider.id }} {{ brand.id }}"
+                         href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
+                         >{{ brand.name }}</a>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+                <div class="item">
+                  <a title="{{ provider.name }}" class="socialaccount_provider ui button {{ provider.id }}"
+                     href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+                    <i class="icon {{ provider.name|lower }}"></i> {{ provider.name }}</a>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        {% include "socialaccount/snippets/login_extra.html" %}
+
+      {% else %}
+        <p>{% blocktrans %}If you have not created an account yet, then please
+          <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+      {% endif %}
+
+      <div class="ui tall stacked segment">
+        <p>If you already have an account, please sign in here:</p>
+        <form class="ui form login" method="POST" action="{% url 'account_login' %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+          {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+          <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+          <button class="primaryAction ui button" type="submit">{% trans "Sign In" %}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
