@@ -50,15 +50,55 @@
       {% endif %}
 
       <div class="ui tall stacked segment">
-        <p>If you already have an account, please sign in here:</p>
-        <form class="ui form login" method="POST" action="{% url 'account_login' %}">
+        <p>{% trans "If you already have an account, please sign in here:" %}</p>
+        <form class="ui form login {% if form.errors %}error{% endif %}" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
-          {{ form.as_p }}
+
+          {% if form.errors %}
+            <div class="ui error message">
+              {% for field_name, errors in form.errors.items %}
+                {% for error in errors %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <div class="field {% if form.errors.login %}error{% endif %}">
+            {{ form.login.label_tag }}
+            {{ form.login }}
+          </div>
+
+          <div class="field {% if form.errors.password %}error{% endif %}">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+          </div>
+
+          {% comment %}
+          {% if form.errors.password %}
+            <div class="ui error message">
+              {% for error in form.errors.password %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% endcomment %}
+
+          <div class="inline field">
+            <div class="ui">
+              {{ form.remember }}
+              <label>{% trans "Remember me" %}</label>
+            </div>
+          </div>
+
           {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
           {% endif %}
-          <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-          <button class="primaryAction ui button" type="submit">{% trans "Sign In" %}</button>
+          <div>
+            <a class="button secondaryAction ui button" href="{% url 'account_reset_password' %}">
+              {% trans "Forgot Password?" %}</a>
+            <button class="primaryAction ui button primary float-right" type="submit">{% trans "Sign In" %}</button>
+          </div>
         </form>
       </div>
     </div>
