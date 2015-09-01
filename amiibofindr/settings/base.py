@@ -144,5 +144,7 @@ AUTHENTICATION_BACKENDS = (
 
 
 # Sites and social auth
+ACCOUNT_LOGOUT_ON_GET = True
+
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/account/profile/'
+LOGIN_REDIRECT_URL = '/'
