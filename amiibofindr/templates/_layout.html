@@ -117,7 +117,18 @@
         {% endblock %}
       </div>
     </div>
-    </div>
+
+    {% if messages %}
+      <div class="ui page grid">
+        <div class="sixteen wide column">
+          {% for message in messages %}
+            <div class="ui message {{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+
+        </div>
+      </div>
+    {% endif %}
+
     {% block main_content %}{% endblock %}
     <div class="ui stackable page grid">
       <hr >
