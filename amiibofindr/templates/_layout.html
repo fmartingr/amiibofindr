@@ -140,7 +140,19 @@
           {% endfor %}
         </div>
       </div>
-      <div class="four wide column left aligned"></div>
+      <div class="four wide column left aligned">
+        <h4>{% trans "Language" %}</h4>
+
+        {% get_available_languages as languages %}
+
+         <div class="ui link list">
+        {% for lang_code, lang_name in languages %}
+          {% language lang_code %}
+          <a class="item" href="#">{{ lang_name }}</a>
+          {% endlanguage %}
+        {% endfor %}
+         </div>
+      </div>
       <div class="four wide column left aligned"></div>
       <div class="four wide column left aligned">
         <h4>AmiiboFindr</h4>

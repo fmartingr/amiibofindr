@@ -19,6 +19,7 @@ from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
 
 handler404 = 'amiibofindr.apps.core.views.error404'
@@ -28,6 +29,9 @@ handler500 = 'amiibofindr.apps.core.views.error500'
 urlpatterns = patterns(
     '',
     url(r'^amiibofindr-admin/', include(admin.site.urls)),
+)
+
+urlpatterns += i18n_patterns(
     url(r'^account/', include('allauth.urls')),
     url(r'^', include('amiibofindr.apps.amiibo.urls', namespace='amiibo')),
     url(r'^', include('amiibofindr.apps.home.urls', namespace='home')),
