@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import ugettext_lazy as _
 
 
 handler404 = 'amiibofindr.apps.core.views.error404'
@@ -32,7 +33,7 @@ urlpatterns = patterns(
 )
 
 urlpatterns += i18n_patterns(
-    url(r'^account/', include('allauth.urls')),
+    url(_(r'^account/'), include('allauth.urls')),
     url(r'^', include('amiibofindr.apps.amiibo.urls', namespace='amiibo')),
     url(r'^', include('amiibofindr.apps.home.urls', namespace='home')),
 )

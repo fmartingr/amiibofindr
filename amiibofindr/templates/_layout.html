@@ -1,6 +1,8 @@
 {% load static i18n account %}
 {% user_display user as user_display %}
 {% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as languages %}
+{% trans 'all' as all_word %}
 
 <!DOCTYPE html>
 <html>
@@ -29,12 +31,12 @@
     <div class="ui page grid">
       <div class="computer tablet only row">
         <div class="ui large menu navbar">
-          <a href="/" class="brand item">Amiibofindr</a>
+          <a href="{% url 'home:redirect' %}" class="brand item">Amiibofindr</a>
           <div class="ui dropdown item">
             {% trans "Figures" %}
             <i class="dropdown icon"></i>
             <div class="menu">
-              <a class="item" href="/">{% trans "All" %}</a>
+              <a class="item" href="{% url 'amiibo:collection' all_word %}">{% trans "All" %}</a>
               <div class="ui divider"></div>
               {% for col in COLLECTIONS_FIGURES %}
                 <a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a>
@@ -90,7 +92,7 @@
           <div class="ui item">
             <div class="text">{% trans 'Figures' %}</div>
             <div class="menu">
-              <a class="item" href="/">{% trans "All" %}</a>
+              <a class="item" href="{% url 'amiibo:collection' all_word %}">{% trans "All" %}</a>
               <div class="ui divider"></div>
               {% for col in COLLECTIONS_FIGURES %}
                 <a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a>
@@ -144,15 +146,14 @@
       <div class="four wide column left aligned">
         <h4>{% trans "Language" %}</h4>
 
-        {% get_available_languages as languages %}
-
-         <div class="ui link list">
-        {% for lang_code, lang_name in languages %}
-          {% language lang_code %}
-          <a class="item {% if lang_code == LANGUAGE_CODE %}active{% endif %}" href="#">{{ lang_name }}</a>
-          {% endlanguage %}
-        {% endfor %}
-         </div>
+        <div class="ui link list">
+          {% for language in LANGUAGES %}
+            {% language language.code %}
+            <a class="item {% if language.code == LANGUAGE_CODE %}active{% endif %}"
+               href="{{ language.url }}">{{ language.name }}</a>
+            {% endlanguage %}
+          {% endfor %}
+        </div>
       </div>
       <div class="four wide column left aligned"></div>
       <div class="four wide column left aligned">

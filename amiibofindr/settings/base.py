@@ -95,6 +95,7 @@ TEMPLATES = [
                 'amiibofindr.apps.amiibo.context_processors.currencies',
                 'amiibofindr.apps.core.context_processors.debug',
                 'amiibofindr.apps.core.context_processors.files',
+                'amiibofindr.apps.core.context_processors.i18n',
             ],
         },
     },
