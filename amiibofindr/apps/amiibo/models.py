@@ -40,13 +40,21 @@ class Collection(models.Model):
     name_jp = models.CharField(max_length=128, blank=True, null=True)
     name_us = models.CharField(max_length=128, blank=True, null=True)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('amiibo:collection', [self.slug])
+
     @property
     def amiibos(self):
         return self.amiibos_qs.all()
 
-    @models.permalink
-    def get_absolute_url(self):
-        return ('amiibo:collection', [self.slug])
+    @property
+    def figures(self):
+        return self.amiibos_qs.all(type=Amiibo.FIGURE)
+
+    @property
+    def cards(self):
+        return self.amiibos_qs.all(type=Amiibo.FIGURE)
 
     @property
     def name(self):
@@ -107,7 +115,7 @@ class Amiibo(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('amiibo:amiibo', [self.collection.slug, self.slug])
+        return ('amiibo:figure-detail', [self.collection.slug, self.slug])
 
     def __unicode__(self):
         return unicode(self.name_eu) or u''
@@ -120,6 +128,10 @@ class Amiibo(models.Model):
 class AmiiboFigure(Amiibo):
     statue = models.ImageField(upload_to=image_statue_upload)
     box = models.ImageField(upload_to=image_box_upload, blank=True, null=True)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('amiibo:card-detail', [self.slug])
 
     @property
     def image_box(self):

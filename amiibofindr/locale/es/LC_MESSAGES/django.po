@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-03 18:47+0200\n"
-"PO-Revision-Date: 2015-09-03 18:47+0200\n"
+"POT-Creation-Date: 2015-09-07 22:33+0200\n"
+"PO-Revision-Date: 2015-09-07 22:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -18,11 +18,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.4\n"
 
-#: amiibofindr/templates/404.html:10
+#: apps/amiibo/urls.py:13
+msgid "^(?P<collection>[\\w\\d\\-]+)/$"
+msgstr "^(?P<collection>[\\w\\d\\-]+)/$"
+
+#: apps/amiibo/urls.py:16
+msgid "^cards/(?P<collection>[\\w\\d\\-]+)/$"
+msgstr "^tarjetas/(?P<collection>[\\w\\d\\-]+)/$"
+
+#: apps/amiibo/urls.py:19
+msgid "^figures/(?P<collection>[\\w\\d\\-]+)/$"
+msgstr "^figuras/(?P<collection>[\\w\\d\\-]+)/$"
+
+#: apps/amiibo/views.py:15 apps/amiibo/views.py:19 templates/_layout.html:5
+msgid "all"
+msgstr "todas"
+
+#: templates/404.html:10
 msgid "Not found!"
 msgstr "No encontrado."
 
-#: amiibofindr/templates/404.html:12
+#: templates/404.html:12
 #, python-format
 msgid ""
 "\n"
@@ -34,11 +50,11 @@ msgstr ""
 "Ooops. No hemos podido encontrar lo que estabas buscando. <a "
 "href=“%(url_home)s”>Volver a la home</a>."
 
-#: amiibofindr/templates/500.html:9
+#: templates/500.html:9
 msgid "Server error"
 msgstr "Error de servidor"
 
-#: amiibofindr/templates/500.html:12
+#: templates/500.html:12
 #, python-format
 msgid ""
 "\n"
@@ -52,81 +68,83 @@ msgstr ""
 "informados. Por favor, prueba refrescando la página o <a "
 "href=“%(url_home)s”>vuelve a la home</a>."
 
-#: amiibofindr/templates/_layout.html:33 amiibofindr/templates/_layout.html:91
+#: templates/_layout.html:36 templates/_layout.html.py:94
 msgid "Figures"
 msgstr "Figuras"
 
-#: amiibofindr/templates/_layout.html:36 amiibofindr/templates/_layout.html:93
+#: templates/_layout.html:39 templates/_layout.html.py:96
 msgid "All"
 msgstr "Todas"
 
-#: amiibofindr/templates/_layout.html:63
-#: amiibofindr/templates/account/password_reset_from_key.html:49
+#: templates/_layout.html:66 templates/account/password_reset_from_key.html:49
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#: amiibofindr/templates/_layout.html:64
+#: templates/_layout.html:67
 msgid "Emails"
 msgstr "Emails"
 
-#: amiibofindr/templates/_layout.html:66
+#: templates/_layout.html:69
 msgid "Log out"
 msgstr "Cerrar sesión"
 
-#: amiibofindr/templates/_layout.html:71
+#: templates/_layout.html:74
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: amiibofindr/templates/_layout.html:74
+#: templates/_layout.html:77
 msgid "Register"
 msgstr "Registrarse"
 
-#: amiibofindr/templates/_layout.html:138
+#: templates/_layout.html:141
 msgid "Select desired currency"
 msgstr "Seleccionar moneda"
 
-#: amiibofindr/templates/account/email.html:5
+#: templates/_layout.html:149
+msgid "Language"
+msgstr "Idioma"
+
+#: templates/account/email.html:5
 msgid "Account"
 msgstr "Mi cuenta"
 
-#: amiibofindr/templates/account/email.html:10
+#: templates/account/email.html:10
 msgid "E-mail Addresses"
 msgstr "Cuentas de email"
 
-#: amiibofindr/templates/account/email.html:15
+#: templates/account/email.html:15
 msgid "The following e-mail addresses are associated with your account:"
 msgstr "Los siguientes emails están asociados a tu cuenta:"
 
-#: amiibofindr/templates/account/email.html:37
+#: templates/account/email.html:37
 msgid "Verified"
 msgstr "Verificada"
 
-#: amiibofindr/templates/account/email.html:39
+#: templates/account/email.html:39
 msgid "Unverified"
 msgstr "Sin verificar"
 
-#: amiibofindr/templates/account/email.html:42
+#: templates/account/email.html:42
 msgid "Primary"
 msgstr "Primaria"
 
-#: amiibofindr/templates/account/email.html:51
+#: templates/account/email.html:51
 msgid "Make Primary"
 msgstr "Hacer primaria"
 
-#: amiibofindr/templates/account/email.html:53
+#: templates/account/email.html:53
 msgid "Re-send Verification"
 msgstr "Re-enviar verificación"
 
-#: amiibofindr/templates/account/email.html:55
-#: amiibofindr/templates/socialaccount/connections.html:46
+#: templates/account/email.html:55 templates/socialaccount/connections.html:46
 msgid "Remove"
 msgstr "Eliminar"
 
-#: amiibofindr/templates/account/email.html:60
+#: templates/account/email.html:60
 msgid "Warning:"
 msgstr "Alerta:"
 
-#: amiibofindr/templates/account/email.html:60
+#: templates/account/email.html:60
 msgid ""
 "You currently do not have any e-mail address set up. You should really add "
 "an e-mail address so you can receive notifications, reset your password, etc."
@@ -134,21 +152,20 @@ msgstr ""
 "Actualmente no tienes ningún email asociado a tu cuenta. Deberías añadir uno "
 "para que puedas recibir notificaciones, restablecer tu contraseña, etc."
 
-#: amiibofindr/templates/account/email.html:63
+#: templates/account/email.html:63
 msgid "Add E-mail Address"
 msgstr "Añadir una dirección de email"
 
-#: amiibofindr/templates/account/email.html:83
+#: templates/account/email.html:83
 msgid "Add E-mail"
 msgstr "Añadir email"
 
-#: amiibofindr/templates/account/login.html:6
-#: amiibofindr/templates/account/login.html:13
-#: amiibofindr/templates/account/login.html:101
+#: templates/account/login.html:6 templates/account/login.html.py:13
+#: templates/account/login.html:101
 msgid "Sign In"
 msgstr "Iniciar sesión"
 
-#: amiibofindr/templates/account/login.html:17
+#: templates/account/login.html:17
 #, python-format
 msgid ""
 "Please sign in with one\n"
@@ -160,7 +177,7 @@ msgstr ""
 "\"%(signup_url)s\">registrate</a> para crear una cuenta en %(site_name)s e "
 "inicia sesión más abajo."
 
-#: amiibofindr/templates/account/login.html:48
+#: templates/account/login.html:48
 #, python-format
 msgid ""
 "If you have not created an account yet, then please\n"
@@ -169,44 +186,44 @@ msgstr ""
 "Si aún no has creado una cuenta, por favor, <a href=\"%(signup_url)s"
 "\">regístrate</a> primero."
 
-#: amiibofindr/templates/account/login.html:53
+#: templates/account/login.html:53
 msgid "If you already have an account, please sign in here:"
 msgstr "Si ya tienes una cuenta, inicia sesión aquí:"
 
-#: amiibofindr/templates/account/login.html:91
+#: templates/account/login.html:91
 msgid "Remember me"
 msgstr "Recordarme"
 
-#: amiibofindr/templates/account/login.html:100
+#: templates/account/login.html:100
 msgid "Forgot Password?"
 msgstr "He olvidado mi contraseña"
 
-#: amiibofindr/templates/account/password_change.html:5
-#: amiibofindr/templates/account/password_change.html:10
-#: amiibofindr/templates/account/password_reset_from_key.html:5
-#: amiibofindr/templates/account/password_reset_from_key.html:10
-#: amiibofindr/templates/account/password_reset_from_key_done.html:5
-#: amiibofindr/templates/account/password_reset_from_key_done.html:10
+#: templates/account/password_change.html:5
+#: templates/account/password_change.html:10
+#: templates/account/password_reset_from_key.html:5
+#: templates/account/password_reset_from_key.html:10
+#: templates/account/password_reset_from_key_done.html:5
+#: templates/account/password_reset_from_key_done.html:10
 msgid "Change Password"
 msgstr "Cambiar contraseña"
 
-#: amiibofindr/templates/account/password_change.html:56
-#: amiibofindr/templates/account/password_set.html:56
+#: templates/account/password_change.html:56
+#: templates/account/password_set.html:56
 msgid "Set password"
 msgstr "Establecer una contraseña"
 
-#: amiibofindr/templates/account/password_reset.html:6
-#: amiibofindr/templates/account/password_reset.html:11
-#: amiibofindr/templates/account/password_reset_done.html:6
-#: amiibofindr/templates/account/password_reset_done.html:11
+#: templates/account/password_reset.html:6
+#: templates/account/password_reset.html:11
+#: templates/account/password_reset_done.html:6
+#: templates/account/password_reset_done.html:11
 msgid "Password Reset"
 msgstr "Respetar mi contraseña"
 
-#: amiibofindr/templates/account/password_reset.html:18
+#: templates/account/password_reset.html:18
 msgid "Go back to the homepage"
 msgstr "Volver a la página principal"
 
-#: amiibofindr/templates/account/password_reset.html:20
+#: templates/account/password_reset.html:20
 msgid ""
 "Have you forgotten your password? Enter your e-mail address below, and we'll "
 "send you an e-mail allowing you to reset it."
@@ -214,17 +231,17 @@ msgstr ""
 "¿Has olvidado tu contraseña? Introduce tu dirección de correo y te "
 "enviaremos instrucciones de como restablecerla."
 
-#: amiibofindr/templates/account/password_reset.html:36
+#: templates/account/password_reset.html:36
 msgid "Reset My Password"
 msgstr "Restablecer mi contraseña"
 
-#: amiibofindr/templates/account/password_reset.html:39
+#: templates/account/password_reset.html:39
 msgid "Please contact us if you have any trouble resetting your password."
 msgstr ""
 "Por favor contacta con nosotros si tienes algún problema restablecer tu "
 "contraseña."
 
-#: amiibofindr/templates/account/password_reset_done.html:19
+#: templates/account/password_reset_done.html:19
 msgid ""
 "We have sent you an e-mail. Please contact us if you do not receive it "
 "within a few minutes."
@@ -232,11 +249,11 @@ msgstr ""
 "Te hemos enviado un correo electrónico. Contacta con nosotros si no lo has "
 "recibido en unos minutos."
 
-#: amiibofindr/templates/account/password_reset_from_key.html:10
+#: templates/account/password_reset_from_key.html:10
 msgid "Bad Token"
 msgstr "Token invalido"
 
-#: amiibofindr/templates/account/password_reset_from_key.html:15
+#: templates/account/password_reset_from_key.html:15
 #, python-format
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
@@ -247,79 +264,75 @@ msgstr ""
 "ya haya sido usado. Por favor, <a href=\"%(passwd_reset_url)s\">vuelve a "
 "restablecer tu contraseña</a>."
 
-#: amiibofindr/templates/account/password_reset_from_key.html:53
-#: amiibofindr/templates/account/password_reset_from_key_done.html:12
+#: templates/account/password_reset_from_key.html:53
+#: templates/account/password_reset_from_key_done.html:12
 msgid "Your password is now changed."
 msgstr "Tu contraseña ha sido cambiada."
 
-#: amiibofindr/templates/account/password_set.html:5
-#: amiibofindr/templates/account/password_set.html:10
+#: templates/account/password_set.html:5 templates/account/password_set.html:10
 msgid "Set Password"
 msgstr "Establecer contraseña"
 
-#: amiibofindr/templates/account/signup.html:5
+#: templates/account/signup.html:5
 msgid "Signup"
 msgstr "Registrarse"
 
-#: amiibofindr/templates/account/signup.html:10
-#: amiibofindr/templates/account/signup.html:77
+#: templates/account/signup.html:10 templates/account/signup.html.py:77
 msgid "Sign Up"
 msgstr "Registrarse"
 
-#: amiibofindr/templates/account/signup.html:14
+#: templates/account/signup.html:14
 #, python-format
 msgid ""
 "Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
 msgstr "¿Ya tienes una cuenta? <a href=\"%(login_url)s\">Inicia sesión</a>."
 
-#: amiibofindr/templates/amiibo/amiibo.html:4
-#: amiibofindr/templates/amiibo/amiibo.html:6
-#: amiibofindr/templates/amiibo/amiibo.html:7
+#: templates/amiibo/amiibo.html:4 templates/amiibo/amiibo.html.py:6
+#: templates/amiibo/amiibo.html:7
 #, python-format
 msgid "%(amiibo)s amiibo from %(collection)s in "
 msgstr "%(amiibo)s amiibo de %(collection)s en "
 
-#: amiibofindr/templates/amiibo/amiibo.html:60
+#: templates/amiibo/amiibo.html:60
 msgid "Shop"
 msgstr "Tienda"
 
-#: amiibofindr/templates/amiibo/amiibo.html:61
+#: templates/amiibo/amiibo.html:61
 msgid "Price"
 msgstr "Precio"
 
-#: amiibofindr/templates/amiibo/amiibo.html:76
+#: templates/amiibo/amiibo.html:76
 msgid "Updated "
 msgstr "Actualizado"
 
-#: amiibofindr/templates/amiibo/amiibo.html:82
+#: templates/amiibo/amiibo.html:82
 msgid "This is a pack of various items"
 msgstr "Este es un pack que contiene varios artículos"
 
-#: amiibofindr/templates/amiibo/amiibo.html:93
+#: templates/amiibo/amiibo.html:93
 msgid "No stock"
 msgstr "Sin stock"
 
-#: amiibofindr/templates/amiibo/collection.html:4
-#: amiibofindr/templates/amiibo/collection.html:6
-#: amiibofindr/templates/amiibo/collection.html:7
+#: templates/amiibo/collection.html:4 templates/amiibo/collection.html.py:6
+#: templates/amiibo/collection.html:7
 #, python-format
 msgid "%(collection)s amiibos in "
 msgstr "Amiibos de %(collection)s en "
 
-#: amiibofindr/templates/amiibo/collection.html:18
+#: templates/amiibo/collection.html:18
 msgid "All amiibo"
 msgstr "Todos los amiibo"
 
-#: amiibofindr/templates/amiibo/collection.html:29
+#: templates/amiibo/collection.html:29
 msgid "Search..."
 msgstr "Buscar…"
 
-#: amiibofindr/templates/socialaccount/connections.html:5
-#: amiibofindr/templates/socialaccount/connections.html:10
+#: templates/socialaccount/connections.html:5
+#: templates/socialaccount/connections.html:10
 msgid "Account Connections"
 msgstr "Conexiones con mi cuenta"
 
-#: amiibofindr/templates/socialaccount/connections.html:14
+#: templates/socialaccount/connections.html:14
 msgid ""
 "You can sign in to your account using any of the following third party "
 "accounts:"
@@ -327,11 +340,15 @@ msgstr ""
 "Puedes iniciar sesión en tu cuenta usando una de las siguientes redes "
 "sociales:"
 
-#: amiibofindr/templates/socialaccount/connections.html:51
+#: templates/socialaccount/connections.html:51
 msgid ""
 "You currently have no social network accounts connected to this account."
 msgstr "No tienes redes sociales asociadas a tu cuenta."
 
-#: amiibofindr/templates/socialaccount/connections.html:55
+#: templates/socialaccount/connections.html:55
 msgid "Add a 3rd Party Account"
 msgstr "Asociar una red social"
+
+#: urls.py:36
+msgid "^account/"
+msgstr "^mi-cuenta/"
