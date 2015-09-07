@@ -77,7 +77,7 @@ class AmiiboCardAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
                      'model_number')
 
     def image_image(self, obj):
-        if obj.statue:
+        if obj.image:
             return '<img src="{}" width="80" />'.format(obj.image.url)
         else:
             return ''

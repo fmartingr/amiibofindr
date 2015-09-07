@@ -28,8 +28,8 @@ def image_box_upload(self, filename):
 
 def image_card_upload(self, filename):
     name, extension = os.path.splitext(filename)
-    return 'amiibos/{}/card-{}-{}{}'.format(
-        self.collection.slug, self.number, self.slug, extension)
+    return 'amiibos/c/{}/{}_{}{}'.format(
+        self.collection.pk, self.collection_number, self.pk, extension)
 
 
 #
@@ -113,10 +113,6 @@ class Amiibo(models.Model):
 
         return result
 
-    @models.permalink
-    def get_absolute_url(self):
-        return ('amiibo:figure-detail', [self.collection.slug, self.slug])
-
     def __unicode__(self):
         return unicode(self.name_eu) or u''
 
@@ -131,7 +127,7 @@ class AmiiboFigure(Amiibo):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('amiibo:card-detail', [self.slug])
+        return ('amiibo:figure-detail', [self.collection.slug, self.slug])
 
     @property
     def image_box(self):
@@ -164,8 +160,12 @@ class AmiiboCard(Amiibo):
     class Meta:
         ordering = ('collection', 'collection_number', 'name_eu', )
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('amiibo:card-detail', [self.collection.slug, self.slug])
+
     def __unicode__(self):
-        return u"{} {}".format(self.number, self.name)
+        return u"{} {}".format(self.collection_number, self.slug)
 
 
 class AmiiboShop(models.Model):

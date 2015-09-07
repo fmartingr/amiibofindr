@@ -16,6 +16,7 @@ class HomeModel:
 
 class CollectionView(View):
     template = 'amiibo/collection.html'
+    type = Amiibo.FIGURE
 
     def get(self, request, collection='all'):
         if collection != _('all'):
@@ -32,16 +33,33 @@ class CollectionView(View):
         })
 
 
+class FigureCollectionView(CollectionView):
+    type = Amiibo.FIGURE
+
+
+class CardCollectionView(CollectionView):
+    type = Amiibo.CARD
+
+
 class AmiiboView(View):
     template = 'amiibo/amiibo.html'
+    type = Amiibo.FIGURE
 
     def get(self, request, collection=None, amiibo=None):
         amiibo_obj = get_object_or_404(Amiibo,
                                        slug=amiibo,
-                                       collection__slug=collection)
+                                       collection__slug=collection,
+                                       type=self.type)
 
         return render(request, self.template, {
             'selected_collection': amiibo_obj.collection,
             'amiibo': amiibo_obj,
             'item': amiibo_obj
         })
+
+class AmiiboFigureView(AmiiboView):
+    type = Amiibo.FIGURE
+
+
+class AmiiboCardView(AmiiboView):
+    type = Amiibo.CARD
