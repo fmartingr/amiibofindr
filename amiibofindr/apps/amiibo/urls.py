@@ -20,13 +20,13 @@ urlpatterns = patterns(
         CollectionView.as_view(),
         name='figures-list'),
 
-    url(r'^(?P<collection>[\w\d\-]+)/(?P<amiibo>[\w\d\-]+)$',
+    url(_(r'^(?P<collection>[\w\d\-]+)/(?P<amiibo>[\w\d\-]+)$'),
         AmiiboView.as_view(),
         name='amiibo'),
-    url(r'^cards/(?P<collection>[\w\d\-]+)/(?P<amiibo>[\w\d\-]+)$',
+    url(_(r'^cards/(?P<collection>[\w\d\-]+)/(?P<amiibo>[\w\d\-]+)$'),
         AmiiboView.as_view(),
         name='card-detail'),
-    url(r'^figures/(?P<collection>[\w\d\-]+)/(?P<amiibo>[\w\d\-]+)$',
+    url(_(r'^figures/(?P<collection>[\w\d\-]+)/(?P<amiibo>[\w\d\-]+)$'),
         AmiiboView.as_view(),
         name='figure-detail'),
 )
