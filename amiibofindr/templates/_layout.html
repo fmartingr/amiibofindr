@@ -1,5 +1,6 @@
 {% load static i18n account %}
 {% user_display user as user_display %}
+{% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
 <html>
@@ -148,7 +149,7 @@
          <div class="ui link list">
         {% for lang_code, lang_name in languages %}
           {% language lang_code %}
-          <a class="item" href="#">{{ lang_name }}</a>
+          <a class="item {% if lang_code == LANGUAGE_CODE %}active{% endif %}" href="#">{{ lang_name }}</a>
           {% endlanguage %}
         {% endfor %}
          </div>

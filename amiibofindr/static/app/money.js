@@ -61,8 +61,8 @@
     var self = this;
     if (this.currencies.indexOf(currency) !== -1) {
       if (this.DEBUG) console.log('[money] set user currency: ' + currency)
-      $('[data-currency-change]').removeClass('underlined');
-      $('[data-currency-change="' + currency + '"]').addClass('underlined');
+      $('[data-currency-change]').removeClass('active');
+      $('[data-currency-change="' + currency + '"]').addClass('active');
       window.localStorage.setItem('currency', currency);
       this.currency = currency;
       this.convertPrices();
