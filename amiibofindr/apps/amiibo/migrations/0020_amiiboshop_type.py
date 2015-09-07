@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('amiibo', '0019_auto_20150827_1825'),
+        ('amiibo', '0018_amiiboshop_check_price'),
     ]
 
     operations = [

@@ -12,6 +12,7 @@ import reversion
 # amiibo
 from .models import (
     Collection, Amiibo,
+    AmiiboFigure, AmiiboCard,
     AmiiboShop,
     AmiiboPrice, AmiiboPriceHistory
 )
@@ -22,9 +23,9 @@ class ColectionResource(resources.ModelResource):
         model = Collection
 
 
-class AmiiboResource(resources.ModelResource):
+class AmiiboFigureResource(resources.ModelResource):
     class Meta:
-        model = Amiibo
+        model = AmiiboFigure
 
 
 class AmiiboShopResource(resources.ModelResource):
@@ -32,18 +33,23 @@ class AmiiboShopResource(resources.ModelResource):
         model = AmiiboShop
 
 
+class AmiiboCardResource(resources.ModelResource):
+    class Meta:
+        model = AmiiboCard
+
+
 class CollectionAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = ColectionResource
 
-    list_display = ('name_eu', 'amiibo_number', 'have_cards', )
+    list_display = ('name_eu', 'amiibo_number', )
 
     def amiibo_number(self, obj):
         return obj.amiibos.count()
     amiibo_number.short_description = 'Amiibos'
 
 
-class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
-    resource_class = AmiiboResource
+class AmiiboFigureAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
+    resource_class = AmiiboFigureResource
 
     list_display_links = ('name_eu', )
     list_display = ('statue_image', 'name_eu', 'collection',)
@@ -63,7 +69,7 @@ class AmiiboAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
 
 
 class AmiiboCardAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
-    resource_class = AmiiboResource
+    resource_class = AmiiboCardResource
 
     list_display_links = ('name_eu', )
     list_display = ('image_image', 'name_eu', 'collection', 'dice', 'rps', )
@@ -84,7 +90,6 @@ class AmiiboShopAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     list_editable = ('check_price', )
 
 
-
 class AmiiboPriceAdmin(reversion.VersionAdmin):
     pass
 
@@ -94,7 +99,7 @@ class AmiiboPriceHistoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Collection, CollectionAdmin)
-admin.site.register(Amiibo, AmiiboAdmin)
+admin.site.register(AmiiboFigure, AmiiboFigureAdmin)
 admin.site.register(AmiiboShop, AmiiboShopAdmin)
 admin.site.register(AmiiboPrice, AmiiboPriceAdmin)
 admin.site.register(AmiiboPriceHistory, AmiiboPriceHistoryAdmin)
