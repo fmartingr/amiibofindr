@@ -72,11 +72,12 @@ class AmiiboCardAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = AmiiboCardResource
 
     list_display_links = ('name_eu', )
-    list_display = ('image_image', 'name_eu', 'collection', 'dice', 'rps', )
-    search_fields = ('collection__name_eu', 'name_eu', 'name_us',)
+    list_display = ('image_image', 'name_eu', 'collection',)
+    search_fields = ('collection__name_eu', 'name_eu', 'name_us',
+                     'model_number')
 
     def image_image(self, obj):
-        if obj.image:
+        if obj.statue:
             return '<img src="{}" width="80" />'.format(obj.image.url)
         else:
             return ''
@@ -100,6 +101,7 @@ class AmiiboPriceHistoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Collection, CollectionAdmin)
 admin.site.register(AmiiboFigure, AmiiboFigureAdmin)
+admin.site.register(AmiiboCard, AmiiboCardAdmin)
 admin.site.register(AmiiboShop, AmiiboShopAdmin)
 admin.site.register(AmiiboPrice, AmiiboPriceAdmin)
 admin.site.register(AmiiboPriceHistory, AmiiboPriceHistoryAdmin)
