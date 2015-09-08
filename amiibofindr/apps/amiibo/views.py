@@ -7,29 +7,34 @@ from django.views.generic.base import View
 from django.utils.translation import ugettext as _
 
 # amiibo
-from amiibofindr.apps.amiibo.models import Collection, Amiibo
+from amiibofindr.apps.amiibo.models import (
+    Collection, Amiibo,
+    AmiiboFigure, AmiiboCard
+)
 
 
 class HomeModel:
     def get_absolute_url(self):
         return reverse('amiibo:collection', args=[_('all')])
 
+
 class CollectionView(View):
     template = 'amiibo/collection.html'
     type = Amiibo.FIGURE
+    model = AmiiboFigure
 
     def get(self, request, collection='all'):
         if collection != _('all'):
             collection = get_object_or_404(Collection, slug=collection)
-            if self.type == Amiibo.FIGURE:
+            if self.type == self.model.FIGURE:
                 amiibo_list = collection.figures
-            elif self.type == Amiibo.CARD:
+            elif self.type == self.model.CARD:
                 amiibo_list = collection.cards
             else:
                 amiibo_list = collection.amiibo
         else:
             collection = None
-            amiibo_list = Amiibo.objects.all().order_by('name_eu')
+            amiibo_list = self.model.objects.all().order_by('name_eu')
 
         return render(request, self.template, {
             'selected_collection': collection,
@@ -40,18 +45,21 @@ class CollectionView(View):
 
 class CollectionFigureView(CollectionView):
     type = Amiibo.FIGURE
+    model = AmiiboFigure
 
 
 class CollectionCardView(CollectionView):
     type = Amiibo.CARD
+    model = AmiiboCard
 
 
 class AmiiboView(View):
     template = 'amiibo/amiibo.html'
     type = Amiibo.FIGURE
+    model = AmiiboFigure
 
     def get(self, request, collection=None, amiibo=None):
-        amiibo_obj = get_object_or_404(Amiibo,
+        amiibo_obj = get_object_or_404(self.model,
                                        slug=amiibo,
                                        collection__slug=collection,
                                        type=self.type)
@@ -64,7 +72,9 @@ class AmiiboView(View):
 
 class AmiiboFigureView(AmiiboView):
     type = Amiibo.FIGURE
+    model = AmiiboFigure
 
 
 class AmiiboCardView(AmiiboView):
     type = Amiibo.CARD
+    model = AmiiboCard
