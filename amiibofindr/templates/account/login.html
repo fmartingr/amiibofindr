@@ -8,8 +8,8 @@
 {% block main_content %}
   {% get_providers as socialaccount_providers %}
 
-  <div class="ui two column centered grid">
-    <div class="ui column">
+  <div class="ui page stackable grid centered">
+     <div class="ten wide column">
       <h1>{% trans "Sign In" %}</h1>
 
       {% if socialaccount_providers %}

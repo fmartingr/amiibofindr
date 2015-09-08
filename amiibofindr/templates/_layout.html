@@ -67,12 +67,8 @@
                 </div>
               </div>
             {% else %}
-              <div class="ui item">
-                <a href="{% url 'account_login' %}">{% trans "Login" %}</a>
-              </div>
-              <div class="ui item">
-                <a href="{% url 'account_signup' %}">{% trans "Register" %}</a>
-              </div>
+                <a class="item" href="{% url 'account_login' %}">{% trans "Login" %}</a>
+                <a class="item" href="{% url 'account_signup' %}">{% trans "Register" %}</a>
             {% endif %}
           </div>
         </div>
