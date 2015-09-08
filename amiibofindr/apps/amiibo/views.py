@@ -21,7 +21,12 @@ class CollectionView(View):
     def get(self, request, collection='all'):
         if collection != _('all'):
             collection = get_object_or_404(Collection, slug=collection)
-            amiibo_list = collection.amiibos
+            if self.type == Amiibo.FIGURE:
+                amiibo_list = collection.figures
+            elif self.type == Amiibo.CARD:
+                amiibo_list = collection.cards
+            else:
+                amiibo_list = collection.amiibo
         else:
             collection = None
             amiibo_list = Amiibo.objects.all().order_by('name_eu')
@@ -33,11 +38,11 @@ class CollectionView(View):
         })
 
 
-class FigureCollectionView(CollectionView):
+class CollectionFigureView(CollectionView):
     type = Amiibo.FIGURE
 
 
-class CardCollectionView(CollectionView):
+class CollectionCardView(CollectionView):
     type = Amiibo.CARD
 
 

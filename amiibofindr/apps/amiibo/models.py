@@ -50,11 +50,11 @@ class Collection(models.Model):
 
     @property
     def figures(self):
-        return self.amiibos_qs.all(type=Amiibo.FIGURE)
+        return self.amiibos_qs.filter(type=Amiibo.FIGURE)
 
     @property
     def cards(self):
-        return self.amiibos_qs.all(type=Amiibo.FIGURE)
+        return self.amiibos_qs.filter(type=Amiibo.CARD)
 
     @property
     def name(self):
