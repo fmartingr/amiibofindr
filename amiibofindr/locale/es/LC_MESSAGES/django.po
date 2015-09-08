@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-07 22:33+0200\n"
-"PO-Revision-Date: 2015-09-07 22:33+0200\n"
+"POT-Creation-Date: 2015-09-08 23:54+0200\n"
+"PO-Revision-Date: 2015-09-08 23:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -18,21 +18,33 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.4\n"
 
-#: apps/amiibo/urls.py:13
-msgid "^(?P<collection>[\\w\\d\\-]+)/$"
-msgstr "^(?P<collection>[\\w\\d\\-]+)/$"
-
 #: apps/amiibo/urls.py:16
-msgid "^cards/(?P<collection>[\\w\\d\\-]+)/$"
-msgstr "^tarjetas/(?P<collection>[\\w\\d\\-]+)/$"
+msgid "^cards$"
+msgstr "^tarjetas$"
 
 #: apps/amiibo/urls.py:19
-msgid "^figures/(?P<collection>[\\w\\d\\-]+)/$"
+msgid "^figures$"
+msgstr "^figuras$"
+
+#: apps/amiibo/urls.py:23
+msgid "^cards/(?P<collection>[\\w\\d\\-]+)$"
+msgstr "^tarjetas/(?P<collection>[\\w\\d\\-]+)$"
+
+#: apps/amiibo/urls.py:26
+msgid "^figures/(?P<collection>[\\w\\d\\-]+)$"
 msgstr "^figuras/(?P<collection>[\\w\\d\\-]+)/$"
 
-#: apps/amiibo/views.py:15 apps/amiibo/views.py:19 templates/_layout.html:5
-msgid "all"
-msgstr "todas"
+#: apps/amiibo/urls.py:30
+msgid "^cards/(?P<collection>[\\w\\d\\-]+)/(?P<amiibo>[\\w\\d\\-]+)$"
+msgstr "^tarjetas/(?P<collection>[\\w\\d\\-]+)/(?P<amiibo>[\\w\\d\\-]+)$"
+
+#: apps/amiibo/urls.py:33
+msgid "^figures/(?P<collection>[\\w\\d\\-]+)/(?P<amiibo>[\\w\\d\\-]+)$"
+msgstr "^figuras/(?P<collection>[\\w\\d\\-]+)/(?P<amiibo>[\\w\\d\\-]+)$"
+
+#: apps/amiibo/urls.py:37
+msgid "^amiibo/(?P<amiibo>\\d+)/(?P<action>[\\w\\+\\-\\=]+)$"
+msgstr "^amiibo/(?P<amiibo>\\d+)/(?P<action>[\\w\\+\\-\\=]+)$"
 
 #: templates/404.html:10
 msgid "Not found!"
@@ -68,39 +80,48 @@ msgstr ""
 "informados. Por favor, prueba refrescando la página o <a "
 "href=“%(url_home)s”>vuelve a la home</a>."
 
-#: templates/_layout.html:36 templates/_layout.html.py:94
+#: templates/_layout.html:5
+msgid "all"
+msgstr "todas"
+
+#: templates/_layout.html:36 templates/_layout.html.py:91
 msgid "Figures"
 msgstr "Figuras"
 
-#: templates/_layout.html:39 templates/_layout.html.py:96
+#: templates/_layout.html:39 templates/_layout.html.py:51
+#: templates/_layout.html:93 templates/_layout.html.py:102
 msgid "All"
 msgstr "Todas"
 
-#: templates/_layout.html:66 templates/account/password_reset_from_key.html:49
+#: templates/_layout.html:48 templates/_layout.html.py:100
+msgid "Cards"
+msgstr "Tarjetas"
+
+#: templates/_layout.html:63 templates/account/password_reset_from_key.html:49
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#: templates/_layout.html:67
+#: templates/_layout.html:64
 msgid "Emails"
 msgstr "Emails"
 
-#: templates/_layout.html:69
+#: templates/_layout.html:66
 msgid "Log out"
 msgstr "Cerrar sesión"
 
-#: templates/_layout.html:74
+#: templates/_layout.html:71
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: templates/_layout.html:77
+#: templates/_layout.html:74
 msgid "Register"
 msgstr "Registrarse"
 
-#: templates/_layout.html:141
+#: templates/_layout.html:130
 msgid "Select desired currency"
 msgstr "Seleccionar moneda"
 
-#: templates/_layout.html:149
+#: templates/_layout.html:138
 msgid "Language"
 msgstr "Idioma"
 
@@ -287,31 +308,70 @@ msgid ""
 "Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
 msgstr "¿Ya tienes una cuenta? <a href=\"%(login_url)s\">Inicia sesión</a>."
 
-#: templates/amiibo/amiibo.html:4 templates/amiibo/amiibo.html.py:6
-#: templates/amiibo/amiibo.html:7
+#: templates/amiibo/amiibo-figure.html:9 templates/amiibo/amiibo-figure.html:11
+#: templates/amiibo/amiibo-figure.html:12
 #, python-format
 msgid "%(amiibo)s amiibo from %(collection)s in "
 msgstr "%(amiibo)s amiibo de %(collection)s en "
 
-#: templates/amiibo/amiibo.html:60
-msgid "Shop"
-msgstr "Tienda"
+#: templates/amiibo/amiibo-figure.html:44
+msgid "Available for trade"
+msgstr "Disponible para cambio"
 
-#: templates/amiibo/amiibo.html:61
-msgid "Price"
-msgstr "Precio"
+#: templates/amiibo/amiibo-figure.html:46
+msgid "I do not have it"
+msgstr "No lo tengo"
 
-#: templates/amiibo/amiibo.html:76
+#: templates/amiibo/amiibo-figure.html:50
+msgid "I do not want this"
+msgstr "No lo quiero"
+
+#: templates/amiibo/amiibo-figure.html:52
+#: templates/amiibo/amiibo-figure.html:61
+msgid "I want this"
+msgstr "Lo quiero"
+
+#: templates/amiibo/amiibo-figure.html:54
+#: templates/amiibo/amiibo-figure.html:62
+msgid "or"
+msgstr "o"
+
+#: templates/amiibo/amiibo-figure.html:55
+#: templates/amiibo/amiibo-figure.html:63
+msgid "I have this"
+msgstr "Lo tengo"
+
+#: templates/amiibo/amiibo-figure.html:66
+msgid "Register and star collecting amiibo!"
+msgstr "¡Regístrate y empieza a coleccionar Amiibo!"
+
+#: templates/amiibo/amiibo-figure.html:85
+msgid "Shops"
+msgstr "Tiendas"
+
+#: templates/amiibo/amiibo-figure.html:99
+msgid "Buy now for"
+msgstr "Comprar ahora por"
+
+#: templates/amiibo/amiibo-figure.html:106
+msgid "No stock"
+msgstr "Sin stock"
+
+#: templates/amiibo/amiibo-figure.html:114
 msgid "Updated "
 msgstr "Actualizado"
 
-#: templates/amiibo/amiibo.html:82
+#: templates/amiibo/amiibo-figure.html:117
+msgid "This item had never been in stock"
+msgstr "Este articulo nunca ha estado en stock"
+
+#: templates/amiibo/amiibo-figure.html:123
 msgid "This is a pack of various items"
 msgstr "Este es un pack que contiene varios artículos"
 
-#: templates/amiibo/amiibo.html:93
-msgid "No stock"
-msgstr "Sin stock"
+#: templates/amiibo/collection-cards.html:9 templates/amiibo/collection.html:29
+msgid "Search..."
+msgstr "Buscar…"
 
 #: templates/amiibo/collection.html:4 templates/amiibo/collection.html.py:6
 #: templates/amiibo/collection.html:7
@@ -323,9 +383,9 @@ msgstr "Amiibos de %(collection)s en "
 msgid "All amiibo"
 msgstr "Todos los amiibo"
 
-#: templates/amiibo/collection.html:29
-msgid "Search..."
-msgstr "Buscar…"
+#: templates/home/home.html:9
+msgid "Welcome to amiibofindr!"
+msgstr "¡Bienvenido a Amiibofindr!"
 
 #: templates/socialaccount/connections.html:5
 #: templates/socialaccount/connections.html:10
@@ -352,3 +412,9 @@ msgstr "Asociar una red social"
 #: urls.py:36
 msgid "^account/"
 msgstr "^mi-cuenta/"
+
+#~ msgid "^(?P<collection>[\\w\\d\\-]+)/(?P<amiibo>[\\w\\d\\-]+)$"
+#~ msgstr "^(?P<collection>[\\w\\d\\-]+)/(?P<amiibo>[\\w\\d\\-]+)$"
+
+#~ msgid "Price"
+#~ msgstr "Precio"

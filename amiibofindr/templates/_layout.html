@@ -31,12 +31,12 @@
     <div class="ui page grid">
       <div class="computer tablet only row">
         <div class="ui large menu navbar">
-          <a href="{% url 'home:redirect' %}" class="brand item">Amiibofindr</a>
+          <a href="{% url 'home:home' %}" class="brand item">Amiibofindr</a>
           <div class="ui dropdown item">
             {% trans "Figures" %}
             <i class="dropdown icon"></i>
             <div class="menu">
-              <a class="item" href="{% url 'amiibo:figures-list' %}">{% trans "All" %}</a>
+              <a class="item" href="{% url 'amiibo:figures-all' %}">{% trans "All" %}</a>
               <div class="ui divider"></div>
               {% for col in COLLECTIONS_FIGURES %}
                 <a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a>
@@ -48,7 +48,7 @@
             {% trans "Cards" %}
             <i class="dropdown icon"></i>
             <div class="menu">
-              <a class="item" href="{% url 'amiibo:cards-list' %}">{% trans "All" %}</a>
+              <a class="item" href="{% url 'amiibo:cards-all' %}">{% trans "All" %}</a>
               {% for col in COLLECTIONS_CARDS %}
                 <a class="item" href="{% url 'amiibo:cards-list' col.slug %}">{{ col.name }}</a>
               {% endfor %}
@@ -90,7 +90,7 @@
           <div class="ui item">
             <div class="text">{% trans 'Figures' %}</div>
             <div class="menu">
-              <a class="item" href="{% url 'amiibo:figures-list' all_word %}">{% trans "All" %}</a>
+              <a class="item" href="{% url 'amiibo:figures-all' %}">{% trans "All" %}</a>
               {% for col in COLLECTIONS_FIGURES %}
                 <a class="item" href="{% url 'amiibo:figures-list' col.slug %}">{{ col.name }}</a>
               {% endfor %}
@@ -99,7 +99,7 @@
           <div class="ui item">
             <div class="text">{% trans "Cards" %}</div>
             <div class="menu">
-              <a class="item" href="{% url 'amiibo:cards-list' all_word %}">{% trans "All" %}</a>
+              <a class="item" href="{% url 'amiibo:cards-all' %}">{% trans "All" %}</a>
               {% for col in COLLECTIONS_CARDS %}
                 <a class="item" href="{% url 'amiibo:cards-list' col.slug %}">{{ col.name }}</a>
               {% endfor %}

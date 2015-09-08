@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.utils.translation import activate, deactivate, get_language
-from django.core.urlresolvers import resolve, reverse
+from django.core.urlresolvers import resolve, reverse_lazy
 from django.conf import settings
 
 
@@ -29,7 +29,7 @@ def i18n(request):
         this = {
             'code': lang_code,
             'name': name,
-            # 'url': reverse(res.url_name, args=res.args, kwargs=res.kwargs)
+            'url': reverse_lazy(res.view_name, args=res.args, kwargs=res.kwargs)
         }
         result.append(this)
         deactivate()

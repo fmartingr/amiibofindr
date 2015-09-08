@@ -20,8 +20,8 @@ class CollectionView(View):
     type = Amiibo.FIGURE
     model = AmiiboFigure
 
-    def get(self, request, collection='all'):
-        if collection != _('all'):
+    def get(self, request, collection=None):
+        if collection:
             collection = get_object_or_404(Collection, slug=collection)
             if self.type == self.model.FIGURE:
                 amiibo_list = collection.figures
@@ -31,7 +31,7 @@ class CollectionView(View):
                 amiibo_list = collection.amiibo
         else:
             collection = None
-            amiibo_list = self.model.objects.all().order_by('name_eu')
+            amiibo_list = self.model.objects.all()
 
         return render(request, self.template, {
             'selected_collection': collection,

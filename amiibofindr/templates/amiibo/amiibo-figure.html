@@ -38,22 +38,38 @@ AMIIBO FIGURE
             </h2>
           </div>
           <div class="eight wide column right aligned">
-            {% if amiibo.pk in USER_AMIIBO_OWNED %}
-              <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='=trade' %}" class="ui button {% if amiibo.pk in USER_AMIIBO_TRADE %}teal{% endif %}">
-                <i class="{% if amiibo.pk in USER_AMIIBO_TRADE %}check{% else %}cancel{% endif %} icon"></i> Available for trade
-              </a>
-              <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='-owned' %}" class="ui button red">I do not have it</a>
+            {% if user.is_authenticated %}
+              {% if amiibo.pk in USER_AMIIBO_OWNED %}
+                <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='=trade' %}" class="ui button {% if amiibo.pk in USER_AMIIBO_TRADE %}teal{% endif %}">
+                  <i class="{% if amiibo.pk in USER_AMIIBO_TRADE %}check{% else %}cancel{% endif %} icon"></i> {% trans 'Available for trade' %}
+                </a>
+                <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='-owned' %}" class="ui button red">{% trans 'I do not have it' %}</a>
+              {% else %}
+                <div class="ui buttons">
+                  {% if amiibo.pk in USER_AMIIBO_WISHLIST %}
+                    <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='-wishlist' %}" class="ui button yellow">{% trans 'I do not want this' %}</a>
+                  {% else %}
+                    <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='+wishlist' %}" class="ui button">{% trans 'I want this' %}</a>
+                  {% endif %}
+                  <div class="or" data-text="{% trans 'or' %}"></div>
+                  <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='+owned' %}" class="ui positive button">{% trans 'I have this' %}</a>
+              {% endif %}
+                </div>
             {% else %}
-              <div class="ui buttons">
-                {% if amiibo.pk in USER_AMIIBO_WISHLIST %}
-                  <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='-wishlist' %}" class="ui button yellow">I do not want this</a>
-                {% else %}
-                  <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='+wishlist' %}" class="ui button">I want this</a>
-                {% endif %}
-                <div class="or" data-text="{% trans 'or' %}"></div>
-                <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='+owned' %}" class="ui positive button">I have this</a>
+                <form action="{% url 'account_signup' %}" method="get">
+                  <input type="hidden" name="next" value="{{ amiibo.get_absolute_url }}">
+                  <button class="ui animated fade button standard">
+                    <div class="visible content ui buttons">
+                      <a href="#" class="ui button">{% trans 'I want this' %}</a>
+                      <div class="or" data-text="{% trans 'or' %}"></div>
+                      <a href="#" class="ui positive button">{% trans 'I have this' %}</a>
+                    </div>
+                    <div class="hidden content">
+                      {% trans 'Register and star collecting amiibo!' %}
+                    </div>
+                  </button>
+                </form>
             {% endif %}
-              </div>
           </div>
         </div>
       </div>
@@ -63,7 +79,7 @@ AMIIBO FIGURE
     <div class="four wide column">
       <div class="ui segment">
         {% block amiibo_image %}
-        <img src="{% thumbnail amiibo.statue 340x340 crop %}" class="ui image centered" />
+          <img src="{% thumbnail amiibo.statue 340x340 crop %}" class="ui image centered" />
         {% endblock %}
       </div>
     </div>

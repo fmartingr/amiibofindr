@@ -15,10 +15,10 @@ urlpatterns = patterns(
     '',
     url(_('^cards$'),
         CollectionCardView.as_view(),
-        name='cards-list'),
+        name='cards-all'),
     url(_(r'^figures$'),
         CollectionFigureView.as_view(),
-        name='figures-list'),
+        name='figures-all'),
 
     url(_(r'^cards/(?P<collection>[\w\d\-]+)$'),
         CollectionCardView.as_view(),
@@ -27,9 +27,6 @@ urlpatterns = patterns(
         CollectionFigureView.as_view(),
         name='figures-list'),
 
-    url(_(r'^(?P<collection>[\w\d\-]+)/(?P<amiibo>[\w\d\-]+)$'),
-        AmiiboView.as_view(),
-        name='amiibo'),
     url(_(r'^cards/(?P<collection>[\w\d\-]+)/(?P<amiibo>[\w\d\-]+)$'),
         AmiiboCardView.as_view(),
         name='card-detail'),
