@@ -2,16 +2,17 @@
 
 # django
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import View
 from django.utils.translation import ugettext as _
 
 # amiibo
-from amiibofindr.apps.amiibo.models import (
+from .models import (
     Collection, Amiibo,
     AmiiboFigure, AmiiboCard
 )
-
+from . import services
 
 class HomeModel:
     def get_absolute_url(self):
@@ -76,3 +77,55 @@ class AmiiboCardView(AmiiboView):
     template = 'amiibo/amiibo-card.html'
     type = Amiibo.CARD
     model = AmiiboCard
+
+
+class UserAmiiboView(View):
+    actions = {
+        '+owned': 'add_owned',
+        '-owned': 'remove_owned',
+        '+wishlist': 'add_wishlist',
+        '-wishlist': 'remove_wishlist',
+        '+trade': 'add_trade',
+        '-trade': 'remove_trade',
+        '=trade': 'toggle_trade',
+    }
+
+    def get(self, request, amiibo, action):
+        obj = get_object_or_404(Amiibo, pk=amiibo)
+        amiibo = obj.as_type()
+        if action in self.actions:
+            method = getattr(self, self.actions[action], None)
+            if method:
+                result = method(request, amiibo)
+                if result:
+                    return result
+
+        return HttpResponseRedirect(amiibo.get_absolute_url())
+
+    def add_wishlist(self, request, amiibo):
+        services.user_add_wishlist(request.user, amiibo)
+        # TODO: Add message
+
+    def remove_wishlist(self, request, amiibo):
+        services.user_remove_wishlist(request.user, amiibo)
+        # TODO: Add message
+
+    def add_trade(self, request, amiibo):
+        services.user_add_trade(request.user, amiibo)
+        # TODO: Add message
+
+    def remove_trade(self, request, amiibo):
+        services.user_remove_trade(request.user, amiibo)
+        # TODO: Add message
+
+    def toggle_trade(self, request, amiibo):
+        services.user_toggle_trade(request.user, amiibo)
+        # TODO: Add message
+
+    def add_owned(self, request, amiibo):
+        services.user_add_owned(request.user, amiibo)
+        # TODO: Add message
+
+    def remove_owned(self, request, amiibo):
+        services.user_remove_owned(request.user, amiibo)
+        # TODO: Add message

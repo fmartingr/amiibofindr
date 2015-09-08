@@ -26,9 +26,9 @@ def user_amiibo(request):
     wishlisted = []
     trading = []
     if request.user.is_authenticated():
-        owned  = UserAmiibo.objects.filter(own=True).values_list('id', flat=True)
-        wishlisted = UserAmiibo.objects.filter(want=True).values_list('id', flat=True)
-        trading = UserAmiibo.objects.filter(trade=True).values_list('id', flat=True)
+        owned  = UserAmiibo.objects.filter(own=True).values_list('_amiibo__id', flat=True)
+        wishlisted = UserAmiibo.objects.filter(want=True).values_list('_amiibo__id', flat=True)
+        trading = UserAmiibo.objects.filter(trade=True).values_list('_amiibo__id', flat=True)
 
     return {
         'USER_AMIIBO_OWNED': owned,

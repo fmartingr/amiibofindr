@@ -7,7 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 # home
 from .views import (
     AmiiboView, AmiiboCardView, AmiiboFigureView,
-    CollectionView, CollectionCardView, CollectionFigureView
+    CollectionView, CollectionCardView, CollectionFigureView,
+    UserAmiiboView
 )
 
 urlpatterns = patterns(
@@ -31,4 +32,8 @@ urlpatterns = patterns(
     url(_(r'^figures/(?P<collection>[\w\d\-]+)/(?P<amiibo>[\w\d\-]+)$'),
         AmiiboFigureView.as_view(),
         name='figure-detail'),
+
+    url(_(r'^amiibo/(?P<amiibo>\d+)/(?P<action>[\w\+\-\=]+)$'),
+        UserAmiiboView.as_view(),
+        name='user-action'),
 )
