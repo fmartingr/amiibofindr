@@ -49,7 +49,7 @@ class Collection(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('amiibo:collection', [self.slug])
+        return ('amiibo:figures-list', [self.slug])
 
     @property
     def amiibos(self):
@@ -131,6 +131,14 @@ class Amiibo(models.Model):
 
         return result
 
+    @property
+    def is_card(self):
+        return self.type == self.CARD
+
+    @property
+    def is_figure(self):
+        return self.type == self.FIGURE
+
     def __unicode__(self):
         return unicode(self.name_eu) or u''
 
@@ -152,6 +160,10 @@ class AmiiboFigure(Amiibo):
         return 'images/amiibo/{}/{}-box.jpg'.format(
             self.collection.slug, self.slug
         )
+
+    @property
+    def image(self):
+        return self.statue
 
     @property
     def image_statue(self):

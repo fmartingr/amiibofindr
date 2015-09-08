@@ -14,10 +14,6 @@ from .models import (
 )
 from . import services
 
-class HomeModel:
-    def get_absolute_url(self):
-        return reverse('amiibo:collection', args=[_('all')])
-
 
 class CollectionView(View):
     template = 'amiibo/collection.html'
@@ -40,7 +36,7 @@ class CollectionView(View):
         return render(request, self.template, {
             'selected_collection': collection,
             'amiibo_list': amiibo_list,
-            'item': collection or HomeModel(),
+            'item': collection,
         })
 
 
@@ -50,6 +46,7 @@ class CollectionFigureView(CollectionView):
 
 
 class CollectionCardView(CollectionView):
+    template = 'amiibo/collection-cards.html'
     type = Amiibo.CARD
     model = AmiiboCard
 

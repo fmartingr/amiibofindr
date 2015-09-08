@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 from django.utils.translation import activate, deactivate, get_language
+from django.core.urlresolvers import resolve, reverse
 from django.conf import settings
 
 
@@ -22,13 +23,13 @@ def files(request):
 def i18n(request):
     lang = get_language()
     result = []
+    res = resolve(request.path)
     for lang_code, name in settings.LANGUAGES:
         activate(lang_code)
         this = {
             'code': lang_code,
             'name': name,
-            'url': request.path.replace('/' + request.LANGUAGE_CODE,
-                                        '/' + lang_code)
+            # 'url': reverse(res.url_name, args=res.args, kwargs=res.kwargs)
         }
         result.append(this)
         deactivate()

@@ -13,9 +13,13 @@ from .views import (
 
 urlpatterns = patterns(
     '',
-    url(_(r'^(?P<collection>[\w\d\-]+)$'),
-        CollectionView.as_view(),
-        name='collection'),
+    url(_('^cards$'),
+        CollectionCardView.as_view(),
+        name='cards-list'),
+    url(_(r'^figures$'),
+        CollectionFigureView.as_view(),
+        name='figures-list'),
+
     url(_(r'^cards/(?P<collection>[\w\d\-]+)$'),
         CollectionCardView.as_view(),
         name='cards-list'),

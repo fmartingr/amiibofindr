@@ -1,16 +1,53 @@
 {% extends "_layout.html" %}
-{% load staticfiles %}
+{% load staticfiles i18n %}
 
 {% block main_content %}
-<div class="uk-grid">
-    {% for amiibo in amiibo_list %}
-    <div class="uk-width-medium-1-5">
-        <a class="uk-panel uk-panel-box uk-panel-box-hover">
-            <h3 class="uk-panel-title uk-text-center">{{ amiibo.name_eu }}</h3>
-            <img src="{% static amiibo.image_statue %}" />
-        </a>
+  <div class="ui page grid">
+    <div class="sixteen wide column">
+      <h1 class="ui center aligned icon header">
+        <i class="circular users icon"></i>
+        {% trans 'Welcome to amiibofindr!' %}
+      </h1>
     </div>
-    {% if forloop.counter|divisibleby:5 %}</div><div class="uk-grid">{% endif %}
-    {% endfor %}
-</div>
+
+    <div class="four wide column">
+      <img src="http://placehold.it/300x300" class="ui image">
+    </div>
+    <div class="nine wide column">
+      <h2>{% lorem 6 w random %}</h2>
+      {% lorem 1 p %}
+    </div>
+
+    <div class="three wide column"></div>
+    <div class="three wide column"></div>
+
+    <div class="nine wide column">
+      <h2>{% lorem 6 w random %}</h2>
+      {% lorem 1 p %}
+    </div>
+    <div class="four wide column">
+      <img src="http://placehold.it/300x300" class="ui image">
+    </div>
+
+    <div class="four wide column">
+      <img src="http://placehold.it/300x300" class="ui image">
+    </div>
+    <div class="nine wide column">
+      <h2>{% lorem 6 w random %}</h2>
+      {% lorem 1 p %}
+    </div>
+
+    <div class="three wide column"></div>
+    <div class="three wide column"></div>
+
+    <div class="nine wide column">
+      <h2>{% lorem 6 w random %}</h2>
+      {% lorem 1 p %}
+    </div>
+    <div class="four wide column">
+      <img src="http://placehold.it/300x300" class="ui image">
+    </div>
+
+
+  </div>
 {% endblock %}

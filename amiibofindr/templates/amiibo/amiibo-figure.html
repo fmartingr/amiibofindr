@@ -62,7 +62,9 @@ AMIIBO FIGURE
   <div class="ui page stackable grid">
     <div class="four wide column">
       <div class="ui segment">
-        <img src="{% thumbnail amiibo.statue 340x340 crop=smart %}" class="ui image centered" />
+        {% block amiibo_image %}
+        <img src="{% thumbnail amiibo.statue 340x340 crop %}" class="ui image centered" />
+        {% endblock %}
       </div>
     </div>
     <div class="twelve wide column">

@@ -2,7 +2,11 @@
 <div class="ui link card" data-amiibo-names="{{ amiibo.get_all_names|lower }}" data-href="{{ amiibo.get_absolute_url }}">
   <div class="image">
     <div class="ui fluid image">
-      <img src="{% thumbnail amiibo.statue "340x340" crop %}" alt="{{ amiibo.name }}">
+      {% if amiibo.is_card %}
+        <img src="{% thumbnail amiibo.image "240x340" crop %}" alt="{{ amiibo.name }}">
+      {% else %}
+        <img src="{% thumbnail amiibo.image "340x340" crop %}" alt="{{ amiibo.name }}">
+      {% endif %}
     </div>
   </div>
   <div class="content text-center">

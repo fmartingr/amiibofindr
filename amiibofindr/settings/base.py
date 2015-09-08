@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'amiibofindr.apps.notifications',
 )
 
+APPEND_SLASH = False
 MIDDLEWARE_CLASSES = (
     'reversion.middleware.RevisionMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -36,7 +36,7 @@
             {% trans "Figures" %}
             <i class="dropdown icon"></i>
             <div class="menu">
-              <a class="item" href="{% url 'amiibo:collection' all_word %}">{% trans "All" %}</a>
+              <a class="item" href="{% url 'amiibo:figures-list' %}">{% trans "All" %}</a>
               <div class="ui divider"></div>
               {% for col in COLLECTIONS_FIGURES %}
                 <a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a>
@@ -48,7 +48,7 @@
             {% trans "Cards" %}
             <i class="dropdown icon"></i>
             <div class="menu">
-              <a class="item" href="{% url 'amiibo:cards-list' all_word %}">{% trans "All" %}</a>
+              <a class="item" href="{% url 'amiibo:cards-list' %}">{% trans "All" %}</a>
               {% for col in COLLECTIONS_CARDS %}
                 <a class="item" href="{% url 'amiibo:cards-list' col.slug %}">{{ col.name }}</a>
               {% endfor %}
@@ -108,9 +108,7 @@
         </div>
       </div>
       <div class="ui breadcrumb">
-        {% block breadcrumb %}
-          <a class="section" href="{% url 'amiibo:collection' 'all' %}">Home</a>
-        {% endblock %}
+        {% block breadcrumb %}{% endblock %}
       </div>
     </div>
 
