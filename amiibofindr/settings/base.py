@@ -96,6 +96,7 @@ TEMPLATES = [
                 'amiibofindr.apps.core.context_processors.debug',
                 'amiibofindr.apps.core.context_processors.files',
                 'amiibofindr.apps.core.context_processors.i18n',
+                'amiibofindr.apps.amiibo.context_processors.user_amiibo',
             ],
         },
     },

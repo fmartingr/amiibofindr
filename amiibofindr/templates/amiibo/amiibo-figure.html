@@ -31,9 +31,31 @@ AMIIBO FIGURE
   <div class="ui page grid">
     <div class="sixteen wide column">
       <div class="ui segment">
-        <h2 class="ui header centered">
-          {{ amiibo.name }} - {{ amiibo.collection.name }}
-        </h2>
+        <div class="ui stackable grid">
+          <div class="eight wide column ui middle aligned">
+            <h2 class="ui header">
+              {{ amiibo.collection.name }}: {{ amiibo.name }}
+            </h2>
+          </div>
+          <div class="eight wide column right aligned">
+            {% if amiibo.pk in USER_AMIIBO_OWNED %}
+              <a href="#" class="ui button {% if amiibo.pk in USER_AMIIBO_TRADE %}teal{% endif %}">
+                <i class="{% if amiibo.pk in USER_AMIIBO_TRADE %}check{% else %}cancel{% endif %} icon"></i> Available for trade
+              </a>
+              <a href="#" class="ui button red">I do not have it</a>
+            {% else %}
+              <div class="ui buttons">
+                {% if amiibo.pk in USER_AMIIBO_WISHLIST %}
+                  <a class="ui button yellow">I do not want this</a>
+                {% else %}
+                  <a class="ui button">I want this</a>
+                {% endif %}
+                <div class="or" data-text="{% trans 'or' %}"></div>
+                <a class="ui positive button">I have this</a>
+            {% endif %}
+              </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -76,7 +98,7 @@ AMIIBO FIGURE
                           <i class="ui icon info circle blue"></i>
                           {% trans "Updated " %}<span data-relative="{{ shop_item.last_price.date.isoformat }}"></span><br>
                         {% else %}
-                           <i class="ui icon warning circle red"></i>
+                          <i class="ui icon warning circle red"></i>
                           {% trans "This item had never been in stock" %}
                         {% endif %}
                       </div>

@@ -304,7 +304,7 @@ class UserAmiibo(models.Model):
     _amiibo = models.ForeignKey(Amiibo)
 
     want = models.BooleanField(default=False)
-    have = models.BooleanField(default=False)
+    own = models.BooleanField(default=False)
     trade = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now=True)
 
