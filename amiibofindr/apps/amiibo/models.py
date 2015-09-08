@@ -32,6 +32,12 @@ def image_card_upload(self, filename):
     return 'amiibos/c/{}/{}_{}{}'.format(
         self.collection.pk, self.collection_number, self.pk, extension)
 
+def shop_item_upload(self, filename):
+    name, extension = os.path.splitext(filename)
+    return 'amiibos/si/{}/{}_{}{}'.format(
+        self.amiibo.collection.pk, self.amiibo.pk, self.shop.pk, extension)
+
+
 
 #
 # Models
@@ -195,6 +201,8 @@ class AmiiboShop(models.Model):
     url = models.TextField()
     item_id = models.CharField(max_length=64)
     check_price = models.BooleanField(default=True)
+    image = models.ImageField(upload_to=shop_item_upload,
+                              null=True, blank=True)
 
     class Meta:
         ordering = ('shop__name', )

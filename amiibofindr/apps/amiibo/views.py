@@ -54,10 +54,6 @@ class CollectionCardView(CollectionView):
 
 
 class AmiiboView(View):
-    template = 'amiibo/amiibo.html'
-    type = Amiibo.FIGURE
-    model = AmiiboFigure
-
     def get(self, request, collection=None, amiibo=None):
         amiibo_obj = get_object_or_404(self.model,
                                        slug=amiibo,
@@ -71,10 +67,12 @@ class AmiiboView(View):
         })
 
 class AmiiboFigureView(AmiiboView):
+    template = 'amiibo/amiibo-figure.html'
     type = Amiibo.FIGURE
     model = AmiiboFigure
 
 
 class AmiiboCardView(AmiiboView):
+    template = 'amiibo/amiibo-card.html'
     type = Amiibo.CARD
     model = AmiiboCard
