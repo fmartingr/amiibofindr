@@ -114,7 +114,7 @@ AMIIBO FIGURE
                       <div class="cinema">
                         {% if shop_item.last_price.date %}
                           <i class="ui icon info circle blue"></i>
-                          {% trans "Updated " %}<span data-relative="{{ shop_item.last_price.date.isoformat }}"></span><br>
+                          {% trans "Updated" %} <span data-relative="{{ shop_item.last_price.date.isoformat }}"></span><br>
                         {% else %}
                           <i class="ui icon warning circle red"></i>
                           {% trans "This item had never been in stock" %}

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-08 23:54+0200\n"
-"PO-Revision-Date: 2015-09-08 23:55+0200\n"
+"POT-Creation-Date: 2015-09-09 00:06+0200\n"
+"PO-Revision-Date: 2015-09-09 00:06+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -84,16 +84,16 @@ msgstr ""
 msgid "all"
 msgstr "todas"
 
-#: templates/_layout.html:36 templates/_layout.html.py:91
+#: templates/_layout.html:36 templates/_layout.html.py:87
 msgid "Figures"
 msgstr "Figuras"
 
 #: templates/_layout.html:39 templates/_layout.html.py:51
-#: templates/_layout.html:93 templates/_layout.html.py:102
+#: templates/_layout.html:89 templates/_layout.html.py:98
 msgid "All"
 msgstr "Todas"
 
-#: templates/_layout.html:48 templates/_layout.html.py:100
+#: templates/_layout.html:48 templates/_layout.html.py:96
 msgid "Cards"
 msgstr "Tarjetas"
 
@@ -109,19 +109,19 @@ msgstr "Emails"
 msgid "Log out"
 msgstr "Cerrar sesión"
 
-#: templates/_layout.html:71
+#: templates/_layout.html:70
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: templates/_layout.html:74
+#: templates/_layout.html:71
 msgid "Register"
 msgstr "Registrarse"
 
-#: templates/_layout.html:130
+#: templates/_layout.html:126
 msgid "Select desired currency"
 msgstr "Seleccionar moneda"
 
-#: templates/_layout.html:138
+#: templates/_layout.html:134
 msgid "Language"
 msgstr "Idioma"
 
@@ -327,45 +327,45 @@ msgid "I do not want this"
 msgstr "No lo quiero"
 
 #: templates/amiibo/amiibo-figure.html:52
-#: templates/amiibo/amiibo-figure.html:61
+#: templates/amiibo/amiibo-figure.html:63
 msgid "I want this"
 msgstr "Lo quiero"
 
 #: templates/amiibo/amiibo-figure.html:54
-#: templates/amiibo/amiibo-figure.html:62
+#: templates/amiibo/amiibo-figure.html:64
 msgid "or"
 msgstr "o"
 
 #: templates/amiibo/amiibo-figure.html:55
-#: templates/amiibo/amiibo-figure.html:63
+#: templates/amiibo/amiibo-figure.html:65
 msgid "I have this"
 msgstr "Lo tengo"
 
-#: templates/amiibo/amiibo-figure.html:66
+#: templates/amiibo/amiibo-figure.html:68
 msgid "Register and star collecting amiibo!"
 msgstr "¡Regístrate y empieza a coleccionar Amiibo!"
 
-#: templates/amiibo/amiibo-figure.html:85
+#: templates/amiibo/amiibo-figure.html:88
 msgid "Shops"
 msgstr "Tiendas"
 
-#: templates/amiibo/amiibo-figure.html:99
+#: templates/amiibo/amiibo-figure.html:102
 msgid "Buy now for"
 msgstr "Comprar ahora por"
 
-#: templates/amiibo/amiibo-figure.html:106
+#: templates/amiibo/amiibo-figure.html:109
 msgid "No stock"
 msgstr "Sin stock"
 
-#: templates/amiibo/amiibo-figure.html:114
-msgid "Updated "
+#: templates/amiibo/amiibo-figure.html:117
+msgid "Updated"
 msgstr "Actualizado"
 
-#: templates/amiibo/amiibo-figure.html:117
+#: templates/amiibo/amiibo-figure.html:120
 msgid "This item had never been in stock"
 msgstr "Este articulo nunca ha estado en stock"
 
-#: templates/amiibo/amiibo-figure.html:123
+#: templates/amiibo/amiibo-figure.html:126
 msgid "This is a pack of various items"
 msgstr "Este es un pack que contiene varios artículos"
 
