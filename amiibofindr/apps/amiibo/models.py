@@ -4,6 +4,7 @@
 import os
 
 # django
+from django.apps import apps
 from django.conf import settings
 from django.db import models
 
@@ -104,6 +105,17 @@ class Amiibo(models.Model):
     release_date = models.DateField(null=True, blank=True)
 
     visible = models.BooleanField(default=True)
+
+    _types = {
+        'figure': 'amiibo.AmiiboFigure',
+        'card': 'amiibo.AmiiboCard',
+    }
+
+    def as_type(self):
+        """ Returns the amiibo as the correct type model """
+        # TODO: Improve this, because queries. Change to a manager.
+        model = apps.get_model(self._types[self.type])
+        return model.objects.get(pk=self.pk)
 
     def get_all_names(self):
         result = u''
@@ -277,3 +289,17 @@ class AmiiboPriceHistory(models.Model):
             self.diff, self.currency,
             self.date
         )
+
+
+class UserAmiibo(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    _amiibo = models.ForeignKey(Amiibo)
+
+    want = models.BooleanField(default=False)
+    have = models.BooleanField(default=False)
+    trade = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now=True)
+
+    @property
+    def amiibo(self):
+        return self._amiibo.as_type()
