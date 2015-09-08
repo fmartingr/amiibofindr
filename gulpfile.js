@@ -9,6 +9,7 @@ gulp.task('scripts', function() {
       'bower_components/jquery/dist/jquery.js',
       'bower_components/money/money.js',
       'bower_components/moment/moment.js',
+      'bower_components/moment/locale/es.js',
       'amiibofindr/static/semantic/semantic.js',
       'amiibofindr/static/app/simpleViews.js',
       'amiibofindr/static/app/global.js',
