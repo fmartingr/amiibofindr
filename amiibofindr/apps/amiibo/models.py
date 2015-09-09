@@ -201,9 +201,9 @@ class AmiiboFigure(Amiibo):
 
 
 class AmiiboCard(Amiibo):
-    ROCK = 1
-    PAPER = 2
-    SCISSORS = 3
+    ROCK = 'rock'
+    PAPER = 'paper'
+    SCISSORS = 'scissors'
     RPS_CHOICES = (
         (ROCK, 'Rock'),
         (PAPER, 'Paper'),
@@ -214,7 +214,7 @@ class AmiiboCard(Amiibo):
     card_type = models.CharField(max_length=12, default='special')
 
     dice = models.IntegerField(default=1)
-    rps = models.CharField(choices=RPS_CHOICES, default=ROCK, max_length=1)
+    rps = models.CharField(choices=RPS_CHOICES, default=ROCK, max_length=12)
 
     class Meta:
         ordering = ('collection', 'collection_number', 'name_eu', )

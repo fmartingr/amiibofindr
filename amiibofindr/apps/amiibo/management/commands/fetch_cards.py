@@ -17,9 +17,6 @@ class Command(BaseCommand):
     dice = {
         'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6,
     }
-    rps = {
-        'rock': 1, 'paper': 2, 'scissors': 3,
-    }
 
     def handle_image(self, image_url):
         image = requests.get(image_url)
@@ -45,10 +42,10 @@ class Command(BaseCommand):
                 # amiibo.collection_number = int(item['number_number'])
                 amiibo.collection = collection
 
-                amiibo.dice = self.dice[item['dice_value'].lower()]
-                amiibo.rps = self.rps[item['rps_value'].lower()]
+                # amiibo.image = self.handle_image(item['cardphoto_link'])
 
-                amiibo.image = self.handle_image(item['cardphoto_link'])
+            amiibo.dice = self.dice[item['dice_value'].lower()]
+            amiibo.rps = item['rps_value'].lower()
 
             amiibo.card_type = item['type_value'].lower()
 
