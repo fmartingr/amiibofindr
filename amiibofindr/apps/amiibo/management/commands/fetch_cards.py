@@ -33,7 +33,7 @@ class Command(BaseCommand):
         for item in data['results']:
             amiibo, created = AmiiboCard.objects.get_or_create(
                 collection_id=collection.pk,
-                collection_number=item['number_number']
+                collection_number=int(item['number_number'])
             )
             print(' => {} {}'.format(collection.slug, amiibo.collection_number))
             amiibo.type = AmiiboCard.CARD
@@ -42,7 +42,7 @@ class Command(BaseCommand):
                 amiibo.name_eu = amiibo.name_en
                 amiibo.name_us = amiibo.name_en
 
-                amiibo.collection_number = item['number_number']
+                # amiibo.collection_number = int(item['number_number'])
                 amiibo.collection = collection
 
                 amiibo.dice = self.dice[item['dice_value'].lower()]
