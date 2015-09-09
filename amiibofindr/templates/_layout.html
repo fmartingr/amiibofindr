@@ -137,7 +137,7 @@
           {% for language in LANGUAGES %}
             {% language language.code %}
             <a class="item {% if language.code == LANGUAGE_CODE %}active{% endif %}"
-               href="{{ item.get_absolute_url }}">{{ language.name }}</a>
+               href="{{ language.url }}">{{ language.name }}</a>
             {% endlanguage %}
           {% endfor %}
         </div>
