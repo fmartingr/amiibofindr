@@ -183,6 +183,7 @@ class AmiiboCard(Amiibo):
     )
 
     image = models.ImageField(upload_to=image_card_upload)
+    card_type = models.CharField(max_length=12, default='special')
 
     dice = models.IntegerField(default=1)
     rps = models.CharField(choices=RPS_CHOICES, default=ROCK, max_length=1)

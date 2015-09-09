@@ -48,7 +48,9 @@ class Command(BaseCommand):
                 amiibo.dice = self.dice[item['dice_value'].lower()]
                 amiibo.rps = self.rps[item['rps_value'].lower()]
 
-            amiibo.image = self.handle_image(item['cardphoto_link'])
+                amiibo.image = self.handle_image(item['cardphoto_link'])
+
+            amiibo.card_type = item['type_value'].lower()
 
             amiibo.slug = slugify(amiibo.name_en)
 
