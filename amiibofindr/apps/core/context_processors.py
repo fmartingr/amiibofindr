@@ -23,18 +23,26 @@ def files(request):
 def i18n(request):
     lang = get_language()
     result = []
-    res = resolve(request.path)
-    for lang_code, name in settings.LANGUAGES:
-        activate(lang_code)
-        this = {
-            'code': lang_code,
-            'name': name,
-            'url': reverse_lazy(res.view_name, args=res.args, kwargs=res.kwargs)
-        }
-        result.append(this)
-        deactivate()
-
-    activate(lang)
+    try:
+        res = resolve(request.path)
+        for lang_code, name in settings.LANGUAGES:
+            activate(lang_code)
+            this = {
+                'code': lang_code,
+                'name': name,
+                'url': reverse_lazy(res.view_name, args=res.args, kwargs=res.kwargs)
+            }
+            result.append(this)
+            deactivate()
+        activate(lang)
+    except:
+        for lang_code, name in settings.LANGUAGES:
+            this = {
+                'code': lang_code,
+                'name': name,
+                'url': '/{}/'.format(lang_code)
+            }
+            result.append(this)
     return {
         'LANGUAGES': result
     }
