@@ -33,7 +33,7 @@
     <div class="sixteen wide column">
       <div class="ui five doubling cards" data-component="collectionList">
         {% for amiibo in amiibo_list %}
-          {% include "amiibo/widgets/amiibo-card.html" with amiibo=amiibo only %}
+          {% include "amiibo/widgets/amiibo-card.html" with amiibo=amiibo %}
         {% endfor %}
       </div>
     </div>
