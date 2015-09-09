@@ -39,7 +39,7 @@
               <a class="item" href="{% url 'amiibo:figures-all' %}">{% trans "All" %}</a>
               <div class="ui divider"></div>
               {% for col in COLLECTIONS_FIGURES %}
-                <a class="item" href="{{ col.get_absolute_url }}">{{ col.name }}</a>
+                <a class="item" href="{{ col.get_absolute_url_figures }}">{{ col.name }}</a>
               {% endfor %}
             </div>
 
@@ -50,7 +50,7 @@
             <div class="menu">
               <a class="item" href="{% url 'amiibo:cards-all' %}">{% trans "All" %}</a>
               {% for col in COLLECTIONS_CARDS %}
-                <a class="item" href="{% url 'amiibo:cards-list' col.slug %}">{{ col.name }}</a>
+                <a class="item" href="{{ col.get_absolute_url_cards }}">{{ col.name }}</a>
               {% endfor %}
             </div>
           </div>
@@ -88,7 +88,7 @@
             <div class="menu">
               <a class="item" href="{% url 'amiibo:figures-all' %}">{% trans "All" %}</a>
               {% for col in COLLECTIONS_FIGURES %}
-                <a class="item" href="{% url 'amiibo:figures-list' col.slug %}">{{ col.name }}</a>
+                <a class="item" href="{{ col.get_absolute_url_figures }}">{{ col.name }}</a>
               {% endfor %}
             </div>
           </div>
@@ -97,7 +97,7 @@
             <div class="menu">
               <a class="item" href="{% url 'amiibo:cards-all' %}">{% trans "All" %}</a>
               {% for col in COLLECTIONS_CARDS %}
-                <a class="item" href="{% url 'amiibo:cards-list' col.slug %}">{{ col.name }}</a>
+                <a class="item" href="{{ col.get_absolute_url_cards }}">{{ col.name }}</a>
               {% endfor %}
             </div>
           </div>

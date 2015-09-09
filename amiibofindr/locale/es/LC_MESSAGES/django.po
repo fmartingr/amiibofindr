@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 00:06+0200\n"
-"PO-Revision-Date: 2015-09-09 00:06+0200\n"
+"POT-Creation-Date: 2015-09-09 23:25+0200\n"
+"PO-Revision-Date: 2015-09-09 23:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -27,20 +27,28 @@ msgid "^figures$"
 msgstr "^figuras$"
 
 #: apps/amiibo/urls.py:23
-msgid "^cards/(?P<collection>[\\w\\d\\-]+)$"
-msgstr "^tarjetas/(?P<collection>[\\w\\d\\-]+)$"
+msgid "^cards/(?P<dummy>[\\w\\d\\-]+)?\\-(?P<collection>\\d+)$"
+msgstr "^tarjetas/(?P<dummy>[\\w\\d\\-]+)?\\-(?P<collection>\\d+)$"
 
 #: apps/amiibo/urls.py:26
-msgid "^figures/(?P<collection>[\\w\\d\\-]+)$"
-msgstr "^figuras/(?P<collection>[\\w\\d\\-]+)/$"
+msgid "^figures/(?P<dummy>[\\w\\d\\-]+)?\\-(?P<collection>\\d+)$"
+msgstr "^figuras/(?P<dummy>[\\w\\d\\-]+)?\\-(?P<collection>\\d+)$"
 
 #: apps/amiibo/urls.py:30
-msgid "^cards/(?P<collection>[\\w\\d\\-]+)/(?P<amiibo>[\\w\\d\\-]+)$"
-msgstr "^tarjetas/(?P<collection>[\\w\\d\\-]+)/(?P<amiibo>[\\w\\d\\-]+)$"
+msgid ""
+"^cards/(?P<collection>[\\w\\d\\-]+)?/(?P<dummy>[\\w\\d\\-]+)?-(?P<amiibo>[\\w"
+"\\d\\-]+)$"
+msgstr ""
+"^tarjetas/(?P<collection>[\\w\\d\\-]+)?/(?P<dummy>[\\w\\d\\-]+)?-(?"
+"P<amiibo>[\\w\\d\\-]+)$"
 
 #: apps/amiibo/urls.py:33
-msgid "^figures/(?P<collection>[\\w\\d\\-]+)/(?P<amiibo>[\\w\\d\\-]+)$"
-msgstr "^figuras/(?P<collection>[\\w\\d\\-]+)/(?P<amiibo>[\\w\\d\\-]+)$"
+msgid ""
+"^figures/(?P<collection>[\\w\\d\\-]+)?/(?P<dummy>[\\w\\d\\-]+)?-(?"
+"P<amiibo>[\\w\\d\\-]+)$"
+msgstr ""
+"^figuras/(?P<collection>[\\w\\d\\-]+)?/(?P<dummy>[\\w\\d\\-]+)?-(?"
+"P<amiibo>[\\w\\d\\-]+)$"
 
 #: apps/amiibo/urls.py:37
 msgid "^amiibo/(?P<amiibo>\\d+)/(?P<action>[\\w\\+\\-\\=]+)$"
@@ -121,7 +129,11 @@ msgstr "Registrarse"
 msgid "Select desired currency"
 msgstr "Seleccionar moneda"
 
-#: templates/_layout.html:134
+#: templates/_layout.html:131
+msgid "No convert"
+msgstr "Sin conversión"
+
+#: templates/_layout.html:135
 msgid "Language"
 msgstr "Idioma"
 

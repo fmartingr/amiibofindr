@@ -20,9 +20,9 @@ class CollectionView(View):
     type = Amiibo.FIGURE
     model = AmiiboFigure
 
-    def get(self, request, collection=None):
+    def get(self, request, collection=None, dummy=None):
         if collection:
-            collection = get_object_or_404(Collection, slug=collection)
+            collection = get_object_or_404(Collection, pk=collection)
             if self.type == self.model.FIGURE:
                 amiibo_list = collection.figures
             elif self.type == self.model.CARD:
@@ -52,10 +52,10 @@ class CollectionCardView(CollectionView):
 
 
 class AmiiboView(View):
-    def get(self, request, collection=None, amiibo=None):
+    def get(self, request, collection=None, amiibo=None, dummy=None):
         amiibo_obj = get_object_or_404(self.model,
-                                       slug=amiibo,
-                                       collection__slug=collection,
+                                       pk=amiibo,
+                                       # collection__slug=collection,
                                        type=self.type)
 
         return render(request, self.template, {

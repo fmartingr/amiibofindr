@@ -6,7 +6,9 @@ import os
 # django
 from django.apps import apps
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.text import slugify
 
 # 3rd party
 from amazonify import amazonify
@@ -49,7 +51,13 @@ class Collection(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('amiibo:figures-list', [self.slug])
+        return ('amiibo:figures-list', (slugify(self.name), self.pk))
+
+    def get_absolute_url_figures(self):
+        return reverse('amiibo:figures-list', args=(slugify(self.name), self.pk))
+
+    def get_absolute_url_cards(self):
+        return reverse('amiibo:cards-list', args=(slugify(self.name), self.pk))
 
     @property
     def amiibos(self):
@@ -153,7 +161,7 @@ class AmiiboFigure(Amiibo):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('amiibo:figure-detail', [self.collection.slug, self.slug])
+        return ('amiibo:figure-detail', [self.collection.slug, slugify(self.name), self.pk])
 
     @property
     def image_box(self):
@@ -193,7 +201,8 @@ class AmiiboCard(Amiibo):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('amiibo:card-detail', [self.collection.slug, self.slug])
+        return ('amiibo:card-detail',
+                [slugify(self.collection.name), slugify(self.name), self.pk])
 
     def __unicode__(self):
         return u"{} {}".format(self.collection_number, self.slug)
