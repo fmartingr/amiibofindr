@@ -33,9 +33,11 @@ AMIIBO FIGURE
       <div class="ui segment">
         <div class="ui stackable grid">
           <div class="eight wide column ui middle aligned">
+            {% block amiibo_header %}
             <h2 class="ui header">
               {{ amiibo.collection.name }}: {{ amiibo.name }}
             </h2>
+            {% endblock %}
           </div>
           <div class="eight wide column right aligned">
             {% if user.is_authenticated %}
@@ -132,6 +134,8 @@ AMIIBO FIGURE
                 </div>
             {% endfor %}
           </div>
+        {% else %}
+          {% trans "No shops :(" %}
         {% endif %}
       </div>
     </div>
