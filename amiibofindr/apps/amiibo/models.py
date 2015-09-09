@@ -1,19 +1,16 @@
 # coding: utf-8
 
-# python
 import os
 
-# django
 from django.apps import apps
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.text import slugify
+from django.utils.translation import activate, deactivate, get_language
 
-# 3rd party
 from amazonify import amazonify
 
-# project
 from amiibofindr.apps.shop.crawlers import Crawler
 
 
@@ -45,6 +42,13 @@ def shop_item_upload(self, filename):
 # Models
 class Collection(models.Model):
     slug = models.SlugField(max_length=128)
+
+    name_en = models.CharField(max_length=64, blank=True, null=True)
+    name_es = models.CharField(max_length=64, blank=True, null=True)
+    name_fr = models.CharField(max_length=64, blank=True, null=True)
+    name_it = models.CharField(max_length=64, blank=True, null=True)
+    name_de = models.CharField(max_length=64, blank=True, null=True)
+
     name_eu = models.CharField(max_length=128)
     name_jp = models.CharField(max_length=128, blank=True, null=True)
     name_us = models.CharField(max_length=128, blank=True, null=True)
@@ -73,6 +77,14 @@ class Collection(models.Model):
 
     @property
     def name(self):
+        name = getattr(self, 'name_{}'.format(get_language()), None)
+
+        if name:
+            return name
+
+        if self.name_en:
+            return self.name_en
+
         return self.name_eu
 
     def __unicode__(self):
@@ -152,6 +164,14 @@ class Amiibo(models.Model):
 
     @property
     def name(self):
+        name = getattr(self, 'name_{}'.format(get_language()), None)
+
+        if name:
+            return name
+
+        if self.name_en:
+            return self.name_en
+
         return self.name_eu
 
 
