@@ -128,6 +128,7 @@
           {% for currency in CURRENCIES %}
             <a class="item" href="#" data-currency-change="{{ currency }}">{{ currency }}</a>
           {% endfor %}
+          <a class="item" href="#" data-currency-change="reset">{% trans 'No convert' %}</a>
         </div>
       </div>
       <div class="four wide column left aligned">
