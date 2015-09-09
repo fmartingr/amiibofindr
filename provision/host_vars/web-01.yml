@@ -1,0 +1,6 @@
+site_hostname: beta.amiibofindr.com
+
+site_media_hostname: beta.media.amiibofindr.com
+site_static_hostname: beta.static.amiibofindr.com
+
+enable_ssl: false
