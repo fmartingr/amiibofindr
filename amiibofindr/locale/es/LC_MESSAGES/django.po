@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 23:25+0200\n"
-"PO-Revision-Date: 2015-09-09 23:26+0200\n"
+"POT-Creation-Date: 2015-09-10 19:56+0200\n"
+"PO-Revision-Date: 2015-09-10 20:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -193,6 +193,74 @@ msgstr "Añadir una dirección de email"
 msgid "Add E-mail"
 msgstr "Añadir email"
 
+#: templates/account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"You're receiving this e-mail because user %(user_display)s at "
+"%(site_domain)s has given yours as an e-mail address to connect their "
+"account.\n"
+"\n"
+"To confirm this is correct, go to %(activate_url)s\n"
+msgstr ""
+"¡Hola desde %(site_name)s!\n"
+"\n"
+"Recibes este correo electrónico porque el usuario %(user_display)s en "
+"%(site_domain)s nos ha dado esta dirección para vincular su cuenta. \n"
+"\n"
+"Para confirmar que esto es correcto, por favor accede a este enlace: "
+"%(activate_url)s\n"
+
+#: templates/account/email/email_confirmation_message.txt:7
+#, python-format
+msgid ""
+"Thank you from %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+"¡Un saludo desde %(site_name)s!\n"
+"%(site_domain)s"
+
+#: templates/account/email/email_confirmation_subject.txt:3
+msgid "Please Confirm Your E-mail Address"
+msgstr "Por favor confirma tu correo electrónico"
+
+#: templates/account/email/password_reset_key_message.txt:1
+#, python-format
+msgid ""
+"Hello from %(site_name)s!\n"
+"\n"
+"You're receiving this e-mail because you or someone else has requested a "
+"password for your user account at %(site_domain)s.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password."
+msgstr ""
+"¡Hola desde %(site_name)s!\n"
+"\n"
+"Recibes este correo porque tu u otra persona ha solicitado la recuperación "
+"de tu cuenta en %(site_domain)s.\n"
+"Sigue el enlace a continuación para continuar con el restablecimiento de tu "
+"contraseña."
+
+#: templates/account/email/password_reset_key_message.txt:8
+#, python-format
+msgid "In case you forgot, your username is %(username)s."
+msgstr ""
+"En el caso de que te hayas olvidado, tu nombre de usuario es %(username)s."
+
+#: templates/account/email/password_reset_key_message.txt:10
+#, python-format
+msgid ""
+"Thank you for using %(site_name)s!\n"
+"%(site_domain)s"
+msgstr ""
+"¡Gracias por usar %(site_name)s!\n"
+"%(site_domain)s"
+
+#: templates/account/email/password_reset_key_subject.txt:3
+msgid "Password Reset E-mail"
+msgstr "Correo electrónico"
+
 #: templates/account/login.html:6 templates/account/login.html.py:13
 #: templates/account/login.html:101
 msgid "Sign In"
@@ -230,6 +298,51 @@ msgstr "Recordarme"
 #: templates/account/login.html:100
 msgid "Forgot Password?"
 msgstr "He olvidado mi contraseña"
+
+#: templates/account/messages/cannot_delete_primary_email.txt:2
+#, python-format
+msgid "You cannot remove your primary e-mail address (%(email)s)."
+msgstr "No puedes eliminar tu dirección de correo primaria (%(email)s)."
+
+#: templates/account/messages/email_confirmation_sent.txt:2
+#, python-format
+msgid "Confirmation e-mail sent to %(email)s."
+msgstr "Correo electrónico de confirmación enviado a %(email)s."
+
+#: templates/account/messages/email_confirmed.txt:2
+#, python-format
+msgid "You have confirmed %(email)s."
+msgstr "El correo %(email)s ha sido confirmado."
+
+#: templates/account/messages/email_deleted.txt:2
+#, python-format
+msgid "Removed e-mail address %(email)s."
+msgstr "El correo electronico %(email)s ha sido eliminado."
+
+#: templates/account/messages/logged_in.txt:4
+#, python-format
+msgid "Successfully signed in as %(name)s."
+msgstr "Hola %(name)s, has iniciado sesión satisfactoriamente."
+
+#: templates/account/messages/logged_out.txt:2
+msgid "You have signed out."
+msgstr "Has cerrado sesión."
+
+#: templates/account/messages/password_changed.txt:2
+msgid "Password successfully changed."
+msgstr "Tu contraseña ha sido cambiada."
+
+#: templates/account/messages/password_set.txt:2
+msgid "Password successfully set."
+msgstr "Tu contraseña ha sido fijada."
+
+#: templates/account/messages/primary_email_set.txt:2
+msgid "Primary e-mail address set."
+msgstr "Establecido tu correo electrónico primario."
+
+#: templates/account/messages/unverified_primary_email.txt:2
+msgid "Your primary e-mail address must be verified."
+msgstr "Tu dirección de correo electrónico primaria debe ser verificada."
 
 #: templates/account/password_change.html:5
 #: templates/account/password_change.html:10
@@ -320,66 +433,86 @@ msgid ""
 "Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
 msgstr "¿Ya tienes una cuenta? <a href=\"%(login_url)s\">Inicia sesión</a>."
 
+#: templates/amiibo/amiibo-card.html:11
+msgid "Number"
+msgstr "Numero"
+
+#: templates/amiibo/amiibo-card.html:15
+msgid "Type"
+msgstr "Tipo"
+
+#: templates/amiibo/amiibo-card.html:19
+msgid "RPS"
+msgstr "PPT"
+
+#: templates/amiibo/amiibo-card.html:23
+msgid "Dice"
+msgstr "Dado"
+
 #: templates/amiibo/amiibo-figure.html:9 templates/amiibo/amiibo-figure.html:11
 #: templates/amiibo/amiibo-figure.html:12
 #, python-format
 msgid "%(amiibo)s amiibo from %(collection)s in "
 msgstr "%(amiibo)s amiibo de %(collection)s en "
 
-#: templates/amiibo/amiibo-figure.html:44
+#: templates/amiibo/amiibo-figure.html:46
 msgid "Available for trade"
 msgstr "Disponible para cambio"
 
-#: templates/amiibo/amiibo-figure.html:46
+#: templates/amiibo/amiibo-figure.html:48
 msgid "I do not have it"
 msgstr "No lo tengo"
 
-#: templates/amiibo/amiibo-figure.html:50
+#: templates/amiibo/amiibo-figure.html:52
 msgid "I do not want this"
 msgstr "No lo quiero"
 
-#: templates/amiibo/amiibo-figure.html:52
-#: templates/amiibo/amiibo-figure.html:63
+#: templates/amiibo/amiibo-figure.html:54
+#: templates/amiibo/amiibo-figure.html:65
 msgid "I want this"
 msgstr "Lo quiero"
 
-#: templates/amiibo/amiibo-figure.html:54
-#: templates/amiibo/amiibo-figure.html:64
+#: templates/amiibo/amiibo-figure.html:56
+#: templates/amiibo/amiibo-figure.html:66
 msgid "or"
 msgstr "o"
 
-#: templates/amiibo/amiibo-figure.html:55
-#: templates/amiibo/amiibo-figure.html:65
+#: templates/amiibo/amiibo-figure.html:57
+#: templates/amiibo/amiibo-figure.html:67
 msgid "I have this"
 msgstr "Lo tengo"
 
-#: templates/amiibo/amiibo-figure.html:68
+#: templates/amiibo/amiibo-figure.html:70
 msgid "Register and star collecting amiibo!"
 msgstr "¡Regístrate y empieza a coleccionar Amiibo!"
 
-#: templates/amiibo/amiibo-figure.html:88
+#: templates/amiibo/amiibo-figure.html:90
 msgid "Shops"
 msgstr "Tiendas"
 
-#: templates/amiibo/amiibo-figure.html:102
+#: templates/amiibo/amiibo-figure.html:104
 msgid "Buy now for"
 msgstr "Comprar ahora por"
 
-#: templates/amiibo/amiibo-figure.html:109
+#: templates/amiibo/amiibo-figure.html:111
 msgid "No stock"
 msgstr "Sin stock"
 
-#: templates/amiibo/amiibo-figure.html:117
+#: templates/amiibo/amiibo-figure.html:119
 msgid "Updated"
 msgstr "Actualizado"
 
-#: templates/amiibo/amiibo-figure.html:120
+#: templates/amiibo/amiibo-figure.html:122
 msgid "This item had never been in stock"
 msgstr "Este articulo nunca ha estado en stock"
 
-#: templates/amiibo/amiibo-figure.html:126
+#: templates/amiibo/amiibo-figure.html:128
 msgid "This is a pack of various items"
 msgstr "Este es un pack que contiene varios artículos"
+
+#: templates/amiibo/amiibo-figure.html:138
+msgid "No shops :("
+msgstr "Sin tiendas :("
 
 #: templates/amiibo/collection-cards.html:9 templates/amiibo/collection.html:29
 msgid "Search..."
@@ -420,6 +553,18 @@ msgstr "No tienes redes sociales asociadas a tu cuenta."
 #: templates/socialaccount/connections.html:55
 msgid "Add a 3rd Party Account"
 msgstr "Asociar una red social"
+
+#: templates/socialaccount/messages/account_connected.txt:2
+msgid "The social account has been connected."
+msgstr "La red social ha sido vinculada."
+
+#: templates/socialaccount/messages/account_connected_other.txt:2
+msgid "The social account is already connected to a different account."
+msgstr "Esta red social esta vinculada a otra cuenta del sitio."
+
+#: templates/socialaccount/messages/account_disconnected.txt:2
+msgid "The social account has been disconnected."
+msgstr "La red social ha sido desvinculada."
 
 #: urls.py:36
 msgid "^account/"
