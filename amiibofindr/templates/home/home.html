@@ -7,47 +7,70 @@
       <h1 class="ui center aligned icon header">
         <i class="circular users icon"></i>
         {% trans 'Welcome to amiibofindr!' %}
+        <div class="sub header">
+          <p>{% trans "Welcome to the latest version of the site, with tons of new features for you!" %}</p>
+          <p>{% trans "Why stay with us? there are some reasons..." %}</p>
+        </div>
       </h1>
     </div>
 
-    <div class="four wide column">
-      <img src="http://placehold.it/300x300" class="ui image">
-    </div>
-    <div class="nine wide column">
-      <h2>{% lorem 6 w random %}</h2>
-      {% lorem 1 p %}
-    </div>
-
-    <div class="three wide column"></div>
-    <div class="three wide column"></div>
-
-    <div class="nine wide column">
-      <h2>{% lorem 6 w random %}</h2>
-      {% lorem 1 p %}
+    <div class="four wide column middle aligned">
+      <img src="{% static 'images/home/collection.png' %}" class="ui circular bordered image">
     </div>
     <div class="four wide column">
-      <img src="http://placehold.it/300x300" class="ui image">
+      <h2>{% trans "Keep track of what you have and what you want" %}</h2>
+      <p>{% blocktrans %}Here, you can easily check what amiibo you have or want. Just enter an amiibo description and click one of the buttons, yes, that easy! {% endblocktrans %}</p>
     </div>
 
-    <div class="four wide column">
-      <img src="http://placehold.it/300x300" class="ui image">
-    </div>
-    <div class="nine wide column">
-      <h2>{% lorem 6 w random %}</h2>
-      {% lorem 1 p %}
-    </div>
-
-    <div class="three wide column"></div>
-    <div class="three wide column"></div>
-
-    <div class="nine wide column">
-      <h2>{% lorem 6 w random %}</h2>
-      {% lorem 1 p %}
+    <div class="four wide column middle aligned">
+      <img src="{% static 'images/home/trade.es.png' %}" class="ui circular bordered image">
     </div>
     <div class="four wide column">
-      <img src="http://placehold.it/300x300" class="ui image">
+      <h2>{% trans "Repeated stuff? No problem! Trade it!" %}</h2>
+      <p>{% blocktrans %}Just mark an amiibo as tradeable to show everyone you have one -or more- spare, show some contact information and let the offers come through!{% endblocktrans %}
     </div>
 
+    <div class="four wide column middle aligned">
+      <img src="{% static 'images/home/colorcoding.png' %}" class="ui circular bordered image">
+    </div>
+    <div class="four wide column">
+      <h2>{% trans "Don't lose sight with color coding" %}</h2>
+      <p>{% blocktrans %}When logged in, you will see what amiibo you have, want or want to trade. Even when on lists or looking another person's amiibo list.{% endblocktrans %}
+    </div>
+
+    <div class="four wide column middle aligned">
+      <img src="{% static 'images/home/buy.es.png' %}" class="ui circular bordered image">
+    </div>
+    <div class="four wide column">
+      <h2>{% trans 'Always at the best price' %}</h2>
+      <p>{% blocktrans %}We know sometimes the most wanted amiibo is difficult to find, so we keep track of online shops for you to get the best prices. And we will be adding more and more!{% endblocktrans %}
+    </div>
+
+    <div class="four wide column middle aligned">
+      <img src="{% static 'images/home/currency.es.png' %}" class="ui circular bordered image">
+    </div>
+    <div class="four wide column">
+      <h2>{% trans 'EUR, GBP, JPY, USD...' %}</h2>
+      <p>{% blocktrans %}Because not everyone can do math to convert from currencies on the fly, you can select your desired currency to get an approximate conversion in real time. Easy!{% endblocktrans %}
+    </div>
+
+      <h1 class="ui center aligned icon header">
+        {% trans "And the most important reason of all?" %}
+        <div class="sub header">
+          <p>{% trans "We are collectors too! We like amiibo and we do this for fun on our spare time." %}</p>
+          <p>{% trans "We'd like to continue with this journey, and you to be helping us." %}</p>
+          {% if not user.is_authenticated %}
+            <p>
+              <a href="{% url 'account_signup' %}">{% trans "Register" %}</a>
+              {% trans "or" %}
+              <a href="{% url 'account_login' %}">{% trans "Login" %}</a>
+            </p>
+          {% endif %}
+          <p>{% trans "And remember that we all make this better. You want your favourite shop added? We're missing some HUGE feature you'd like to see? Just want to get in touch? Feel free! You have our contact details at the bottom." %}</p>
+          <br>
+        </div>
+      </h1>
+    </div>
 
   </div>
 {% endblock %}

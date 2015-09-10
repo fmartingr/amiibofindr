@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-10 19:56+0200\n"
-"PO-Revision-Date: 2015-09-10 20:03+0200\n"
+"POT-Creation-Date: 2015-09-10 21:02+0200\n"
+"PO-Revision-Date: 2015-09-10 21:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -92,48 +92,51 @@ msgstr ""
 msgid "all"
 msgstr "todas"
 
-#: templates/_layout.html:36 templates/_layout.html.py:87
+#: templates/_layout.html:36 templates/_layout.html.py:104
 msgid "Figures"
 msgstr "Figuras"
 
 #: templates/_layout.html:39 templates/_layout.html.py:51
-#: templates/_layout.html:89 templates/_layout.html.py:98
+#: templates/_layout.html:106 templates/_layout.html.py:115
 msgid "All"
 msgstr "Todas"
 
-#: templates/_layout.html:48 templates/_layout.html.py:96
+#: templates/_layout.html:48 templates/_layout.html.py:113
 msgid "Cards"
 msgstr "Tarjetas"
 
-#: templates/_layout.html:63 templates/account/password_reset_from_key.html:49
+#: templates/_layout.html:63 templates/_layout.html.py:90
+#: templates/account/password_reset_from_key.html:49
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#: templates/_layout.html:64
+#: templates/_layout.html:64 templates/_layout.html.py:91
 msgid "Emails"
 msgstr "Emails"
 
-#: templates/_layout.html:66
+#: templates/_layout.html:66 templates/_layout.html.py:92
 msgid "Log out"
 msgstr "Cerrar sesión"
 
-#: templates/_layout.html:70
+#: templates/_layout.html:70 templates/_layout.html.py:98
+#: templates/home/home.html:66
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: templates/_layout.html:71
+#: templates/_layout.html:71 templates/_layout.html.py:99
+#: templates/home/home.html:64
 msgid "Register"
 msgstr "Registrarse"
 
-#: templates/_layout.html:126
+#: templates/_layout.html:143
 msgid "Select desired currency"
 msgstr "Seleccionar moneda"
 
-#: templates/_layout.html:131
+#: templates/_layout.html:148
 msgid "No convert"
 msgstr "Sin conversión"
 
-#: templates/_layout.html:135
+#: templates/_layout.html:152
 msgid "Language"
 msgstr "Idioma"
 
@@ -473,7 +476,7 @@ msgid "I want this"
 msgstr "Lo quiero"
 
 #: templates/amiibo/amiibo-figure.html:56
-#: templates/amiibo/amiibo-figure.html:66
+#: templates/amiibo/amiibo-figure.html:66 templates/home/home.html:65
 msgid "or"
 msgstr "o"
 
@@ -531,6 +534,107 @@ msgstr "Todos los amiibo"
 #: templates/home/home.html:9
 msgid "Welcome to amiibofindr!"
 msgstr "¡Bienvenido a Amiibofindr!"
+
+#: templates/home/home.html:11
+msgid ""
+"Welcome to the latest version of the site, with tons of new features for you!"
+msgstr ""
+"¡Bienvenido a la nueva versión del sitio, con muchas novedades para ti!"
+
+#: templates/home/home.html:12
+msgid "Why stay with us? there are some reasons..."
+msgstr "¿Por qué nosotros? Aquí te dejamos algunas razones…"
+
+#: templates/home/home.html:21
+msgid "Keep track of what you have and what you want"
+msgstr "Lo que tienes y lo que quieres"
+
+#: templates/home/home.html:22
+msgid ""
+"Here, you can easily check what amiibo you have or want. Just enter an "
+"amiibo description and click one of the buttons, yes, that easy! "
+msgstr ""
+"Aquí puedes comprobar fácilmente que amibos tienes… ¡y cuales quieres! Solo "
+"ve al amiibo y pulsa uno de los dos botones, ¡así de fácil!"
+
+#: templates/home/home.html:29
+msgid "Repeated stuff? No problem! Trade it!"
+msgstr "¿Repes? ¡Sin problema! ¡Intercambia!"
+
+#: templates/home/home.html:30
+msgid ""
+"Just mark an amiibo as tradeable to show everyone you have one -or more- "
+"spare, show some contact information and let the offers come through!"
+msgstr ""
+"Tan solo tienes que marcar tu amiibo como disponible para mostrar a todos "
+"que tienes uno (o más). ¡Deja información de contacto para recibir las "
+"ofertas!"
+
+#: templates/home/home.html:37
+msgid "Don't lose sight with color coding"
+msgstr "No te pierdas con nuestro código de colores"
+
+#: templates/home/home.html:38
+msgid ""
+"When logged in, you will see what amiibo you have, want or want to trade. "
+"Even when on lists or looking another person's amiibo list."
+msgstr ""
+"Cuando inicies sesión sabrás de un vistazo que amiibo tienes, quieres o "
+"intercambias. ¡Incluso cuando estés mirando la lista de otro usuario!"
+
+#: templates/home/home.html:45
+msgid "Always at the best price"
+msgstr "Siempre al mejor precio"
+
+#: templates/home/home.html:46
+msgid ""
+"We know sometimes the most wanted amiibo is difficult to find, so we keep "
+"track of online shops for you to get the best prices. And we will be adding "
+"more and more!"
+msgstr ""
+"Sabemos que a veces el amiibo que más deseamos es el más difícil de "
+"encontrar así que nosotros monitorizamos tiendas para obtener los mejores "
+"precios, e iremos añadiendo más y más."
+
+#: templates/home/home.html:53
+msgid "EUR, GBP, JPY, USD..."
+msgstr "EUR, GBP, JPY, USD..."
+
+#: templates/home/home.html:54
+msgid ""
+"Because not everyone can do math to convert from currencies on the fly, you "
+"can select your desired currency to get an approximate conversion in real "
+"time. Easy!"
+msgstr ""
+"Porque no todo el mundo es bueno con las matemáticas, si te pierdes con "
+"monedas extranjeras puedes seleccionar tu preferida para ver todos los "
+"precios con ella, ¡así de fácil!"
+
+#: templates/home/home.html:58
+msgid "And the most important reason of all?"
+msgstr "¿Y cual es la razón más importante de todas?"
+
+#: templates/home/home.html:60
+msgid ""
+"We are collectors too! We like amiibo and we do this for fun on our spare "
+"time."
+msgstr ""
+"¡Nosotros también somos coleccionistas! Nos gustan los amiibo y hacemos esto "
+"por diversión en nuestro tiempo libre."
+
+#: templates/home/home.html:61
+msgid "We'd like to continue with this journey, and you to be helping us."
+msgstr "Nos gustaría seguir con ello, ¡y que tu te apuntes!"
+
+#: templates/home/home.html:69
+msgid ""
+"And remember that we all make this better. You want your favourite shop "
+"added? We're missing some HUGE feature you'd like to see? Just want to get "
+"in touch? Feel free! You have our contact details at the bottom."
+msgstr ""
+"Y recuerda que somos todos los que hacemos esto mejor. ¿Quieres tu tienda "
+"favorita añadida? ¿Nos falta algo muy importante que te hará la vida mas "
+"fácil? ¿Solo quieres hablar un rato? ¡Contacta con nosotros!"
 
 #: templates/socialaccount/connections.html:5
 #: templates/socialaccount/connections.html:10
