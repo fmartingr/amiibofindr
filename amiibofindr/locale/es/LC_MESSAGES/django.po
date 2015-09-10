@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-10 21:02+0200\n"
-"PO-Revision-Date: 2015-09-10 21:10+0200\n"
+"POT-Creation-Date: 2015-09-10 21:36+0200\n"
+"PO-Revision-Date: 2015-09-10 21:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -17,6 +17,162 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.4\n"
+
+#: apps/amiibo/models.py:208
+msgid "Rock"
+msgstr "Piedra"
+
+#: apps/amiibo/models.py:209
+msgid "Paper"
+msgstr "Papel"
+
+#: apps/amiibo/models.py:210
+msgid "Scissors"
+msgstr "Tijera"
+
+#: apps/amiibo/models.py:214
+msgid "Alligator"
+msgstr "Caimán"
+
+#: apps/amiibo/models.py:215
+msgid "Anteater"
+msgstr "Oso hormiguero"
+
+#: apps/amiibo/models.py:216
+msgid "Bear"
+msgstr "Oso"
+
+#: apps/amiibo/models.py:217
+msgid "Bird"
+msgstr "Pájaro"
+
+#: apps/amiibo/models.py:218
+msgid "Bull"
+msgstr "Toro"
+
+#: apps/amiibo/models.py:219
+msgid "Cat"
+msgstr "Gato"
+
+#: apps/amiibo/models.py:220
+msgid "Chicken"
+msgstr "Gallina"
+
+#: apps/amiibo/models.py:221
+msgid "Cow"
+msgstr "Vaca"
+
+#: apps/amiibo/models.py:222
+msgid "Cub"
+msgstr "Cachorro"
+
+#: apps/amiibo/models.py:223
+msgid "Deer"
+msgstr "Ciervo"
+
+#: apps/amiibo/models.py:224
+msgid "Dog"
+msgstr "Perro"
+
+#: apps/amiibo/models.py:225
+msgid "Duck"
+msgstr "Pato"
+
+#: apps/amiibo/models.py:226
+msgid "Eagle"
+msgstr "Águila"
+
+#: apps/amiibo/models.py:227
+msgid "Elephant"
+msgstr "Elefante"
+
+#: apps/amiibo/models.py:228
+msgid "Frog"
+msgstr "Rana"
+
+#: apps/amiibo/models.py:229
+msgid "Goat"
+msgstr "Cabra"
+
+#: apps/amiibo/models.py:230
+msgid "Gorilla"
+msgstr "Gorila"
+
+#: apps/amiibo/models.py:231
+msgid "Hamster"
+msgstr "Hamster"
+
+#: apps/amiibo/models.py:232
+msgid "Hippo"
+msgstr "Hipopótamo"
+
+#: apps/amiibo/models.py:233
+msgid "Horse"
+msgstr "Caballo"
+
+#: apps/amiibo/models.py:234
+msgid "Kangaroo"
+msgstr "Canguro"
+
+#: apps/amiibo/models.py:235
+msgid "Koala"
+msgstr "Koala"
+
+#: apps/amiibo/models.py:236
+msgid "Lion"
+msgstr "León"
+
+#: apps/amiibo/models.py:237
+msgid "Monkey"
+msgstr "Mono"
+
+#: apps/amiibo/models.py:238
+msgid "Mouse"
+msgstr "Ratón"
+
+#: apps/amiibo/models.py:239
+msgid "Octopus"
+msgstr "Pulpo"
+
+#: apps/amiibo/models.py:240
+msgid "Ostrich"
+msgstr "Avestruz"
+
+#: apps/amiibo/models.py:241
+msgid "Penguin"
+msgstr "Pinguino"
+
+#: apps/amiibo/models.py:242
+msgid "Pig"
+msgstr "Cerdo"
+
+#: apps/amiibo/models.py:243
+msgid "Rabbit"
+msgstr "Conejo"
+
+#: apps/amiibo/models.py:244
+msgid "Rhino"
+msgstr "Rinoceronte"
+
+#: apps/amiibo/models.py:245
+msgid "Sheep"
+msgstr "Oveja"
+
+#: apps/amiibo/models.py:246
+msgid "Special"
+msgstr "Especial"
+
+#: apps/amiibo/models.py:247
+msgid "Squirrel"
+msgstr "Ardilla"
+
+#: apps/amiibo/models.py:248
+msgid "Tiger"
+msgstr "Tigre"
+
+#: apps/amiibo/models.py:249
+msgid "Wolf"
+msgstr "Lobo"
 
 #: apps/amiibo/urls.py:16
 msgid "^cards$"

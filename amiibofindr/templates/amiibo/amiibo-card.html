@@ -13,11 +13,11 @@
   </div>
   <div class="ui label">
     {% trans "Type" %}
-    <div class="detail">{{ amiibo.card_type }}</div>
+    <div class="detail">{{ amiibo.get_card_type_display }}</div>
   </div>
   <div class="ui label">
     {% trans "RPS" %}
-    <div class="detail">{% trans amiibo.get_rps_display %}</div>
+    <div class="detail">{{ amiibo.get_rps_display }}</div>
   </div>
   <div class="ui label">
     {% trans "Dice" %}

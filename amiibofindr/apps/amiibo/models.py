@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.text import slugify
-from django.utils.translation import activate, deactivate, get_language
+from django.utils.translation import ugettext_lazy as _, get_language
 
 from amazonify import amazonify
 
@@ -205,9 +205,48 @@ class AmiiboCard(Amiibo):
     PAPER = 'paper'
     SCISSORS = 'scissors'
     RPS_CHOICES = (
-        (ROCK, 'Rock'),
-        (PAPER, 'Paper'),
-        (SCISSORS, 'Scissors'),
+        (ROCK, _('Rock')),
+        (PAPER, _('Paper')),
+        (SCISSORS, _('Scissors')),
+    )
+
+    CARD_TYPE_CHOICES = (
+        ('alligator', _('Alligator')),
+        ('anteater', _('Anteater')),
+        ('bear', _('Bear')),
+        ('bird', _('Bird')),
+        ('bull', _('Bull')),
+        ('cat', _('Cat')),
+        ('chicken', _('Chicken')),
+        ('cow', _('Cow')),
+        ('cub', _('Cub')),
+        ('deer', _('Deer')),
+        ('dog', _('Dog')),
+        ('duck', _('Duck')),
+        ('eagle', _('Eagle')),
+        ('elephant', _('Elephant')),
+        ('frog', _('Frog')),
+        ('goat', _('Goat')),
+        ('gorilla', _('Gorilla')),
+        ('hamster', _('Hamster')),
+        ('hippo', _('Hippo')),
+        ('horse', _('Horse')),
+        ('kangaroo', _('Kangaroo')),
+        ('koala', _('Koala')),
+        ('lion', _('Lion')),
+        ('monkey', _('Monkey')),
+        ('mouse', _('Mouse')),
+        ('octopus', _('Octopus')),
+        ('ostrich', _('Ostrich')),
+        ('penguin', _('Penguin')),
+        ('pig', _('Pig')),
+        ('rabbit', _('Rabbit')),
+        ('rhino', _('Rhino')),
+        ('sheep', _('Sheep')),
+        ('special', _('Special')),
+        ('squirrel', _('Squirrel')),
+        ('tiger', _('Tiger')),
+        ('wolf', _('Wolf')),
     )
 
     image = models.ImageField(upload_to=image_card_upload)
@@ -218,6 +257,9 @@ class AmiiboCard(Amiibo):
 
     class Meta:
         ordering = ('collection', 'collection_number', 'name_eu', )
+
+    def get_card_type_display(self):
+        return dict(self.CARD_TYPE_CHOICES)[self.card_type]
 
     @models.permalink
     def get_absolute_url(self):
