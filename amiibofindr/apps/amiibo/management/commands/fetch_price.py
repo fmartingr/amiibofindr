@@ -25,7 +25,14 @@ class Command(BaseCommand):
                 check_price=True).values_list('item_id', flat=True)
             amazon = Crawler(region[1])
             products = amazon.fetch_batch(item_codes)
-            for product in products:
+            if isinstance(products, list):
+                for product in products:
+                    amiibo_shop = AmiiboShop.objects.get(
+                        item_id=product['shop_product_id'],
+                        shop__flag_code=region[0]
+                    )
+                    amiibo_shop.update_price(product['price'], product['currency'])
+            else:
                 amiibo_shop = AmiiboShop.objects.get(
                     item_id=product['shop_product_id'],
                     shop__flag_code=region[0]
