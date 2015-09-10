@@ -58,6 +58,7 @@ INSTALLED_APPS = (
     'amiibofindr.apps.amiibo',
     'amiibofindr.apps.shop',
     'amiibofindr.apps.home',
+    'amiibofindr.apps.profile',
     'amiibofindr.apps.notifications',
 )
 

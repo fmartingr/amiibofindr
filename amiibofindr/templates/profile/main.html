@@ -1,0 +1,53 @@
+{% extends "_layout.html" %}
+{% load i18n %}
+
+{% block main_content %}
+  <div class="ui page stackable grid">
+    <div class="sixteen wide column">
+      <h2 class="ui center aligned icon header">
+        <i class="circular users icon"></i>
+        {{ this_user.username }}
+        <div class="sub header">
+          {% blocktrans with username=this_user.username trimmed %}
+            Here you can browse over {{ username }}'s collection
+          {% endblocktrans %}
+        </div>
+      </h2>
+      {% if user.pk == this_user.pk %}
+        <div class="ui text-center">
+          <p>
+            {% trans "Want everyone to see your collection? Spread the word!" %}
+          </p>
+          <a href="https://twitter.com/share?text={% trans "Look at my amiibo collection!" %}" class="twitter-share-button" data-via="amiibofindr">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        </div>
+      {% endif %}
+    </div>
+    <div class="eight wide column">
+      <div class="ui three item menu">
+        <a href="{% url 'profile:main-filter' this_user.username type 'own' %}" class="item {% if relation == 'own' %}active{% endif %}">{% trans "Have it" %}</a>
+        <a href="{% url 'profile:main-filter' this_user.username type 'want' %}" class="item {% if relation == 'want' %}active{% endif %}">{% trans "Want it" %}</a>
+        <a href="{% url 'profile:main-filter' this_user.username type  'trade'%}" class="item {% if relation == 'trade' %}active{% endif %}">{% trans "Trade it" %}</a>
+      </div>
+    </div>
+    <div class="eight wide column">
+      <div class="ui two item menu">
+        <a href="{% url 'profile:main-filter' this_user.username 'figures' relation %}" class="item {% if type == 'figures' %}active{% endif %}">{% trans "Figures" %}</a>
+        <a href="{% url 'profile:main-filter' this_user.username 'cards' relation %}" class="item {% if type == 'cards' %}active{% endif %}">{% trans "Cards" %}</a>
+      </div>
+    </div>
+    <div class="sixteen wide column">
+      {% if amiibo_list %}
+        <div class="ui {% if show == "cards" %}eight{% else %}five{% endif %} doubling cards" data-component="collectionList">
+          {% for amiibo in amiibo_list %}
+            {% include "amiibo/widgets/amiibo-card.html" with amiibo=amiibo %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="ui message info text-center">
+          {% trans "Oooops, seems this user have nothing for that." %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

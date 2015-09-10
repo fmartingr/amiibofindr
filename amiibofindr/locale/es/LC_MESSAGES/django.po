@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-10 21:36+0200\n"
-"PO-Revision-Date: 2015-09-10 21:38+0200\n"
+"POT-Creation-Date: 2015-09-10 22:30+0200\n"
+"PO-Revision-Date: 2015-09-10 22:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -210,6 +210,14 @@ msgstr ""
 msgid "^amiibo/(?P<amiibo>\\d+)/(?P<action>[\\w\\+\\-\\=]+)$"
 msgstr "^amiibo/(?P<amiibo>\\d+)/(?P<action>[\\w\\+\\-\\=]+)$"
 
+#: apps/profile/urls.py:13
+msgid "^profile/(?P<username>[\\w\\d\\-]+)/$"
+msgstr "^perfil/(?P<username>[\\w\\d\\-]+)/$"
+
+#: apps/profile/urls.py:16
+msgid "^profile/(?P<username>[\\w\\d\\-]+)/(?P<type>\\w+)/(?P<relation>\\w+)/$"
+msgstr "^perfil/(?P<username>[\\w\\d\\-]+)/(?P<type>\\w+)/(?P<relation>\\w+)/$"
+
 #: templates/404.html:10
 msgid "Not found!"
 msgstr "No encontrado."
@@ -248,51 +256,57 @@ msgstr ""
 msgid "all"
 msgstr "todas"
 
-#: templates/_layout.html:36 templates/_layout.html.py:104
+#: templates/_layout.html:36 templates/_layout.html.py:105
+#: templates/profile/main.html:35
 msgid "Figures"
 msgstr "Figuras"
 
-#: templates/_layout.html:39 templates/_layout.html.py:51
-#: templates/_layout.html:106 templates/_layout.html.py:115
+#: templates/_layout.html:39 templates/_layout.html.py:50
+#: templates/_layout.html:107 templates/_layout.html.py:116
 msgid "All"
 msgstr "Todas"
 
-#: templates/_layout.html:48 templates/_layout.html.py:113
+#: templates/_layout.html:47 templates/_layout.html.py:114
+#: templates/profile/main.html:36
 msgid "Cards"
 msgstr "Tarjetas"
 
-#: templates/_layout.html:63 templates/_layout.html.py:90
+#: templates/_layout.html:62 templates/_layout.html.py:90
+msgid "My public profile"
+msgstr "Mi perfil público"
+
+#: templates/_layout.html:63 templates/_layout.html.py:91
 #: templates/account/password_reset_from_key.html:49
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#: templates/_layout.html:64 templates/_layout.html.py:91
+#: templates/_layout.html:64 templates/_layout.html.py:92
 msgid "Emails"
 msgstr "Emails"
 
-#: templates/_layout.html:66 templates/_layout.html.py:92
+#: templates/_layout.html:66 templates/_layout.html.py:93
 msgid "Log out"
 msgstr "Cerrar sesión"
 
-#: templates/_layout.html:70 templates/_layout.html.py:98
-#: templates/home/home.html:66
+#: templates/_layout.html:70 templates/_layout.html.py:99
+#: templates/home/home.html:74
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: templates/_layout.html:71 templates/_layout.html.py:99
-#: templates/home/home.html:64
+#: templates/_layout.html:71 templates/_layout.html.py:100
+#: templates/home/home.html:72
 msgid "Register"
 msgstr "Registrarse"
 
-#: templates/_layout.html:143
+#: templates/_layout.html:144
 msgid "Select desired currency"
 msgstr "Seleccionar moneda"
 
-#: templates/_layout.html:148
+#: templates/_layout.html:149
 msgid "No convert"
 msgstr "Sin conversión"
 
-#: templates/_layout.html:152
+#: templates/_layout.html:153
 msgid "Language"
 msgstr "Idioma"
 
@@ -632,7 +646,7 @@ msgid "I want this"
 msgstr "Lo quiero"
 
 #: templates/amiibo/amiibo-figure.html:56
-#: templates/amiibo/amiibo-figure.html:66 templates/home/home.html:65
+#: templates/amiibo/amiibo-figure.html:66 templates/home/home.html:73
 msgid "or"
 msgstr "o"
 
@@ -753,10 +767,24 @@ msgstr ""
 "precios, e iremos añadiendo más y más."
 
 #: templates/home/home.html:53
+msgid "Public profiles"
+msgstr "Perfiles públicos"
+
+#: templates/home/home.html:54
+msgid ""
+"You will get a unique URL where you have all you collected, wanted and "
+"traded amiibo. For free! This way you will never forget what you have "
+"available."
+msgstr ""
+"Dispondrás de una dirección web única para ti donde estarán visibles los "
+"amiibo que quieres, tienes e intercambias. ¡Gratis! De esta manera nunca "
+"olvidaras lo que tienes."
+
+#: templates/home/home.html:61
 msgid "EUR, GBP, JPY, USD..."
 msgstr "EUR, GBP, JPY, USD..."
 
-#: templates/home/home.html:54
+#: templates/home/home.html:62
 msgid ""
 "Because not everyone can do math to convert from currencies on the fly, you "
 "can select your desired currency to get an approximate conversion in real "
@@ -766,11 +794,11 @@ msgstr ""
 "monedas extranjeras puedes seleccionar tu preferida para ver todos los "
 "precios con ella, ¡así de fácil!"
 
-#: templates/home/home.html:58
+#: templates/home/home.html:66
 msgid "And the most important reason of all?"
 msgstr "¿Y cual es la razón más importante de todas?"
 
-#: templates/home/home.html:60
+#: templates/home/home.html:68
 msgid ""
 "We are collectors too! We like amiibo and we do this for fun on our spare "
 "time."
@@ -778,11 +806,11 @@ msgstr ""
 "¡Nosotros también somos coleccionistas! Nos gustan los amiibo y hacemos esto "
 "por diversión en nuestro tiempo libre."
 
-#: templates/home/home.html:61
+#: templates/home/home.html:69
 msgid "We'd like to continue with this journey, and you to be helping us."
 msgstr "Nos gustaría seguir con ello, ¡y que tu te apuntes!"
 
-#: templates/home/home.html:69
+#: templates/home/home.html:77
 msgid ""
 "And remember that we all make this better. You want your favourite shop "
 "added? We're missing some HUGE feature you'd like to see? Just want to get "
@@ -791,6 +819,35 @@ msgstr ""
 "Y recuerda que somos todos los que hacemos esto mejor. ¿Quieres tu tienda "
 "favorita añadida? ¿Nos falta algo muy importante que te hará la vida mas "
 "fácil? ¿Solo quieres hablar un rato? ¡Contacta con nosotros!"
+
+#: templates/profile/main.html:11
+#, python-format
+msgid "Here you can browse over %(username)s's collection"
+msgstr "Aquí puedes ver la colección de %(username)s"
+
+#: templates/profile/main.html:19
+msgid "Want everyone to see your collection? Spread the word!"
+msgstr "¿Quieres presumir de colección? ¡Difunde la palabra!"
+
+#: templates/profile/main.html:21
+msgid "Look at my amiibo collection!"
+msgstr "¡Mira mi colección de #amiibo!"
+
+#: templates/profile/main.html:28
+msgid "Have it"
+msgstr "Lo tiene"
+
+#: templates/profile/main.html:29
+msgid "Want it"
+msgstr "Lo quiere"
+
+#: templates/profile/main.html:30
+msgid "Trade it"
+msgstr "Lo cambia"
+
+#: templates/profile/main.html:48
+msgid "Oooops, seems this user have nothing for that."
+msgstr "Ups, ¡parece que no tiene nada por aquí!"
 
 #: templates/socialaccount/connections.html:5
 #: templates/socialaccount/connections.html:10

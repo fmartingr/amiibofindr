@@ -42,7 +42,6 @@
                 <a class="item" href="{{ col.get_absolute_url_figures }}">{{ col.name }}</a>
               {% endfor %}
             </div>
-
           </div>
           <div class="ui dropdown item">
             {% trans "Cards" %}
@@ -60,6 +59,7 @@
                 <i class="icon user"></i> {{ user_display }}
                 <i class="dropdown icon"></i>
                 <div class="menu">
+                  <a class="item" href="{% url 'profile:main' user.username %}">{% trans "My public profile" %}</a>
                   <a class="item" href="{% url 'account_change_password' %}">{% trans "Change password" %}</a>
                   <a class="item" href="{% url 'account_email' %}">{% trans "Emails" %}</a>
                   <div class="ui divider"></div>
@@ -87,6 +87,7 @@
             <div class="ui item">
               {{ user_display }}
               <div class="menu">
+                <a class="item" href="{% url 'profile:main' user.username %}">{% trans "My public profile" %}</a>
                 <a class="item" href="{% url 'account_change_password' %}">{% trans "Change password" %}</a>
                 <a class="item" href="{% url 'account_email' %}">{% trans "Emails" %}</a>
                 <a class="item" href="{% url 'account_logout' %}">{% trans "Log out" %}</a>

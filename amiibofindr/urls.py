@@ -36,6 +36,7 @@ urlpatterns += i18n_patterns(
     url(_(r'^account/'), include('allauth.urls')),
     url(r'', include('amiibofindr.apps.amiibo.urls', namespace='amiibo')),
     url(r'', include('amiibofindr.apps.home.urls', namespace='home')),
+    url(r'', include('amiibofindr.apps.profile.urls', namespace='profile')),
 )
 
 if settings.DEBUG:
