@@ -86,9 +86,12 @@ class AmiiboCardAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
 
 class AmiiboShopAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     resource_class = AmiiboShopResource
-    list_display = ('amiibo', 'shop', 'check_price')
-    list_filter = ('amiibo', 'shop', )
+    list_display = ('amiibos_names', 'shop_name', 'shop', 'check_price')
+    list_filter = ('shop', 'shop_name', )
     list_editable = ('check_price', )
+
+    def amiibos_names(self, obj):
+        return ", ".join(obj.amiibo.all().values_list('name_eu', flat=True))
 
 
 class AmiiboPriceAdmin(reversion.VersionAdmin):
