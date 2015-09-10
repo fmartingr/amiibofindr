@@ -243,6 +243,7 @@ class AmiiboShop(models.Model):
     url = models.TextField()
     item_id = models.CharField(max_length=64)
     check_price = models.BooleanField(default=True)
+    shop_name = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to=shop_item_upload,
                               null=True, blank=True)
 
