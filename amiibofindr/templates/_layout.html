@@ -83,6 +83,23 @@
           </div>
         </div>
         <div class="ui vertical menu responsive-menu">
+          {% if user.is_authenticated %}
+            <div class="ui item">
+              {{ user_display }}
+              <div class="menu">
+                <a class="item" href="{% url 'account_change_password' %}">{% trans "Change password" %}</a>
+                <a class="item" href="{% url 'account_email' %}">{% trans "Emails" %}</a>
+                <a class="item" href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
+              </div>
+            </div>
+          {% else %}
+            <div class="ui item">
+              <div class="menu">
+                <a class="item" href="{% url 'account_login' %}">{% trans "Login" %}</a>
+                <a class="item" href="{% url 'account_signup' %}">{% trans "Register" %}</a>
+              </div>
+            </div>
+          {% endif %}
           <div class="ui item">
             <div class="text">{% trans 'Figures' %}</div>
             <div class="menu">
