@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-10 22:30+0200\n"
-"PO-Revision-Date: 2015-09-10 22:30+0200\n"
+"POT-Creation-Date: 2015-09-10 23:15+0200\n"
+"PO-Revision-Date: 2015-09-10 23:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -434,6 +434,45 @@ msgstr ""
 msgid "Password Reset E-mail"
 msgstr "Correo electrónico"
 
+#: templates/account/email_confirm.html:6
+#: templates/account/email_confirm.html:12
+#: templates/account/email_confirmed.html:6
+#: templates/account/email_confirmed.html:12 templates/email_confirm.html:6
+#: templates/email_confirm.html.py:12
+msgid "Confirm E-mail Address"
+msgstr "Confirmar correo electrónico"
+
+#: templates/account/email_confirm.html:19 templates/email_confirm.html:19
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+"Por favor confirma que el correo electrónico <a href=\"mailto:%(email)s\">"
+"%(email)s</a> es del usuario %(user_display)s."
+
+#: templates/account/email_confirm.html:23 templates/email_confirm.html:23
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: templates/account/email_confirm.html:30 templates/email_confirm.html:30
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+"Este enlace de activación de correo electrónico ha expirado. Por favor <a "
+"href=\"%(email_url)s\">pide una nueva confirmación</a>."
+
+#: templates/account/email_confirmed.html:17
+#, python-format
+msgid ""
+"You have confirmed that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-"
+"mail address for user %(user_display)s."
+msgstr ""
+"Has confirmado el correo electrónico <a href=\"mailto:%(email)s\">%(email)s</"
+"a> para el usuario %(user_display)s."
+
 #: templates/account/login.html:6 templates/account/login.html.py:13
 #: templates/account/login.html:101
 msgid "Sign In"
@@ -753,24 +792,10 @@ msgstr ""
 "intercambias. ¡Incluso cuando estés mirando la lista de otro usuario!"
 
 #: templates/home/home.html:45
-msgid "Always at the best price"
-msgstr "Siempre al mejor precio"
-
-#: templates/home/home.html:46
-msgid ""
-"We know sometimes the most wanted amiibo is difficult to find, so we keep "
-"track of online shops for you to get the best prices. And we will be adding "
-"more and more!"
-msgstr ""
-"Sabemos que a veces el amiibo que más deseamos es el más difícil de "
-"encontrar así que nosotros monitorizamos tiendas para obtener los mejores "
-"precios, e iremos añadiendo más y más."
-
-#: templates/home/home.html:53
 msgid "Public profiles"
 msgstr "Perfiles públicos"
 
-#: templates/home/home.html:54
+#: templates/home/home.html:46
 msgid ""
 "You will get a unique URL where you have all you collected, wanted and "
 "traded amiibo. For free! This way you will never forget what you have "
@@ -779,6 +804,20 @@ msgstr ""
 "Dispondrás de una dirección web única para ti donde estarán visibles los "
 "amiibo que quieres, tienes e intercambias. ¡Gratis! De esta manera nunca "
 "olvidaras lo que tienes."
+
+#: templates/home/home.html:53
+msgid "Always at the best price"
+msgstr "Siempre al mejor precio"
+
+#: templates/home/home.html:54
+msgid ""
+"We know sometimes the most wanted amiibo is difficult to find, so we keep "
+"track of online shops for you to get the best prices. And we will be adding "
+"more and more!"
+msgstr ""
+"Sabemos que a veces el amiibo que más deseamos es el más difícil de "
+"encontrar así que nosotros monitorizamos tiendas para obtener los mejores "
+"precios, e iremos añadiendo más y más."
 
 #: templates/home/home.html:61
 msgid "EUR, GBP, JPY, USD..."
