@@ -120,10 +120,13 @@ class Command(BaseCommand):
     dice = {
         'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6,
     }
-    card_image_domain = 'http://animal-crossing.com/amiibo-cards/'
+    card_image_domain = 'http://animal-crossing.com'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.85 Safari/537.36',
+    }
 
     def handle_image(self, image_url):
-        image = requests.get(image_url)
+        image = requests.get(image_url, headers=self.headers)
         f = ContentFile(image.content, image_url.split('/')[-1])
         return f
 
