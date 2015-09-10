@@ -30,7 +30,7 @@ def post_check_price_change(sender, instance, created, **kwargs):
         amiibo_price_changed.send(
             sender=instance.__class__,
             instance=instance,
-            amiibo=instance.amiibo_shop.amiibo,
+            amiibo=instance.amiibo_shop.amiibo.first(),
             old_stock=instance.old_stock,
             old_price=instance.old_price,
             new_price=instance.price
