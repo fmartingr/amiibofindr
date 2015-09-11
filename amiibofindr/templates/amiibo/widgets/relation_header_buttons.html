@@ -1,7 +1,7 @@
 {% load i18n %}
 
-<div data-handle="relation" data-from="detail"
-     data-amiibo="{{ amiibo.pk }}">
+<div {% if user.is_authenticated %}data-handle="relation" data-from="detail"
+     data-amiibo="{{ amiibo.pk }}"{% endif %}>
   {% if user.is_authenticated %}
     {% if amiibo.pk in USER_AMIIBO_OWNED %}
       <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='+-trade' %}"
@@ -27,7 +27,7 @@
   {% else %}
       <form action="{% url 'account_signup' %}" method="get">
         <input type="hidden" name="next" value="{{ amiibo.get_absolute_url }}">
-        <button class="ui animated fade button standard">
+        <button type="submit" class="ui animated fade button standard">
           <div class="visible content ui buttons">
             <a href="#" class="ui button">{% trans 'I want this' %}</a>
             <div class="or" data-text="{% trans 'or' %}"></div>
