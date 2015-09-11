@@ -16,6 +16,12 @@ $(function(){
     position: 'left center'
   });
 
+  $(document).on('click', '[data-toggle]', function(event) {
+    var $el = event.target;
+    var $target = $($el.getAttribute('data-toggle'));
+    $target.slideToggle(200);
+  });
+
   $('.right.menu.open').on("click",function(e){
     e.preventDefault();
     $('.ui.vertical.menu').toggle();

@@ -1,5 +1,5 @@
 // Semantic-UI
-@import "../semantic/semantic.css";
+@import "../semantic/semantic.min.css";
 
 
 .price-converted {
@@ -8,6 +8,10 @@
     &:before {
         content: '~';
     }
+}
+
+.hidden {
+    display: none;
 }
 
 .underlined {
@@ -34,4 +38,14 @@
 
 .nowrap {
     white-space: nowrap;
+}
+
+.relation-buttons {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    width: 100%;
+    text-align: center;
+    z-index: 30;
 }

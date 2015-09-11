@@ -87,9 +87,14 @@ class UserAmiiboView(View):
         '+-trade': 'toggle_trade',
     }
 
+    ajax = {
+        'detail': 'amiibo/widgets/relation_header_buttons.html',
+        'list': 'amiibo/widgets/amiibo-card.html',
+    }
+
     def get(self, request, amiibo, action):
-        amiibo = get_object_or_404(Amiibo, pk=amiibo)
-        # amiibo = obj.as_type()
+        obj = get_object_or_404(Amiibo, pk=amiibo)
+        amiibo = obj.as_type()
         if action in self.actions:
             method = getattr(self, self.actions[action], None)
             if method:
@@ -99,13 +104,9 @@ class UserAmiiboView(View):
 
         # Handle templating
         request_from = request.GET.get('from', None)
-        if request_from == 'detail':
-            return render(request,
-                          'amiibo/widgets/relation_header_buttons.html',
-                          {
-                              'amiibo': amiibo,
-                              'item': amiibo
-                          })
+        if request_from in self.ajax:
+            return render(request, self.ajax[request_from],
+                          { 'amiibo': amiibo, 'request': request })
 
         return HttpResponseRedirect(amiibo.as_type().get_absolute_url())
 
@@ -120,12 +121,12 @@ class UserAmiiboView(View):
     def add_trade(self, request, amiibo):
         if services.is_owned_by(amiibo, request.user):
             services.user_add_trade(request.user, amiibo)
-        # TODO: Add message
+            # TODO: Add message
 
     def remove_trade(self, request, amiibo):
         if services.is_owned_by(amiibo, request.user):
             services.user_remove_trade(request.user, amiibo)
-        # TODO: Add message
+            # TODO: Add message
 
     def toggle_trade(self, request, amiibo):
         if services.is_owned_by(amiibo, request.user):

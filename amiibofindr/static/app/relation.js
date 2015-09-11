@@ -1,6 +1,6 @@
 (function() {
   var RelationComponent = function() {
-    this.relations = document.querySelectorAll('[data-handle="relation"]');
+    this.relationsQuerySelector = '[data-handle="relation"]';
     this.initialize();
   };
 
@@ -10,12 +10,18 @@
     // Prepare handlers
     var linkHandler = function(event) {
       event.preventDefault();
-      self.click(event.target);
+      event.stopPropagation();
+
+      var target = event.target;
+
+      // Handles clicking in the icon
+      if (event.target.href === undefined)
+        target = event.target.parentNode
+
+      self.click(target);
     };
 
-    [].forEach.call(this.relations, function(buttons) {
-      $(buttons).on('click', 'a', linkHandler);
-    });
+    $(document).on('click', this.relationsQuerySelector + ' a', linkHandler);
   };
 
   RelationComponent.prototype.click = function(element) {
@@ -32,17 +38,24 @@
     var self = this;
     // loader.addClass('loading');
 
+    // If list, the entire card is the container
+    if (from === "list") container = loader;
+
     $.ajax({
       url: href,
       data: { from: from },
       success: function(result) {
-        self.handleResult(loader, container, result);
+        self.handleResult(loader, from, container, result);
       }
     });
   };
 
-  RelationComponent.prototype.handleResult = function(loader, container, result) {
-    container.html(result)
+  RelationComponent.prototype.handleResult = function(loader, from, container, result) {
+    if (from === 'list') {
+      container.replaceWith(result);
+    } else {
+      container.html(result)
+    }
     // loader.removeClass('loading');
   };
 
