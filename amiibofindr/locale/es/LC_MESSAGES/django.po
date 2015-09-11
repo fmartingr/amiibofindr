@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-10 23:15+0200\n"
-"PO-Revision-Date: 2015-09-10 23:17+0200\n"
+"POT-Creation-Date: 2015-09-11 21:22+0200\n"
+"PO-Revision-Date: 2015-09-11 21:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -289,12 +289,12 @@ msgid "Log out"
 msgstr "Cerrar sesión"
 
 #: templates/_layout.html:70 templates/_layout.html.py:99
-#: templates/home/home.html:74
+#: templates/home/home.html:90
 msgid "Login"
 msgstr "Iniciar sesión"
 
 #: templates/_layout.html:71 templates/_layout.html.py:100
-#: templates/home/home.html:72
+#: templates/home/home.html:88
 msgid "Register"
 msgstr "Registrarse"
 
@@ -667,62 +667,31 @@ msgstr "Dado"
 msgid "%(amiibo)s amiibo from %(collection)s in "
 msgstr "%(amiibo)s amiibo de %(collection)s en "
 
-#: templates/amiibo/amiibo-figure.html:46
-msgid "Available for trade"
-msgstr "Disponible para cambio"
-
-#: templates/amiibo/amiibo-figure.html:48
-msgid "I do not have it"
-msgstr "No lo tengo"
-
-#: templates/amiibo/amiibo-figure.html:52
-msgid "I do not want this"
-msgstr "No lo quiero"
-
-#: templates/amiibo/amiibo-figure.html:54
-#: templates/amiibo/amiibo-figure.html:65
-msgid "I want this"
-msgstr "Lo quiero"
-
-#: templates/amiibo/amiibo-figure.html:56
-#: templates/amiibo/amiibo-figure.html:66 templates/home/home.html:73
-msgid "or"
-msgstr "o"
-
-#: templates/amiibo/amiibo-figure.html:57
-#: templates/amiibo/amiibo-figure.html:67
-msgid "I have this"
-msgstr "Lo tengo"
-
-#: templates/amiibo/amiibo-figure.html:70
-msgid "Register and star collecting amiibo!"
-msgstr "¡Regístrate y empieza a coleccionar Amiibo!"
-
-#: templates/amiibo/amiibo-figure.html:90
+#: templates/amiibo/amiibo-figure.html:59
 msgid "Shops"
 msgstr "Tiendas"
 
-#: templates/amiibo/amiibo-figure.html:104
+#: templates/amiibo/amiibo-figure.html:73
 msgid "Buy now for"
 msgstr "Comprar ahora por"
 
-#: templates/amiibo/amiibo-figure.html:111
+#: templates/amiibo/amiibo-figure.html:80
 msgid "No stock"
 msgstr "Sin stock"
 
-#: templates/amiibo/amiibo-figure.html:119
+#: templates/amiibo/amiibo-figure.html:88
 msgid "Updated"
 msgstr "Actualizado"
 
-#: templates/amiibo/amiibo-figure.html:122
+#: templates/amiibo/amiibo-figure.html:91
 msgid "This item had never been in stock"
 msgstr "Este articulo nunca ha estado en stock"
 
-#: templates/amiibo/amiibo-figure.html:128
+#: templates/amiibo/amiibo-figure.html:97
 msgid "This is a pack of various items"
 msgstr "Este es un pack que contiene varios artículos"
 
-#: templates/amiibo/amiibo-figure.html:138
+#: templates/amiibo/amiibo-figure.html:107
 msgid "No shops :("
 msgstr "Sin tiendas :("
 
@@ -739,6 +708,38 @@ msgstr "Amiibos de %(collection)s en "
 #: templates/amiibo/collection.html:18
 msgid "All amiibo"
 msgstr "Todos los amiibo"
+
+#: templates/amiibo/widgets/relation_header_buttons.html:9
+msgid "Available for trade"
+msgstr "Disponible para cambio"
+
+#: templates/amiibo/widgets/relation_header_buttons.html:12
+msgid "I do not have it"
+msgstr "No lo tengo"
+
+#: templates/amiibo/widgets/relation_header_buttons.html:17
+msgid "I do not want this"
+msgstr "No lo quiero"
+
+#: templates/amiibo/widgets/relation_header_buttons.html:20
+#: templates/amiibo/widgets/relation_header_buttons.html:32
+msgid "I want this"
+msgstr "Lo quiero"
+
+#: templates/amiibo/widgets/relation_header_buttons.html:22
+#: templates/amiibo/widgets/relation_header_buttons.html:33
+#: templates/home/home.html:89
+msgid "or"
+msgstr "o"
+
+#: templates/amiibo/widgets/relation_header_buttons.html:24
+#: templates/amiibo/widgets/relation_header_buttons.html:34
+msgid "I have this"
+msgstr "Lo tengo"
+
+#: templates/amiibo/widgets/relation_header_buttons.html:37
+msgid "Register and star collecting amiibo!"
+msgstr "¡Regístrate y empieza a coleccionar Amiibo!"
 
 #: templates/home/home.html:9
 msgid "Welcome to amiibofindr!"
@@ -780,10 +781,24 @@ msgstr ""
 "ofertas!"
 
 #: templates/home/home.html:37
+msgid "Collect from ANYWHERE"
+msgstr "Colecciona desde cualquier sitio"
+
+#: templates/home/home.html:38
+msgid ""
+"Lots of stuff to mark as collected or wanted? No problem! You can check your "
+"owned amiibo from everywhere on the site, detail, lists or even other users "
+"collections."
+msgstr ""
+"¿Tienes demasiadas cosas en tu colección? ¡No hay problema! Puedes marcar "
+"que amibos tienes o quieres desde cualquier parte de la web. Detalles, "
+"listados… incluso desde los perfiles de otros usuarios."
+
+#: templates/home/home.html:45
 msgid "Don't lose sight with color coding"
 msgstr "No te pierdas con nuestro código de colores"
 
-#: templates/home/home.html:38
+#: templates/home/home.html:46
 msgid ""
 "When logged in, you will see what amiibo you have, want or want to trade. "
 "Even when on lists or looking another person's amiibo list."
@@ -791,11 +806,11 @@ msgstr ""
 "Cuando inicies sesión sabrás de un vistazo que amiibo tienes, quieres o "
 "intercambias. ¡Incluso cuando estés mirando la lista de otro usuario!"
 
-#: templates/home/home.html:45
+#: templates/home/home.html:53
 msgid "Public profiles"
 msgstr "Perfiles públicos"
 
-#: templates/home/home.html:46
+#: templates/home/home.html:54
 msgid ""
 "You will get a unique URL where you have all you collected, wanted and "
 "traded amiibo. For free! This way you will never forget what you have "
@@ -805,11 +820,11 @@ msgstr ""
 "amiibo que quieres, tienes e intercambias. ¡Gratis! De esta manera nunca "
 "olvidaras lo que tienes."
 
-#: templates/home/home.html:53
+#: templates/home/home.html:61
 msgid "Always at the best price"
 msgstr "Siempre al mejor precio"
 
-#: templates/home/home.html:54
+#: templates/home/home.html:62
 msgid ""
 "We know sometimes the most wanted amiibo is difficult to find, so we keep "
 "track of online shops for you to get the best prices. And we will be adding "
@@ -819,11 +834,11 @@ msgstr ""
 "encontrar así que nosotros monitorizamos tiendas para obtener los mejores "
 "precios, e iremos añadiendo más y más."
 
-#: templates/home/home.html:61
+#: templates/home/home.html:69
 msgid "EUR, GBP, JPY, USD..."
 msgstr "EUR, GBP, JPY, USD..."
 
-#: templates/home/home.html:62
+#: templates/home/home.html:70
 msgid ""
 "Because not everyone can do math to convert from currencies on the fly, you "
 "can select your desired currency to get an approximate conversion in real "
@@ -833,11 +848,23 @@ msgstr ""
 "monedas extranjeras puedes seleccionar tu preferida para ver todos los "
 "precios con ella, ¡así de fácil!"
 
-#: templates/home/home.html:66
+#: templates/home/home.html:77
+msgid "Even from mobile phones"
+msgstr "Incluso desde el móvil"
+
+#: templates/home/home.html:78
+msgid ""
+"The site is viewable from mobile phones too! This way you will know what "
+"amiibo are you mising... from anywhere!"
+msgstr ""
+"¡La web se adapta a dispositivos móviles! De esta manera siempre podrás "
+"saber que amiibos te faltan… ¡desde cualquier parte!"
+
+#: templates/home/home.html:82
 msgid "And the most important reason of all?"
 msgstr "¿Y cual es la razón más importante de todas?"
 
-#: templates/home/home.html:68
+#: templates/home/home.html:84
 msgid ""
 "We are collectors too! We like amiibo and we do this for fun on our spare "
 "time."
@@ -845,11 +872,11 @@ msgstr ""
 "¡Nosotros también somos coleccionistas! Nos gustan los amiibo y hacemos esto "
 "por diversión en nuestro tiempo libre."
 
-#: templates/home/home.html:69
+#: templates/home/home.html:85
 msgid "We'd like to continue with this journey, and you to be helping us."
 msgstr "Nos gustaría seguir con ello, ¡y que tu te apuntes!"
 
-#: templates/home/home.html:77
+#: templates/home/home.html:93
 msgid ""
 "And remember that we all make this better. You want your favourite shop "
 "added? We're missing some HUGE feature you'd like to see? Just want to get "

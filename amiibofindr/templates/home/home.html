@@ -31,6 +31,14 @@
     </div>
 
     <div class="four wide column middle aligned">
+      <img src="{% static 'images/home/easycheck.png' %}" class="ui circular bordered image">
+    </div>
+    <div class="four wide column">
+      <h2>{% trans 'Collect from ANYWHERE' %}</h2>
+      <p>{% blocktrans %}Lots of stuff to mark as collected or wanted? No problem! You can check your owned amiibo from everywhere on the site, detail, lists or even other users collections.{% endblocktrans %}
+    </div>
+
+    <div class="four wide column middle aligned">
       <img src="{% static 'images/home/colorcoding.png' %}" class="ui circular bordered image">
     </div>
     <div class="four wide column">
@@ -62,23 +70,31 @@
       <p>{% blocktrans %}Because not everyone can do math to convert from currencies on the fly, you can select your desired currency to get an approximate conversion in real time. Easy!{% endblocktrans %}
     </div>
 
-      <h1 class="ui center aligned icon header">
-        {% trans "And the most important reason of all?" %}
-        <div class="sub header">
-          <p>{% trans "We are collectors too! We like amiibo and we do this for fun on our spare time." %}</p>
-          <p>{% trans "We'd like to continue with this journey, and you to be helping us." %}</p>
-          {% if not user.is_authenticated %}
-            <p>
-              <a href="{% url 'account_signup' %}">{% trans "Register" %}</a>
-              {% trans "or" %}
-              <a href="{% url 'account_login' %}">{% trans "Login" %}</a>
-            </p>
-          {% endif %}
-          <p>{% trans "And remember that we all make this better. You want your favourite shop added? We're missing some HUGE feature you'd like to see? Just want to get in touch? Feel free! You have our contact details at the bottom." %}</p>
-          <br>
-        </div>
-      </h1>
+    <div class="four wide column middle aligned">
+      <img src="{% static 'images/home/mobile.png' %}" class="ui circular bordered image">
     </div>
+    <div class="four wide column">
+      <h2>{% trans 'Even from mobile phones' %}</h2>
+      <p>{% blocktrans %}The site is viewable from mobile phones too! This way you will know what amiibo are you mising... from anywhere!{% endblocktrans %}
+    </div>
+
+    <h1 class="ui center aligned icon header">
+      {% trans "And the most important reason of all?" %}
+      <div class="sub header">
+        <p>{% trans "We are collectors too! We like amiibo and we do this for fun on our spare time." %}</p>
+        <p>{% trans "We'd like to continue with this journey, and you to be helping us." %}</p>
+        {% if not user.is_authenticated %}
+          <p>
+            <a href="{% url 'account_signup' %}">{% trans "Register" %}</a>
+            {% trans "or" %}
+            <a href="{% url 'account_login' %}">{% trans "Login" %}</a>
+          </p>
+        {% endif %}
+        <p>{% trans "And remember that we all make this better. You want your favourite shop added? We're missing some HUGE feature you'd like to see? Just want to get in touch? Feel free! You have our contact details at the bottom." %}</p>
+        <br>
+      </div>
+    </h1>
+  </div>
 
   </div>
 {% endblock %}
