@@ -108,16 +108,19 @@ class UserAmiiboView(View):
         # TODO: Add message
 
     def add_trade(self, request, amiibo):
-        services.user_add_trade(request.user, amiibo)
+        if services.is_owned_by(amiibo, request.user):
+            services.user_add_trade(request.user, amiibo)
         # TODO: Add message
 
     def remove_trade(self, request, amiibo):
-        services.user_remove_trade(request.user, amiibo)
+        if services.is_owned_by(amiibo, request.user):
+            services.user_remove_trade(request.user, amiibo)
         # TODO: Add message
 
     def toggle_trade(self, request, amiibo):
-        services.user_toggle_trade(request.user, amiibo)
-        # TODO: Add message
+        if services.is_owned_by(amiibo, request.user):
+            services.user_toggle_trade(request.user, amiibo)
+            # TODO: Add message
 
     def add_owned(self, request, amiibo):
         services.user_add_owned(request.user, amiibo)

@@ -3,6 +3,11 @@
 from . import models
 
 
+def is_owned_by(amiibo, user):
+    relation, created = models.UserAmiibo.objects.get_or_create(
+        _amiibo=amiibo, user=user)
+    return relation.owned
+
 def user_add_owned(user, amiibo):
     relation, created = models.UserAmiibo.objects.get_or_create(
         _amiibo=amiibo, user=user)
@@ -14,6 +19,7 @@ def user_remove_owned(user, amiibo):
     relation, created = models.UserAmiibo.objects.get_or_create(
         _amiibo=amiibo, user=user)
     relation.own = False
+    relation.trade = False
     relation.save()
 
 def user_add_wishlist(user, amiibo):
