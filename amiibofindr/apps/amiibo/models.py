@@ -33,8 +33,8 @@ def image_card_upload(self, filename):
 
 def shop_item_upload(self, filename):
     name, extension = os.path.splitext(filename)
-    return 'amiibos/si/{}/{}_{}{}'.format(
-        self.amiibo.collection.pk, self.amiibo.pk, self.shop.pk, extension)
+    return 'amiibos/si/{}_{}{}'.format(
+        self.shop.pk, self.pk, extension)
 
 
 
