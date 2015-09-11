@@ -6,7 +6,7 @@ from . import models
 def is_owned_by(amiibo, user):
     relation, created = models.UserAmiibo.objects.get_or_create(
         _amiibo=amiibo, user=user)
-    return relation.owned
+    return relation.own
 
 def user_add_owned(user, amiibo):
     relation, created = models.UserAmiibo.objects.get_or_create(
