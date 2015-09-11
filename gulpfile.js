@@ -6,26 +6,27 @@ var gulp = require('gulp'),
 
 gulp.task('scripts', function() {
   return gulp.src([
-      'bower_components/jquery/dist/jquery.js',
-      'bower_components/money/money.js',
-      'bower_components/moment/moment.js',
-      'bower_components/moment/locale/es.js',
-      'amiibofindr/static/semantic/semantic.js',
-      'amiibofindr/static/app/simpleViews.js',
-      'amiibofindr/static/app/global.js',
-      'amiibofindr/static/app/money.js',
-      'amiibofindr/static/app/collectionSearch.js',
-      'amiibofindr/static/app/time.js'
-    ])
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest('amiibofindr/static/dist'));
+    'bower_components/jquery/dist/jquery.js',
+    'bower_components/money/money.js',
+    'bower_components/moment/moment.js',
+    'bower_components/moment/locale/es.js',
+    'amiibofindr/static/semantic/semantic.js',
+    'amiibofindr/static/app/simpleViews.js',
+    'amiibofindr/static/app/global.js',
+    'amiibofindr/static/app/money.js',
+    'amiibofindr/static/app/relation.js',
+    'amiibofindr/static/app/collectionSearch.js',
+    'amiibofindr/static/app/time.js'
+  ])
+         .pipe(concat('app.js'))
+         .pipe(gulp.dest('amiibofindr/static/dist'));
 });
 
 gulp.task('less', function() {
   gulp.src('amiibofindr/static/less/**/*.less')
-    .pipe(less())
-    .pipe(gulp.dest('amiibofindr/static/css'))
-    .pipe(livereload());
+  .pipe(less())
+  .pipe(gulp.dest('amiibofindr/static/css'))
+  .pipe(livereload());
 });
 
 gulp.task('watch', function() {

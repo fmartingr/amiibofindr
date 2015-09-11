@@ -84,7 +84,7 @@ class UserAmiiboView(View):
         '-wishlist': 'remove_wishlist',
         '+trade': 'add_trade',
         '-trade': 'remove_trade',
-        '=trade': 'toggle_trade',
+        '+-trade': 'toggle_trade',
     }
 
     def get(self, request, amiibo, action):
@@ -96,6 +96,16 @@ class UserAmiiboView(View):
                 result = method(request, amiibo)
                 if result:
                     return result
+
+        # Handle templating
+        request_from = request.GET.get('from', None)
+        if request_from == 'detail':
+            return render(request,
+                          'amiibo/widgets/relation_header_buttons.html',
+                          {
+                              'amiibo': amiibo,
+                              'item': amiibo
+                          })
 
         return HttpResponseRedirect(amiibo.as_type().get_absolute_url())
 
