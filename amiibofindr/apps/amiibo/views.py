@@ -1,13 +1,9 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
-# django
-from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import View
-from django.utils.translation import ugettext as _
 
-# amiibo
 from .models import (
     Collection, Amiibo,
     AmiiboFigure, AmiiboCard
@@ -19,6 +15,7 @@ class CollectionView(View):
     template = 'amiibo/collection.html'
     type = Amiibo.FIGURE
     model = AmiiboFigure
+    section = 'collection'
 
     def get(self, request, collection=None, dummy=None):
         if collection:
@@ -37,6 +34,7 @@ class CollectionView(View):
             'selected_collection': collection,
             'amiibo_list': amiibo_list,
             'item': collection,
+            'section': self.section
         })
 
 
@@ -52,6 +50,7 @@ class CollectionCardView(CollectionView):
 
 
 class AmiiboView(View):
+    section = 'amiibo'
     def get(self, request, collection=None, amiibo=None, dummy=None):
         amiibo_obj = get_object_or_404(self.model,
                                        pk=amiibo,
@@ -61,7 +60,8 @@ class AmiiboView(View):
         return render(request, self.template, {
             'selected_collection': amiibo_obj.collection,
             'amiibo': amiibo_obj,
-            'item': amiibo_obj
+            'item': amiibo_obj,
+            'section': self.section,
         })
 
 class AmiiboFigureView(AmiiboView):
