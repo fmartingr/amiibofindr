@@ -88,8 +88,8 @@ class UserAmiiboView(View):
     }
 
     def get(self, request, amiibo, action):
-        obj = get_object_or_404(Amiibo, pk=amiibo)
-        amiibo = obj.as_type()
+        amiibo = get_object_or_404(Amiibo, pk=amiibo)
+        # amiibo = obj.as_type()
         if action in self.actions:
             method = getattr(self, self.actions[action], None)
             if method:
@@ -97,7 +97,7 @@ class UserAmiiboView(View):
                 if result:
                     return result
 
-        return HttpResponseRedirect(amiibo.get_absolute_url())
+        return HttpResponseRedirect(amiibo.as_type().get_absolute_url())
 
     def add_wishlist(self, request, amiibo):
         services.user_add_wishlist(request.user, amiibo)
