@@ -1,8 +1,8 @@
 {% load staticfiles thumbnail i18n %}
 <div class="ui link card
-            {% if amiibo.pk in USER_AMIIBO_OWNED %}green{% endif %}
             {% if amiibo.pk in USER_AMIIBO_WISHLIST %}yellow{% endif %}
-            {% if amiibo.pk in USER_AMIIBO_TRADE %}teal{% endif %}" data-amiibo-names="{{ amiibo.get_all_names|lower }}" data-href="{{ amiibo.get_absolute_url }}">
+	    {% if amiibo.pk in USER_AMIIBO_OWNED %}green{% endif %}           
+	    {% if amiibo.pk in USER_AMIIBO_TRADE %}teal{% endif %}" data-amiibo-names="{{ amiibo.get_all_names|lower }}" data-href="{{ amiibo.get_absolute_url }}">
   <div class="image">
     <div class="ui fluid image">
       {% if amiibo.is_card %}
