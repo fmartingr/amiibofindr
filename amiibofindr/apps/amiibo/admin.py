@@ -89,7 +89,8 @@ class AmiiboShopAdmin(ImportExportModelAdmin, reversion.VersionAdmin):
     list_display = ('amiibos_names', 'shop_name', 'shop', 'check_price')
     list_filter = ('shop', 'shop_name', )
     list_editable = ('check_price', )
-
+    filter_horizontal = ('amiibo', )
+    
     def amiibos_names(self, obj):
         return ", ".join(obj.amiibo.all().values_list('name_eu', flat=True))
 
