@@ -21,14 +21,14 @@ class CollectionView(View):
         if collection:
             collection = get_object_or_404(Collection, pk=collection)
             if self.type == self.model.FIGURE:
-                amiibo_list = collection.figures
+                amiibo_list = collection.figures.filter(visible=True)
             elif self.type == self.model.CARD:
-                amiibo_list = collection.cards
+                amiibo_list = collection.cards.filter(visible=True)
             else:
-                amiibo_list = collection.amiibo
+                amiibo_list = collection.amiibo.filter(visible=True)
         else:
             collection = None
-            amiibo_list = self.model.objects.all()
+            amiibo_list = self.model.objects.filter(visible=True)
 
         return render(request, self.template, {
             'selected_collection': collection,
