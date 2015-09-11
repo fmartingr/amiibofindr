@@ -35,7 +35,7 @@
           <div class="ui dropdown item">
             {% trans "Figures" %}
             <i class="dropdown icon"></i>
-            <div class="menu">
+            <div class="menu fixzindex">
               <a class="item" href="{% url 'amiibo:figures-all' %}">{% trans "All" %}</a>
               <div class="ui divider"></div>
               {% for col in COLLECTIONS_FIGURES %}
@@ -46,7 +46,7 @@
           <div class="ui dropdown item">
             {% trans "Cards" %}
             <i class="dropdown icon"></i>
-            <div class="menu">
+            <div class="menu fixzindex">
               <a class="item" href="{% url 'amiibo:cards-all' %}">{% trans "All" %}</a>
               {% for col in COLLECTIONS_CARDS %}
                 <a class="item" href="{{ col.get_absolute_url_cards }}">{{ col.name }}</a>
@@ -58,7 +58,7 @@
               <div class="ui dropdown item">
                 <i class="icon user"></i> {{ user_display }}
                 <i class="dropdown icon"></i>
-                <div class="menu">
+                <div class="menu fixzindex">
                   <a class="item" href="{% url 'profile:main' user.username %}">{% trans "My public profile" %}</a>
                   <a class="item" href="{% url 'account_change_password' %}">{% trans "Change password" %}</a>
                   <a class="item" href="{% url 'account_email' %}">{% trans "Emails" %}</a>
