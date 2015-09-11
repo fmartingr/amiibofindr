@@ -10,7 +10,7 @@
      class="ui button icon red tiny"><i class="ui icon cancel"></i></a>
 {% else %}
   <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='+owned' %}"
-     class="ui button icon green  tiny"><i class="ui icon check"></i></a>
+     class="ui button icon  tiny"><i class="ui icon check"></i></a>
   {% if amiibo.pk in USER_AMIIBO_WISHLIST %}
     <a href="{% url 'amiibo:user-action' amiibo=amiibo.pk action='-wishlist' %}"
        class="ui button icon yellow tiny"><i class="ui icon star"></i></a>
