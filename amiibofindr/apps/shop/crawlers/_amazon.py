@@ -45,6 +45,7 @@ class AmazonBaseCrawler(object):
                     'shop_product_id': product.asin,
                     'price': price,
                     'currency': currency,
+                    'title': product.title,
                 })
             sleep(1)
 
