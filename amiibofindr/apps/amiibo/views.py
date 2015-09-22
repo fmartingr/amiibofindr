@@ -63,7 +63,9 @@ class AmiiboView(View):
             'amiibo': amiibo_obj,
             'item': amiibo_obj,
             'section': self.section,
-            'users_trading': UserAmiibo.objects.filter(trade=True, _amiibo_id=amiibo_obj.pk)
+            'users_trading': UserAmiibo.objects.filter(
+                trade=True, _amiibo_id=amiibo_obj.pk
+            ).order_by('user__username'),
         })
 
 class AmiiboFigureView(AmiiboView):
