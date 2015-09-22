@@ -13,6 +13,14 @@ from amiibofindr.apps.shop.crawlers import Crawler
 
 
 class Command(BaseCommand):
+    def update_product(self, product, region):
+        amiibo_shop = AmiiboShop.objects.get(
+            item_id=product['shop_product_id'],
+            shop__flag_code=region[0]
+        )
+        amiibo_shop.shop_name = product.title
+        amiibo_shop.update_price(product['price'], product['currency'])
+
     def handle(self, *args, **kwargs):
         regions = Shop.objects.all()\
             .order_by('flag_code')\
@@ -27,14 +35,6 @@ class Command(BaseCommand):
             products = amazon.fetch_batch(item_codes)
             try:
                 for product in products:
-                    amiibo_shop = AmiiboShop.objects.get(
-                        item_id=product['shop_product_id'],
-                        shop__flag_code=region[0]
-                    )
-                    amiibo_shop.update_price(product['price'], product['currency'])
+                    self.update_product(product, region)
             except TypeError:
-                amiibo_shop = AmiiboShop.objects.get(
-                    item_id=product['shop_product_id'],
-                    shop__flag_code=region[0]
-                )
-                amiibo_shop.update_price(product['price'], product['currency'])
+                self.update_product(product, region)
