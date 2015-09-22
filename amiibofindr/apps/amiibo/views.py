@@ -6,7 +6,8 @@ from django.views.generic.base import View
 
 from .models import (
     Collection, Amiibo,
-    AmiiboFigure, AmiiboCard
+    AmiiboFigure, AmiiboCard,
+    UserAmiibo
 )
 from . import services
 
@@ -34,7 +35,7 @@ class CollectionView(View):
             'selected_collection': collection,
             'amiibo_list': amiibo_list,
             'item': collection,
-            'section': self.section
+            'section': self.section,
         })
 
 
@@ -62,6 +63,7 @@ class AmiiboView(View):
             'amiibo': amiibo_obj,
             'item': amiibo_obj,
             'section': self.section,
+            'users_trading': UserAmiibo.objects.filter(trade=True, _amiibo_id=amiibo_obj.pk)
         })
 
 class AmiiboFigureView(AmiiboView):

@@ -34,9 +34,9 @@ AMIIBO FIGURE
         <div class="ui stackable grid">
           <div class="eight wide column ui middle aligned">
             {% block amiibo_header %}
-            <h2 class="ui header">
-              {{ amiibo.collection.name }}: {{ amiibo.name }}
-            </h2>
+              <h2 class="ui header">
+                {{ amiibo.collection.name }}: {{ amiibo.name }}
+              </h2>
             {% endblock %}
           </div>
           <div class="eight wide column right aligned">
@@ -56,10 +56,11 @@ AMIIBO FIGURE
     </div>
     <div class="twelve wide column">
       <div class="ui top attached tabular menu">
-        <div class="active item">{% trans "Shops" %}</div>
+        <div class="active item" data-tab="shops">{% trans "Shops" %}</div>
+        <div class="item" data-tab="users-trading">{% trans "Users trading" %}</div>
       </div>
-      <div class="ui bottom attached active tab segment">
-        <!-- Shops --!>
+      <!-- Shops --!>
+      <div class="ui bottom attached active tab segment" data-tab="shops">
         {% if amiibo.shops_set.exists %}
           <div class="ui divided items">
             {% for shop_item in amiibo.shops_set.all %}
@@ -106,6 +107,27 @@ AMIIBO FIGURE
         {% else %}
           {% trans "No shops :(" %}
         {% endif %}
+      </div>
+      <!-- Shops --!>
+      <div class="ui bottom attached tab segment" data-tab="users-trading">
+        <div class="ui five doubling cards">
+          {% for relation in users_trading %}
+            <div class="ui link card">
+              <a href="{{ amiibo.get_absolute_url }}">
+                <div class="image">
+                  <div class="ui fluid image">
+                    <img src="{% static 'images/avatar-male.png' %}">
+                  </div>
+                </div>
+              </a>
+              <div class="content text-center">
+                <a class="bold" href="{% url 'profile:main' relation.user.username %}">{{ relation.user.username }}</a>
+              </div>
+            </div>
+          {% empty %}
+            {% trans "No user have this amiibo available for trade :(" %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>

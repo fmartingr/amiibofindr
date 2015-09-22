@@ -16,6 +16,9 @@ $(function(){
     position: 'left center'
   });
 
+  // Tabs
+  $('.tabular.menu .item').tab();
+
   $(document).on('click', '[data-toggle]', function(event) {
     var $el = event.target;
     var $target = $($el.getAttribute('data-toggle'));

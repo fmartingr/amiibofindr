@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-11 21:22+0200\n"
-"PO-Revision-Date: 2015-09-11 21:25+0200\n"
+"POT-Creation-Date: 2015-09-22 21:08+0200\n"
+"PO-Revision-Date: 2015-09-22 21:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -257,7 +257,7 @@ msgid "all"
 msgstr "todas"
 
 #: templates/_layout.html:36 templates/_layout.html.py:105
-#: templates/profile/main.html:35
+#: templates/profile/main.html:37
 msgid "Figures"
 msgstr "Figuras"
 
@@ -267,7 +267,7 @@ msgid "All"
 msgstr "Todas"
 
 #: templates/_layout.html:47 templates/_layout.html.py:114
-#: templates/profile/main.html:36
+#: templates/profile/main.html:38
 msgid "Cards"
 msgstr "Tarjetas"
 
@@ -671,29 +671,37 @@ msgstr "%(amiibo)s amiibo de %(collection)s en "
 msgid "Shops"
 msgstr "Tiendas"
 
-#: templates/amiibo/amiibo-figure.html:73
+#: templates/amiibo/amiibo-figure.html:60
+msgid "Users trading"
+msgstr "Usuarios para cambio"
+
+#: templates/amiibo/amiibo-figure.html:74
 msgid "Buy now for"
 msgstr "Comprar ahora por"
 
-#: templates/amiibo/amiibo-figure.html:80
+#: templates/amiibo/amiibo-figure.html:81
 msgid "No stock"
 msgstr "Sin stock"
 
-#: templates/amiibo/amiibo-figure.html:88
+#: templates/amiibo/amiibo-figure.html:89
 msgid "Updated"
 msgstr "Actualizado"
 
-#: templates/amiibo/amiibo-figure.html:91
+#: templates/amiibo/amiibo-figure.html:92
 msgid "This item had never been in stock"
 msgstr "Este articulo nunca ha estado en stock"
 
-#: templates/amiibo/amiibo-figure.html:97
+#: templates/amiibo/amiibo-figure.html:98
 msgid "This is a pack of various items"
 msgstr "Este es un pack que contiene varios artículos"
 
-#: templates/amiibo/amiibo-figure.html:107
+#: templates/amiibo/amiibo-figure.html:108
 msgid "No shops :("
 msgstr "Sin tiendas :("
+
+#: templates/amiibo/amiibo-figure.html:128
+msgid "No user have this amiibo available for trade :("
+msgstr "Ningún usuario tiene disponible este amiibo para cambio :("
 
 #: templates/amiibo/collection-cards.html:9 templates/amiibo/collection.html:29
 msgid "Search..."
@@ -886,32 +894,32 @@ msgstr ""
 "favorita añadida? ¿Nos falta algo muy importante que te hará la vida mas "
 "fácil? ¿Solo quieres hablar un rato? ¡Contacta con nosotros!"
 
-#: templates/profile/main.html:11
+#: templates/profile/main.html:13
 #, python-format
 msgid "Here you can browse over %(username)s's collection"
 msgstr "Aquí puedes ver la colección de %(username)s"
 
-#: templates/profile/main.html:19
+#: templates/profile/main.html:21
 msgid "Want everyone to see your collection? Spread the word!"
 msgstr "¿Quieres presumir de colección? ¡Difunde la palabra!"
 
-#: templates/profile/main.html:21
+#: templates/profile/main.html:23
 msgid "Look at my amiibo collection!"
 msgstr "¡Mira mi colección de #amiibo!"
 
-#: templates/profile/main.html:28
+#: templates/profile/main.html:30
 msgid "Have it"
 msgstr "Lo tiene"
 
-#: templates/profile/main.html:29
+#: templates/profile/main.html:31
 msgid "Want it"
 msgstr "Lo quiere"
 
-#: templates/profile/main.html:30
+#: templates/profile/main.html:32
 msgid "Trade it"
 msgstr "Lo cambia"
 
-#: templates/profile/main.html:48
+#: templates/profile/main.html:50
 msgid "Oooops, seems this user have nothing for that."
 msgstr "Ups, ¡parece que no tiene nada por aquí!"
 
