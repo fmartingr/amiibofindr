@@ -3,6 +3,7 @@
 # py
 from __future__ import unicode_literals
 from time import sleep
+import urllib2
 
 # third party
 from amazon.api import AmazonAPI
@@ -47,7 +48,10 @@ class AmazonBaseCrawler(object):
     def fetch_batch(self, product_ids):
         result = []
         for chunk_product_ids in chunks(product_ids, self.max_batch_lookup):
-            products = self.amazon.lookup(ItemId=','.join(chunk_product_ids))
+            try:
+                products = self.amazon.lookup(ItemId=','.join(chunk_product_ids))
+            except urllib2.HTTPError:
+                return result
             try:
                 for product in products:
                     result.append(self.parse_product(product))
