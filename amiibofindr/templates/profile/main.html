@@ -1,13 +1,13 @@
 {% extends "_layout.html" %}
-{% load i18n %}
+{% load i18n gravatar %}
 
 {% block js_views %}{{ block.super }},relation{% endblock %}
 
 {% block main_content %}
   <div class="ui page stackable grid">
     <div class="sixteen wide column">
-      <h2 class="ui center aligned icon header">
-        <i class="circular users icon"></i>
+      <h2 class="ui center aligned header">
+        <img class="ui image small circular bordered" src="{% gravatar this_user 400 %}"><br>
         {{ this_user.username }}
         <div class="sub header">
           {% blocktrans with username=this_user.username trimmed %}

@@ -4,7 +4,7 @@
 AMIIBO FIGURE
 {% endcomment %}
 
-{% load i18n staticfiles thumbnail %}
+{% load i18n staticfiles thumbnail gravatar %}
 
 {% block page_title %}{% blocktrans with collection=selected_collection.name amiibo=amiibo.name %}{{ amiibo }} amiibo from {{ collection }} in {% endblocktrans %}{{ block.super }}{% endblock %}
 
@@ -116,7 +116,7 @@ AMIIBO FIGURE
               <a href="{{ amiibo.get_absolute_url }}">
                 <div class="image">
                   <div class="ui fluid image">
-                    <img src="{% static 'images/avatar-male.png' %}">
+                    <img src="{% gravatar relation.user %}">
                   </div>
                 </div>
               </a>
@@ -125,7 +125,7 @@ AMIIBO FIGURE
               </div>
             </div>
           {% empty %}
-            {% trans "No user have this amiibo available for trade :(" %}
+            <p>{% trans "No user have this amiibo available for trade :(" %}</p>
           {% endfor %}
         </div>
       </div>
