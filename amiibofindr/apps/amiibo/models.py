@@ -318,7 +318,7 @@ class AmiiboShop(models.Model):
         return self.type == self.PACK
 
     def __unicode__(self):
-        return u'{} in {}'.format(self.amiibo.count(), self.shop.name)
+        return u'{} in {}'.format(self.shop_name, self.shop.name)
 
 
 class AmiiboPrice(models.Model):
