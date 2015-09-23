@@ -18,7 +18,9 @@ class Command(BaseCommand):
             item_id=product['shop_product_id'],
             shop__flag_code=region[0]
         )
-        amiibo_shop.shop_name = product['title']
+        if amiibo_shop.shop_name != product['title']:
+            amiibo_shop.shop_name = product['title']
+            amiibo_shop.save()
         amiibo_shop.update_price(product['price'], product['currency'])
 
     def handle(self, *args, **kwargs):
