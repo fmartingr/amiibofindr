@@ -32,5 +32,11 @@ class ProfileView(View):
             'this_user': user,
             'amiibo_list': amiibo_list,
             'type': type,
-            'relation': relation
+            'relation': relation,
+            'stats': {
+                'figures_count': UserAmiibo.objects.filter(
+                    user=user, _amiibo__type='figure', own=True).count(),
+                'cards_count': UserAmiibo.objects.filter(
+                    user=user, _amiibo__type='card', own=True).count(),
+            }
         })
