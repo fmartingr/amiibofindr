@@ -32,11 +32,9 @@
                     </div>
                   {% endfor %}
                 {% endif %}
-                <div class="item">
-                  <a title="{{ provider.name }}" class="socialaccount_provider ui button {{ provider.id }}"
+                  <a title="{{ provider.name }}" class="socialaccount_provider ui button {{ provider.id }} {% if provider.id == 'google' %}plus{% endif %}"
                      href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
                     <i class="icon {{ provider.name|lower }}"></i> {{ provider.name }}</a>
-                </div>
               {% endfor %}
             </div>
           </div>

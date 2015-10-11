@@ -45,7 +45,7 @@
             {% for provider, profiles in accounts.items %}
               {% for profile in profiles %}
                 <div class="item">
-                  <a class="ui button tiny {{ provider }}" href="{{ profile.get_profile_url }}">
+                  <a class="ui button tiny {{ provider }} {% if provider == 'google' %}plus{% endif %}" href="{{ profile.get_profile_url }}">
                     <i class="{{ provider }} icon"></i>
                     {{ profile }}
                   </a>
