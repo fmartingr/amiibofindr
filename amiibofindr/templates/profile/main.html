@@ -8,13 +8,13 @@
     <div class="four wide column">
       <img class="ui image small circular bordered" src="{% gravatar this_user 400 %}"><br>
     </div>
-    <div class="nine wide column">
+    <div class="eight wide column">
       <h2 class="ui header">
         {{ this_user.username }}
         <div class="sub header">
           <a href="https://twitter.com/share?text={% trans "Look at my amiibo collection!" %}" class="twitter-share-button" data-via="amiibofindr">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-          <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+          <div class="fb-like" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
         </div>
         <div class="ui statistics">
           <div class="statistic no-margin-bottom">
@@ -36,17 +36,22 @@
         </div>
       </h2>
     </div>
-    <div class="ui three wide column right aligned">
+    <div class="ui four wide column right aligned">
       {% get_social_accounts this_user as accounts %}
       {% if accounts %}
-        {% for provider, profiles in accounts.items %}
-          {% for profile in profiles %}
-            <a class="ui button tiny {{ provider }}" href="{{ profile.get_profile_url }}">
-              <i class="{{ provider }} icon"></i>
-              {{ profile }}
-            </a>
+        <h2>{% trans "Contact me in:" %}</h2>
+        <div class="ui list">
+          {% for provider, profiles in accounts.items %}
+            {% for profile in profiles %}
+              <div class="item">
+                <a class="ui button tiny {{ provider }}" href="{{ profile.get_profile_url }}">
+                  <i class="{{ provider }} icon"></i>
+                  {{ profile }}
+                </a>
+              </div>
+            {% endfor %}
           {% endfor %}
-        {% endfor %}
+        </div>
       {% endif %}
     </div>
     {% if user.pk == this_user.pk %}
@@ -55,6 +60,7 @@
           {% trans "Want everyone to see your collection? Spread the word!" %}
           <a href="https://twitter.com/share?text={% trans "Look at my amiibo collection!" %}" class="twitter-share-button" data-via="amiibofindr">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+          <div class="fb-share-button" data-layout="button"></div>
         </div>
       </div>
     {% endif %}
