@@ -37,7 +37,7 @@
       </h2>
     </div>
     <div class="ui three wide column right aligned">
-      {% get_social_accounts user as accounts %}
+      {% get_social_accounts this_user as accounts %}
       {% if accounts %}
         {% for provider, profiles in accounts.items %}
           {% for profile in profiles %}
