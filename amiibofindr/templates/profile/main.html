@@ -1,5 +1,5 @@
 {% extends "_layout.html" %}
-{% load i18n gravatar %}
+{% load i18n gravatar socialaccount %}
 
 {% block js_views %}{{ block.super }},relation{% endblock %}
 
@@ -8,7 +8,7 @@
     <div class="four wide column">
       <img class="ui image small circular bordered" src="{% gravatar this_user 400 %}"><br>
     </div>
-    <div class="twelve wide column">
+    <div class="nine wide column">
       <h2 class="ui header">
         {{ this_user.username }}
         <div class="sub header">
@@ -35,6 +35,19 @@
           </div>
         </div>
       </h2>
+    </div>
+    <div class="ui three wide column right aligned">
+      {% get_social_accounts user as accounts %}
+      {% if accounts %}
+        {% for provider, profiles in accounts.items %}
+          {% for profile in profiles %}
+            <a class="ui button tiny {{ provider }}" href="{{ profile.get_profile_url }}">
+              <i class="{{ provider }} icon"></i>
+              {{ profile }}
+            </a>
+          {% endfor %}
+        {% endfor %}
+      {% endif %}
     </div>
     {% if user.pk == this_user.pk %}
       <div class="sixteen wide column">

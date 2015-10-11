@@ -61,6 +61,7 @@
                 <div class="menu fixzindex">
                   <a class="item" href="{% url 'profile:main' user.username %}">{% trans "My public profile" %}</a>
                   <a class="item" href="{% url 'account_change_password' %}">{% trans "Change password" %}</a>
+                  <a class="item" href="{% url 'socialaccount_connections' %}">{% trans "Social accounts" %}</a>
                   <a class="item" href="{% url 'account_email' %}">{% trans "Emails" %}</a>
                   <div class="ui divider"></div>
                   <a class="item" href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
@@ -90,6 +91,7 @@
                 <a class="item" href="{% url 'profile:main' user.username %}">{% trans "My public profile" %}</a>
                 <a class="item" href="{% url 'account_change_password' %}">{% trans "Change password" %}</a>
                 <a class="item" href="{% url 'account_email' %}">{% trans "Emails" %}</a>
+                <a class="item" href="{% url 'socialaccount_connections' %}">{% trans "Social accounts" %}</a>
                 <a class="item" href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
               </div>
             </div>
