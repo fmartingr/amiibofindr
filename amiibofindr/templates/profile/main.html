@@ -37,21 +37,23 @@
       </h2>
     </div>
     <div class="ui four wide column right aligned">
-      {% get_social_accounts this_user as accounts %}
-      {% if accounts %}
-        <h2>{% trans "Contact me in:" %}</h2>
-        <div class="ui list">
-          {% for provider, profiles in accounts.items %}
-            {% for profile in profiles %}
-              <div class="item">
-                <a class="ui button tiny {{ provider }}" href="{{ profile.get_profile_url }}">
-                  <i class="{{ provider }} icon"></i>
-                  {{ profile }}
-                </a>
-              </div>
+      {% if user.is_authenticated %}
+        {% get_social_accounts this_user as accounts %}
+        {% if accounts %}
+          <h2>{% trans "Contact me in:" %}</h2>
+          <div class="ui list">
+            {% for provider, profiles in accounts.items %}
+              {% for profile in profiles %}
+                <div class="item">
+                  <a class="ui button tiny {{ provider }}" href="{{ profile.get_profile_url }}">
+                    <i class="{{ provider }} icon"></i>
+                    {{ profile }}
+                  </a>
+                </div>
+              {% endfor %}
             {% endfor %}
-          {% endfor %}
-        </div>
+          </div>
+        {% endif %}
       {% endif %}
     </div>
     {% if user.pk == this_user.pk %}
