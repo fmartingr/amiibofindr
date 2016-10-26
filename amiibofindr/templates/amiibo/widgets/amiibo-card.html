@@ -25,7 +25,8 @@
         </div>
       {% endif %}
     </div>
-  </a>
+    <img src="{% thumbnail amiibo.statue 340x340 crop %}">
+  </div>
   <div class="content text-center">
     <a href="{{ amiibo.get_absolute_url }}" class="header">{{ amiibo.name }}</a>
   </div>
