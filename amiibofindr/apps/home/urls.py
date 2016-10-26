@@ -9,5 +9,5 @@ from .views import HomeView
 
 urlpatterns = patterns(
     '',
-    url(r'^$', HomeView.as_view()),
+    url(r'^$', HomeView.as_view(), name='home'),
 )

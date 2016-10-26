@@ -1,0 +1,26 @@
+{% extends "amiibo/amiibo-figure.html" %}
+{% load thumbnail i18n %}
+
+{% block amiibo_image %}
+  <img src="{% thumbnail amiibo.image 300x440 crop %}" class="ui image centered" />
+{% endblock %}
+
+{% block amiibo_header %}
+  {{ block.super }}
+  <div class="ui label">
+    {% trans "Number" %}
+    <div class="detail">{{ amiibo.collection_number }}</div>
+  </div>
+  <div class="ui label">
+    {% trans "Type" %}
+    <div class="detail">{{ amiibo.get_card_type_display }}</div>
+  </div>
+  <div class="ui label">
+    {% trans "RPS" %}
+    <div class="detail">{{ amiibo.get_rps_display }}</div>
+  </div>
+  <div class="ui label">
+    {% trans "Dice" %}
+    <div class="detail">{{ amiibo.dice }}</div>
+  </div>
+{% endblock %}

@@ -1,32 +1,33 @@
-{% load staticfiles thumbnail %}
-<div class="ui link card" data-amiibo-names="{{ amiibo.get_all_names|lower }}" data-href="{{ amiibo.get_absolute_url }}">
-  <div class="image">
-    <div class="ui dimmer">
-      <div class="content">
-        <div class="center">
-          <a class="ui inverted button" href="{{ amiibo.get_absolute_url }}">{{ amiibo.name }}</a>
-        </div>
+{% load staticfiles thumbnail i18n %}
+
+<div class="ui link card
+            {% if amiibo.pk in USER_AMIIBO_WISHLIST %}yellow{% endif %}
+            {% if amiibo.pk in USER_AMIIBO_OWNED %}green{% endif %}
+            {% if amiibo.pk in USER_AMIIBO_TRADE %}teal{% endif %}"
+     data-amiibo-names="{{ amiibo.get_all_names|lower }}"
+     data-loader="{{ amiibo.pk }}">
+  <a href="{{ amiibo.get_absolute_url }}">
+    <div class="image">
+      <div class="ui fluid image">
+        {% if amiibo.is_card %}
+          <img src="{% thumbnail amiibo.image "240x340" crop %}" alt="{{ amiibo.name }}">
+        {% else %}
+          <img src="{% thumbnail amiibo.image "340x340" crop %}" alt="{{ amiibo.name }}">
+        {% endif %}
       </div>
+      {% if request.user.is_authenticated %}
+        <div class="relation-buttons"
+             id="amiibo-buttons-{{ amiibo.pk }}"
+             data-handle="relation"
+             data-from="list"
+             data-amiibo="{{ amiibo.pk }}">
+          {% include 'amiibo/widgets/relation_list_buttons.html' %}
+        </div>
+      {% endif %}
     </div>
     <img src="{% thumbnail amiibo.statue 340x340 crop %}">
   </div>
   <div class="content text-center">
-    <div class="header">{{ amiibo.name }}</div>
+    <a href="{{ amiibo.get_absolute_url }}" class="header">{{ amiibo.name }}</a>
   </div>
-  {% comment %}
-  <div class="extra content">
-    <span class="left floated">
-      <a href="#">
-        <i class="check circle icon"></i>
-        Have it
-      </a>
-    </span>
-    <span class="right floated">
-      <a href="#">
-        <i class="star circle icon"></i>
-        Want it
-      </a>
-    </span>
-  </div>
-  {% endcomment %}
 </div>

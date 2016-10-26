@@ -72,3 +72,5 @@ media/
 bower_components/
 node_modules/
 amiibofindr/static/css
+
+*~

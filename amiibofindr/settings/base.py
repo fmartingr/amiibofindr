@@ -1,3 +1,4 @@
+# coding: utf-8
 """
 Django settings for amiibofindr project.
 
@@ -33,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'suit',
     'django.contrib.admin',
+    'django.contrib.sites', # For allauth
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -45,11 +47,21 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'django_extensions',
 
+    # Auth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.instagram',
+
     # own apps
     'amiibofindr.apps.core',
     'amiibofindr.apps.amiibo',
     'amiibofindr.apps.shop',
     'amiibofindr.apps.home',
+    'amiibofindr.apps.profile',
     'amiibofindr.apps.notifications',
 )
 
@@ -58,6 +70,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'amiibofindr.apps.core.middleware.LanguageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -86,6 +100,8 @@ TEMPLATES = [
                 'amiibofindr.apps.amiibo.context_processors.currencies',
                 'amiibofindr.apps.core.context_processors.debug',
                 'amiibofindr.apps.core.context_processors.files',
+                'amiibofindr.apps.core.context_processors.i18n',
+                'amiibofindr.apps.amiibo.context_processors.user_amiibo',
             ],
         },
     },
@@ -108,7 +124,12 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = (
+    ('en', u'English'),
+    ('es', u'Español'),
+)
 
 TIME_ZONE = 'Europe/Madrid'
 
@@ -118,6 +139,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -127,3 +151,19 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_URL = '/media/'
+
+
+# Auth
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
+# Sites and social auth
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_USERNAME_MIN_LENGTH = 3
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/account/login/'

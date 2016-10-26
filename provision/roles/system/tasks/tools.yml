@@ -7,3 +7,9 @@
 - name: Ensure git is installed
   apt: pkg=git state=latest
   sudo: true
+
+- name: ensure requirements are installed
+  apt: pkg={{ item }} state=latest
+  sudo: true
+  with_items:
+    - gettext

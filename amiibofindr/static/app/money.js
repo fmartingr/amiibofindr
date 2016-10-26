@@ -1,7 +1,7 @@
 (function() {
   var MoneyComponent = function() {
     this.DEBUG = DEBUG;
-    this.currency = 'EUR';
+    this.currency = 'reset';
     this.currencies = CURRENCIES;
     this.ratesSet = false;
     this.initialize();
@@ -59,15 +59,29 @@
 
   MoneyComponent.prototype.setCurrency = function(currency) {
     var self = this;
-    if (this.currencies.indexOf(currency) !== -1) {
+    if (this.currencies.indexOf(currency) !== -1 || currency === 'reset') {
       if (this.DEBUG) console.log('[money] set user currency: ' + currency)
-      $('[data-currency-change]').removeClass('underlined');
-      $('[data-currency-change="' + currency + '"]').addClass('underlined');
-      window.localStorage.setItem('currency', currency);
+      $('[data-currency-change]').removeClass('active');
+      $('[data-currency-change="' + currency + '"]').addClass('active');
       this.currency = currency;
-      this.convertPrices();
+      if (currency === 'reset') {
+        window.localStorage.removeItem('currency');
+        this.resetConversion();
+      } else {
+        window.localStorage.setItem('currency', currency);
+        this.convertPrices();
+      }
     }
   };
+
+  MoneyComponent.prototype.resetConversion = function() {
+    var self = this;
+    [].forEach.call(document.querySelectorAll('[data-money]'), function(item) {
+      var price = item.getAttribute('data-price');
+      var currency = item.getAttribute('data-currency');
+      item.innerHTML = price + ' ' + currency;
+    });
+  }
 
   MoneyComponent.prototype.convertPrices = function() {
     var self = this;

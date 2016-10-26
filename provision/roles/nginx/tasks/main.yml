@@ -16,6 +16,6 @@
   file: src=/etc/nginx/sites-available/{{ app_user }} dest=/etc/nginx/sites-enabled/{{ app_user }} state=link
   sudo: true
 
-- name: Restart nginx
-  service: name=nginx state=restarted
-  sudo: true
+#- name: Restart nginx
+#  service: name=nginx state=restarted
+#  sudo: true

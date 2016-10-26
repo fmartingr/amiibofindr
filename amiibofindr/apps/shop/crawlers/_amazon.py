@@ -3,6 +3,7 @@
 # py
 from __future__ import unicode_literals
 from time import sleep
+import urllib2
 
 # third party
 from amazon.api import AmazonAPI
@@ -26,26 +27,36 @@ class AmazonBaseCrawler(object):
             region=self.region
         )
 
+    def parse_product(self, product):
+        price_and_currency = product.price_and_currency
+
+        price = price_and_currency[0]
+        currency = price_and_currency[1]
+
+        if currency == 'JPY':
+            price = float(price)*100
+
+        print(self.region, product.asin, price, currency, product.title)
+
+        return {
+            'shop_product_id': product.asin,
+            'price': price,
+            'currency': currency,
+            'title': product.title,
+        }
+
     def fetch_batch(self, product_ids):
         result = []
         for chunk_product_ids in chunks(product_ids, self.max_batch_lookup):
-            products = self.amazon.lookup(ItemId=','.join(chunk_product_ids))
-            for product in products:
-                price_and_currency = product.price_and_currency
-
-                price = price_and_currency[0]
-                currency = price_and_currency[1]
-
-                if currency == 'JPY':
-                    price = float(price)*100
-
-                print(self.region, product.asin, price, currency)
-
-                result.append({
-                    'shop_product_id': product.asin,
-                    'price': price,
-                    'currency': currency,
-                })
+            try:
+                products = self.amazon.lookup(ItemId=','.join(chunk_product_ids))
+            except urllib2.HTTPError:
+                return result
+            try:
+                for product in products:
+                    result.append(self.parse_product(product))
+            except TypeError:
+                result.append(self.parse_product(products))
             sleep(1)
 
         return result

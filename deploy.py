@@ -10,7 +10,7 @@ from fabric.api import local
               help='Branch to git clone from')
 @click.option('--inventory', '-i', default='hosts',
               help='Inventory file for ansible to use')
-@click.option('--host', '-h', default=None,
+@click.option('--host', '-h', default='web-01',
               help='Host to deploy to')
 @click.option('--tag', '-t', default='deploy',
               help='Ansible tags to run')

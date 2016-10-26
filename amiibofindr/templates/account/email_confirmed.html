@@ -1,0 +1,22 @@
+{% extends "account/_layout.html" %}
+
+{% load i18n %}
+{% load account %}
+
+{% block page_title %}{% trans "Confirm E-mail Address" %} {{ block.super }}{% endblock %}
+
+
+{% block main_content %}
+  <div class="ui page stacked grid centered">
+    <div class="ten wide column">
+      <h1>{% trans "Confirm E-mail Address" %}</h1>
+
+      <div class="ui tall stacked segment">
+        {% user_display confirmation.email_address.user as user_display %}
+
+        <p>{% blocktrans with confirmation.email_address.email as email %}You have confirmed that <a href="mailto:{{email}}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

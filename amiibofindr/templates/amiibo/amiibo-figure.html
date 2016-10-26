@@ -1,0 +1,134 @@
+{% extends "_layout.html" %}
+
+{% comment %}
+AMIIBO FIGURE
+{% endcomment %}
+
+{% load i18n staticfiles thumbnail gravatar %}
+
+{% block page_title %}{% blocktrans with collection=selected_collection.name amiibo=amiibo.name %}{{ amiibo }} amiibo from {{ collection }} in {% endblocktrans %}{{ block.super }}{% endblock %}
+
+{% block meta_twitter_title %}{% blocktrans with collection=selected_collection.name amiibo=amiibo.name %}{{ amiibo }} amiibo from {{ collection }} in {% endblocktrans %}{{ block.super }}{% endblock %}
+{% block meta_og_title %}{% blocktrans with collection=selected_collection.name amiibo=amiibo.name %}{{ amiibo }} amiibo from {{ collection }} in {% endblocktrans %}{{ block.super }}{% endblock %}
+
+{% block meta_twitter_image %}{% thumbnail amiibo.statue 300x300 %}{% endblock %}
+{% block meta_og_image %}{% thumbnail amiibo.statue 300x300 %}{% endblock %}
+
+{% block meta_twitter_url %}{{ amiibo.get_absolute_url }}{% endblock %}
+{% block meta_og_url %}{{ amiibo.get_absolute_url }}{% endblock %}
+
+{% block js_views %}money,time,relation{% endblock %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <i class="right chevron icon divider"></i>
+  <a class="section" href="{{ selected_collection.get_absolute_url }}">{{ selected_collection.name }}</a>
+  <i class="right chevron icon divider"></i>
+  <span class="active section">{{ amiibo.name }}</span>
+{% endblock %}
+
+{% block main_content %}
+  <div class="ui page grid">
+    <div class="sixteen wide column">
+      <div class="ui segment" data-loader="{{ amiibo.pk }}">
+        <div class="ui stackable grid">
+          <div class="eight wide column ui middle aligned">
+            {% block amiibo_header %}
+              <h2 class="ui header">
+                {{ amiibo.collection.name }}: {{ amiibo.name }}
+              </h2>
+            {% endblock %}
+          </div>
+          <div class="eight wide column right aligned">
+            {% include 'amiibo/widgets/relation_header_buttons.html' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui page stackable grid">
+    <div class="four wide column">
+      <div class="ui segment">
+        {% block amiibo_image %}
+          <img src="{% thumbnail amiibo.statue 340x340 crop %}" class="ui image centered" />
+        {% endblock %}
+      </div>
+    </div>
+    <div class="twelve wide column">
+      <div class="ui top attached tabular menu">
+        <div class="active item" data-tab="shops">{% trans "Shops" %}</div>
+        <div class="item" data-tab="users-trading">{% trans "Users trading" %}</div>
+      </div>
+      <!-- Shops --!>
+      <div class="ui bottom attached active tab segment" data-tab="shops">
+        {% if amiibo.shops_set.exists %}
+          <div class="ui divided items">
+            {% for shop_item in amiibo.shops_set.all %}
+              {% with price=shop_item.last_price.price stock=shop_item.last_price.stock currency=shop_item.last_price.currency %}
+                <div class="item">
+                  <div class="content">
+                    {% if stock and price %}
+                      <a class="ui right floated label green large" href="{{ shop_item.get_url }}"
+                         target="_blank">
+                        <i class="shop icon"></i>
+                        {% trans 'Buy now for' %}
+                        <span data-price="{{ price }}" data-currency="{{ currency }}" data-money>
+                          {{ price }} {{ currency }}
+                        </span>
+                      </a>
+                    {% else %}
+                      <div class="ui right floated label red">
+                        {% trans "No stock" %}
+                      </div>
+                    {% endif %}
+                    <a class="header" href="{{ shop_item.get_url }}" target="_blank">{{ shop_item.shop.name }}</a>
+                    <div class="meta">
+                      <div class="cinema">
+                        {% if shop_item.last_price.date %}
+                          <i class="ui icon info circle blue"></i>
+                          {% trans "Updated" %} <span data-relative="{{ shop_item.last_price.date.isoformat }}"></span><br>
+                        {% else %}
+                          <i class="ui icon warning circle red"></i>
+                          {% trans "This item had never been in stock" %}
+                        {% endif %}
+                      </div>
+                      <div class="cinema">
+                        {% if shop_item.is_pack %}
+                          <i class="icon cube"></i>
+                          {% trans "This is a pack of various items" %}
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+              {% endwith %}
+                </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          {% trans "No shops :(" %}
+        {% endif %}
+      </div>
+      <!-- Shops --!>
+      <div class="ui bottom attached tab segment" data-tab="users-trading">
+        <div class="ui five doubling cards">
+          {% for relation in users_trading %}
+            <div class="ui link card">
+              <a href="{{ amiibo.get_absolute_url }}">
+                <div class="image">
+                  <div class="ui fluid image">
+                    <img src="{% gravatar relation.user %}">
+                  </div>
+                </div>
+              </a>
+              <div class="content text-center">
+                <a class="bold" href="{% url 'profile:main' relation.user.username %}">{{ relation.user.username }}</a>
+              </div>
+            </div>
+          {% empty %}
+            <p>{% trans "No user have this amiibo available for trade :(" %}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

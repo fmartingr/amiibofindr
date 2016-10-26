@@ -13,3 +13,10 @@
       app_path={{ deploy_path.stdout }}/git
       virtualenv=/home/{{ app_user }}/virtualenv
       settings=amiibofindr.settings.local
+
+- name: Performs manage.py compilemessages
+  django_manage: >
+      command=compilemessages
+      app_path={{ deploy_path.stdout }}/git
+      virtualenv=/home/{{ app_user }}/virtualenv
+      settings=amiibofindr.settings.local

@@ -1,5 +1,5 @@
 vagrant ansible_ssh_host=127.0.0.1 ansible_ssh_user=vagrant ansible_ssh_port=2222
-web-1 ansible_ssh_host=46.101.172.158 ansible_ssh_user=root ansible_ssh_port=22
+web-01 ansible_ssh_host=139.162.149.24 ansible_ssh_user=root ansible_ssh_port=22002
 
 [localdev]
 vagrant
@@ -7,7 +7,7 @@ vagrant
 [development]
 
 [production]
-web-1
+web-01
 
 [deploy]
-web-1
+web-01
